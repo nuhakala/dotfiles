@@ -1,5 +1,31 @@
 return {
 	{
+		"echasnovski/mini.cursorword",
+		version = false,
+		config = function()
+			require("mini.cursorword").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.indentscope",
+		version = false,
+		config = function()
+			require("mini.indentscope").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.align",
+		version = false,
+		config = function()
+			require("mini.align").setup({
+				mappings = {
+					start = "<leader>a",
+					start_with_preview = "<leader>A",
+				},
+			})
+		end,
+	},
+	{
 		"echasnovski/mini.surround",
 		version = false,
 		config = function()
@@ -19,20 +45,6 @@ return {
 			})
 		end,
 	},
-	{
-		"echasnovski/mini.indentscope",
-		version = false,
-		config = function()
-			require("mini.indentscope").setup()
-		end,
-	},
-	-- {
-	-- 	"echasnovski/mini.statusline",
-	-- 	version = false,
-	-- 	config = function()
-	-- 		require("mini.statusline").setup()
-	-- 	end,
-	-- },
 	{
 		"echasnovski/mini.sessions",
 		version = false,
@@ -74,18 +86,6 @@ return {
 				local action = vim.fn.input("Write action: ")
 				ms.select(action)
 			end, { desc = "Interactively select action" })
-		end,
-	},
-	{
-		"echasnovski/mini.align",
-		version = false,
-		config = function()
-			require("mini.align").setup({
-				mappings = {
-					start = "<leader>a",
-					start_with_preview = "<leader>A",
-				},
-			})
 		end,
 	},
 }

@@ -118,12 +118,12 @@ return {
 		wk.register({
 			["g"] = {
 				name = "LSP (Go to)",
-				d = "Definition",
-				D = "Declaration",
-				i = "Implementation",
-				o = "Type definition",
-				r = "References",
-				s = "Signature help",
+				-- d = "Definition",
+				-- D = "Declaration",
+				-- i = "Implementation",
+				-- o = "Type definition",
+				-- r = "References",
+				-- s = "Signature help",
 				["+"] = {
 					name = "Mappings without any prefix",
 					K = "Hover info",
