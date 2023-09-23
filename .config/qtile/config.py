@@ -4,10 +4,27 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-import subprocess
+import playerctl as playerctl
+import os
 
-mod = "mod1"
-# mod = "mod4"
+
+# ========== Rules ==========
+
+mod = "mod1"  # mod = "mod4"
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: list
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+auto_minimize = False
+wl_input_rules = None
+wmname = "LG3D"  # Java WM name for some java bullshit
+
+
+# ========== Keybindigs ==========
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -16,9 +33,10 @@ keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "o", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "a", lazy.layout.up(), desc="Move focus up"),
+    # Alternative movements
+    Key([mod], "o", lazy.layout.right(), desc="Move focus up"),
+    Key([mod], "a", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
@@ -42,30 +60,63 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod], "Return", lazy.spawn("kitty"), desc="Launch terminal"),
+
+    # Random stuff
+    Key([mod], "Return", lazy.spawn("wezterm"), desc="Launch terminal"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "o", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "control"], "q", lazy.shutdown()),
     Key(
         [mod],
         "u",
         lazy.spawn("rofi -show combi -modes combi -combi-modes 'drun,run'"),
-        desc="Spawn a command using a prompt widget",
+        desc="Spawn a command using rofi",
     ),
     Key(
         [mod],
         "e",
-        lazy.spawn("nautilus"),
+        lazy.spawn("wezterm start nnn"),
         desc="Start file explorer",
     ),
+    Key(
+        [mod],
+        "l",
+        lazy.spawn("i3lock"),
+        desc="Lock the screen",
+    ),
+    Key(
+        [],
+        "Print",
+        lazy.spawn(
+            "maim --select | xclip -selection clipboard -t image/png", shell=True
+        ),
+        desc="Take screenshot",
+    ),
+    Key([mod], "m", lazy.hide_show_bar("bottom"), desc="Toggle bar"),
+
+    # Multimedia keys
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master 1+ toggle")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+
+    # Brightness control
+    # Requires xbacklightcontrol or acpilight package and brightnessctl
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 ]
 
+
+# ========== Groups ==========
+
 groups = [
-    Group("1", spawn="firefox", label="Web", layout="max"),
-    Group("2", label="Dev", spawn="kitty", layout="monadtall"),
-    Group("3", spawn=["Discord", "Gajim"], label="Chat", layout="max"),
-    Group("4"),
-    Group("5"),
+    # layout="monadtall"
+    Group("1", spawn="firefox", label="Web", layout="monadtall"),
+    Group("2", label="Dev", layout="tile"),
+    Group("3", spawn=["discord", "gajim"], label="Chat", layout="columns"),
+    Group("4", spawn="lutris", label="Games", layout="max"),
+    Group("5", spawn="thunderbird", label="Mail", layout="monadtall"),
     Group("z", label="6"),
     Group("Adiaeresis", label="7"),
     Group("y", label="8"),
@@ -97,76 +148,81 @@ for i in groups:
         ]
     )
 
-active_color = "#76D2FF"
+
+# ========== Layouts ==========
+
+active_color = "#4BE100" # "#76D2FF"
 normal_color = "#000000"
 width = 1
-master_size = 0.6
+master_size = 0.618
+margin = 3
+columns = 2
 
 layouts = [
+    layout.Tile(
+        border_focus=active_color,
+        border_normal=normal_color,
+        border_width=width,
+        ratio=master_size,
+        margin=margin,
+        border_on_single=False,
+        margin_on_single=False,
+    ),
+    # layout.VerticalTile(
+    #     border_focus=active_color,
+    #     border_normal=normal_color,
+    #     border_width=width,
+    #     margin=margin,
+    #     single_border_width=None,
+    #     single_margin=None,
+    # ),
     layout.MonadTall(
         border_focus=active_color,
         border_normal=normal_color,
         border_width=width,
         ratio=master_size,
+        margin=margin,
+        single_border_width=0,
+        single_margin=0,
     ),
-    layout.MonadWide(
-        border_focus=active_color,
-        border_normal=normal_color,
-        border_width=width,
-        ratio=master_size,
-    ),
+    # layout.MonadWide(
+    #     border_focus=active_color,
+    #     border_normal=normal_color,
+    #     border_width=width,
+    #     ratio=master_size,
+    #     margin=margin,
+    #     single_border_width=0,
+    #     single_margin=0,
+    # ),
     layout.Max(),
-    layout.Columns(border_focus=active_color, border_width=width),
+    layout.Columns(
+        border_focus=active_color,
+        border_width=width,
+        margin=margin,
+        num_columns=columns,
+    ),
+    # layout.TreeTab(),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
 
-widget_defaults = dict(
-    font="sans",
-    fontsize=16,
-    padding=3,
+# Floating layout
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+    ]
 )
-extension_defaults = widget_defaults.copy()
-
-screens = [
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(hide_unused=True),
-                widget.Prompt(),
-                # widget.WindowName(),
-                widget.Spacer(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.CPU(format="CPU: {load_percent}%"),
-                widget.Sep(),
-                widget.Memory(measure_mem="G", fmt="MEM: {}"),
-                widget.Sep(),
-                widget.Battery(discharge_char="", format="BAT: {percent:2.0%}"),
-                # ]),
-                widget.Sep(),
-                widget.Clock(format="%H:%M %a %d.%m.%Y"),
-                widget.Sep(),
-                widget.QuickExit(),
-            ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        ),
-    ),
-]
-
 # Drag floating layouts.
 mouse = [
     Drag(
@@ -181,40 +237,61 @@ mouse = [
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
-dgroups_key_binder = None
-dgroups_app_rules = []  # type: list
-follow_mouse_focus = True
-bring_front_click = False
-cursor_warp = False
-floating_layout = layout.Floating(
-    float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
-    ]
+
+# ========== Screens ==========
+
+widget_defaults = dict(
+    font="sans",
+    fontsize=16,
+    padding=3,
 )
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-reconfigure_screens = True
+extension_defaults = widget_defaults.copy()
 
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
-auto_minimize = True
+screens = [
+    Screen(
+        wallpaper="~/Pictures/wallpapers/mr_torgue_1.jpg",
+        wallpaper_mode="stretch",
+        bottom=bar.Bar(
+            [
+                # Left side
+                widget.GroupBox(hide_unused=True),
+                # Prompt not needed, I use rofi
+                # widget.Prompt(),
+                widget.Spacer(),
 
-# When using the Wayland backend, this can be used to configure input devices.
-wl_input_rules = None
+                # Middle
+                # widget.Notify(),
+                widget.Clock(format="%a %H:%M"),
+                widget.Spacer(),
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-wmname = "LG3D"
+                # Right side
+                playerctl.PlayerctlWidget(),
+                widget.WidgetBox(
+                    widgets=[
+                        widget.CurrentLayout(),
+                        widget.Sep(),
+                        widget.Volume(fmt="vol: {}"),
+                        widget.Sep(),
+                        widget.Backlight(backlight_name="intel_backlight", fmt="Br: {}"),
+                        widget.Sep(),
+                    ]
+                ),
+                widget.CPU(format="{load_percent}%"),
+                widget.Sep(),
+                widget.Memory(measure_mem="G", format='{MemUsed: .2f}{mm}/{MemTotal: .1f}{mm}'),
+                widget.Sep(),
+                widget.Battery(
+                    discharge_char="", format="B{char}{percent:2.0%}", charge_char="^"
+                ),
+                # ]),
+                widget.Sep(),
+                widget.Clock(format="%d.%m.%Y"),
+                # widget.Sep(),
+                # widget.QuickExit(),
+            ],
+            24,
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ),
+    ),
+]
