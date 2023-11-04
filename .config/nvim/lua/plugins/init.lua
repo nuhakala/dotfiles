@@ -10,6 +10,27 @@ return {
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
 	},
+	{
+		"vivien/vim-linux-coding-style",
+	},
+	-- {
+	-- 	"vim-pandoc/vim-pandoc",
+	-- },
+	-- {
+	-- 	"vim-pandoc/vim-pandoc-syntax"
+	-- }
+	-- {
+	-- 	"ixru/nvim-markdown"
+	-- }
+	-- {
+	-- 	"plasticboy/vim-markdown",
+	-- 	branch = "master",
+	-- 	require = { "godlygeek/tabular" },
+	-- 	config = function ()
+	-- 		vim.g.vim_markdown_folding_disabled = 1
+	-- 		vim.g.vim_markdown_conceal = 2
+	-- 	end
+	-- },
 	-- {
 	-- 	"lukas-reineke/indent-blankline.nvim",
 	-- 	config = function()

@@ -70,6 +70,11 @@ return {
 			},
 		})
 
+		-- Leader x 2
+		wk.register({["<leader>"] = {
+			["<leader>"] = { name = "+More" }
+		}})
+
 		-- Remap.lua
 		wk.register({ ["<leader>r"] = { name = "+Find and replace" } })
 		wk.register({ ["<leader>q"] = { name = "+Close lsp menus" } })
@@ -111,8 +116,11 @@ return {
 		-- Telescope
 		wk.register({ ["<leader>t"] = { name = "+Telescope" } })
 
-		-- Troubel
+		-- Trouble
 		wk.register({ ["<leader>x"] = { name = "+Trouble" } })
+
+		-- Terminal
+		wk.register({ ["<leader>d"] = { name = "+Terminal" } })
 
 		-- LSP
 		wk.register({
@@ -147,6 +155,25 @@ return {
 				n = "Update n-lines",
 				l = "Suffix to search with 'prev' method",
 				t = "Suffix to search with 'next' method",
+			},
+		})
+
+		-- Terminal
+		wk.register({
+			["<leader>"] = {
+				[";"] = "Toggle terminal split",
+				["<leader>t"] = {
+					name = "Terminal horizontal size",
+					["i"] = "Grow terminal horizontally",
+					["d"] = "Shrink terminal horizontally",
+					["1"] = "Select terminal 1",
+					["2"] = "Select terminal 2",
+					["3"] = "Select terminal 3",
+					["4"] = "Select terminal 4",
+					["5"] = "Select terminal 5",
+					["+"] = "Grow terminal vertically",
+					["-"] = "Shrink terminal vertically",
+				},
 			},
 		})
 	end,

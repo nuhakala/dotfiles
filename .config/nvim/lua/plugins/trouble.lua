@@ -23,15 +23,15 @@ return {
 		vim.keymap.set("n", "<leader>xq", "<Cmd>TroubleToggle quickfix<CR>", { desc = "Toggle Trouble quickfix" })
 		vim.keymap.set("n", "<leader>xl", "<Cmd>TroubleToggle loclist<CR>", { desc = "Toggle Trouble localion list" })
 
-    -- Set keymaps for LSP-features
+		-- Set keymaps for LSP-features
 		vim.keymap.set("n", "gd", function()
 			require("trouble").open("lsp_definitions")
-		end, { desc = "Definitions" })
+		end, { desc = "Definition" })
 		vim.keymap.set("n", "go", function()
 			require("trouble").open("lsp_type_definitions")
-		end, { desc = "Definitions" })
+		end, { desc = "Type definitions" })
 		vim.keymap.set("n", "gr", function()
 			require("trouble").open("lsp_references")
-		end, { desc = "Definitions" })
+		end, { desc = "References" })
 	end,
 }
