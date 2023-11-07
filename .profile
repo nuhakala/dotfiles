@@ -1,22 +1,37 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
-export EDITOR=/usr/bin/nvim
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export EDITOR=/usr/bin/nvim export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/firefox
 
-export PATH="$HOME/bin:/opt/cuda/extras/compute-sanitize:$PATH"
+# export PATH="$HOME/bin:/opt/cuda/extras/compute-sanitize:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 # export NODE_OPTIONS=--openssl-legacy-provider
-
+# alias notes="nvim ~/beanbakers/notes.md"
 source /usr/share/nvm/init-nvm.sh 
-alias notes="nvim ~/beanbakers/notes.md"
+. "$HOME/.cargo/env"
+
+# Random aliases
+# LKP vm startup
+alias vm="~/filen-drive/lipasto/tietotekniikka_maisteri/linux_kernel_programming/virtual_machine/qemu-run-externKernel.sh"
 alias matlab="~/ohjelmat/matlab/bin/matlab"
 alias vim="nvim"
+alias rwth="ssh -X tu167332@login18-1.hpc.itc.rwth-aachen.de"
+#Shorthands
+alias sanasto="nvim ~/filen-drive/dokumentit/saSanasto.txt"
+alias musat="libreoffice ~/filen-drive/dokumentit/musat.ods"
+alias ostokset="libreoffice ~/filen-drive/dokumentit/ostokset.ods"
+alias gifit="nvim ~/filen-drive/muistiinpanot/gifit.md"
+alias muistettavaa="nvim ~/filen-drive/muistiinpanot/muistettavaa.md"
+alias sanat="nvim ~/filen-drive/muistiinpanot/sanat.md"
+
+alias ll="ls -l"
+alias la="ls -la"
 
 # NNN configuration
 export NNN_PLUG="m:nmount;p:preview-tui;f:fzopen"
-export NNN_BMS="u:/media/sdc/"
+export NNN_BMS="u:~/filen-drive/;l:~/filen-drive/lipasto/;t:~/filen-drive/lipasto/tietotekniikka_maisteri/;d:~/Downloads/"
 export NNN_FIFO="/tmp/nnn.fifo nnn"
-# export KITTY_LISTEN_ON="unix:${TMPDIR}/kitty"
+NNN_OPENER="/usr/bin/nvim"
 # cd on quit always:
 n ()
 {
@@ -35,7 +50,7 @@ n ()
 
 
 # Git aliases
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 alias gs="git status"
 alias gc="git commit"
