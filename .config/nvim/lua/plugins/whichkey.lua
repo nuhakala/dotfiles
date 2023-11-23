@@ -70,10 +70,15 @@ return {
 			},
 		})
 
+		-- Org-mode
+		-- wk.register({ ["<leader>o"] = { name = "+Org-mode" } })
+
 		-- Leader x 2
-		wk.register({["<leader>"] = {
-			["<leader>"] = { name = "+More" }
-		}})
+		wk.register({
+			["<leader>"] = {
+				["<leader>"] = { name = "+More" },
+			},
+		})
 
 		-- Remap.lua
 		wk.register({ ["<leader>r"] = { name = "+Find and replace" } })
@@ -122,26 +127,6 @@ return {
 		-- Terminal
 		wk.register({ ["<leader>d"] = { name = "+Terminal" } })
 
-		-- LSP
-		wk.register({
-			["g"] = {
-				name = "LSP (Go to)",
-				-- d = "Definition",
-				-- D = "Declaration",
-				-- i = "Implementation",
-				-- o = "Type definition",
-				-- r = "References",
-				-- s = "Signature help",
-				["+"] = {
-					name = "Mappings without any prefix",
-					K = "Hover info",
-					["<C-o>"] = "Go back from definition",
-					["<F2>"] = "Rename",
-					["<F4>"] = "Code action",
-				},
-			},
-		})
-
 		-- Mini surround
 		wk.register({
 			["<leader>n"] = {
@@ -159,22 +144,22 @@ return {
 		})
 
 		-- Terminal
-		wk.register({
-			["<leader>"] = {
-				[";"] = "Toggle terminal split",
-				["<leader>t"] = {
-					name = "Terminal horizontal size",
-					["i"] = "Grow terminal horizontally",
-					["d"] = "Shrink terminal horizontally",
-					["1"] = "Select terminal 1",
-					["2"] = "Select terminal 2",
-					["3"] = "Select terminal 3",
-					["4"] = "Select terminal 4",
-					["5"] = "Select terminal 5",
-					["+"] = "Grow terminal vertically",
-					["-"] = "Shrink terminal vertically",
-				},
-			},
-		})
+		-- wk.register({
+		-- 	["<leader>"] = {
+		-- 		[";"] = "Toggle terminal split",
+		-- 		["<leader>t"] = {
+		-- 			name = "Terminal horizontal size",
+		-- 			["i"] = "Grow terminal horizontally",
+		-- 			["d"] = "Shrink terminal horizontally",
+		-- 			["1"] = "Select terminal 1",
+		-- 			["2"] = "Select terminal 2",
+		-- 			["3"] = "Select terminal 3",
+		-- 			["4"] = "Select terminal 4",
+		-- 			["5"] = "Select terminal 5",
+		-- 			["+"] = "Grow terminal vertically",
+		-- 			["-"] = "Shrink terminal vertically",
+		-- 		},
+		-- 	},
+		-- })
 	end,
 }

@@ -14,6 +14,7 @@ return {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-cmdline" },
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -34,14 +35,14 @@ return {
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
+					{ name = "neorg" },
 				},
 
 				mapping = {
 					-- No idea what this complete does??
 					-- ["<C-Space>"] = cmp.mapping.complete(),
-					["<Tab>"] = cmp.mapping.confirm({ select = false }),
-					['<C-e>'] = cmp.mapping.abort(),
-
+					["<CR>"] = cmp.mapping.confirm({ select = false }),
+					["<C-Space>"] = cmp.mapping.abort(),
 
 					-- Enable navigating with arrows
 					["<Down>"] = cmp.mapping(function(fallback)
@@ -59,25 +60,51 @@ return {
 						end
 					end, { "i", "s" }),
 					-- Navigation with tab also
-					-- ["<Tab>"] = cmp.mapping(function(fallback)
-					-- 	if cmp.visible() then
-					-- 		cmp.select_next_item()
-					-- 	else
-					-- 		fallback()
-					-- 	end
-					-- end, { "i", "s" }),
-					-- ["<S-Tab>"] = cmp.mapping(function(fallback)
-					-- 	if cmp.visible() then
-					-- 		cmp.select_prev_item()
-					-- 	else
-					-- 		fallback()
-					-- 	end
-					-- end, { "i", "s" }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				},
 			})
+
+			cmp.setup.cmdline("/", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = "buffer" },
+				},
+			})
+
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
+					{
+						name = "cmdline",
+						option = {
+							ignore_cmds = { "Man", "!" },
+						},
+					},
+				}),
+			})
+
 			-- vim.keymap.set({"i"}, "<C-Space>", function() luasnip.expand() end, {silent = true})
-			vim.keymap.set({"i", "s"}, "<C-L>", function() luasnip.jump( 1) end, {silent = true})
-			vim.keymap.set({"i", "s"}, "<C-K>", function() luasnip.jump(-1) end, {silent = true})
+			vim.keymap.set({ "i", "s" }, "<C-L>", function()
+				luasnip.jump(1)
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<C-K>", function()
+				luasnip.jump(-1)
+			end, { silent = true })
 		end,
 	},
 }

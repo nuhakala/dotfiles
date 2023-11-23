@@ -7,8 +7,11 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = false
 
 vim.opt.smartindent = true
+vim.opt.conceallevel = 1
 
 vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.showbreak = "+++ "
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -28,3 +31,5 @@ vim.opt.cursorline = true
 vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+

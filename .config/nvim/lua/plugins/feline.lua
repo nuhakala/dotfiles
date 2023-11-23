@@ -31,7 +31,7 @@ return {
 				provider = {
 					name = "vi_mode",
 					-- opts = {
-						-- 	show_mode_name = true,
+					-- 	show_mode_name = true,
 					-- },
 				},
 				hl = function()
@@ -134,7 +134,7 @@ return {
 				right_sep = "block",
 			},
 
-      separator = {
+			separator = {
 				provider = " ",
 			},
 
@@ -160,16 +160,26 @@ return {
 			diagnostic_info = {
 				provider = "diagnostic_info",
 			},
+			line_percentage = {
+				provider = "line_percentage",
+				hl = {
+					fg = "aqua",
+					bg = "darkblue",
+					style = "bold",
+				},
+				left_sep = "block",
+				right_sep = "block",
+			},
 		}
 
 		local left = {
-      -- c.separator,
+			-- c.separator,
 			-- c.vim_mode,
 			c.gitBranch,
 			c.gitDiffAdded,
 			c.gitDiffRemoved,
 			c.gitDiffChanged,
-      -- c.separator,
+			-- c.separator,
 			c.fileinfo,
 		}
 
@@ -185,6 +195,7 @@ return {
 			c.lsp_client_names,
 			c.file_encoding,
 			c.position,
+			c.line_percentage,
 		}
 
 		local components = {

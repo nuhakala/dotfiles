@@ -13,39 +13,22 @@ return {
 	{
 		"vivien/vim-linux-coding-style",
 	},
-	-- {
-	-- 	"vim-pandoc/vim-pandoc",
-	-- },
-	-- {
-	-- 	"vim-pandoc/vim-pandoc-syntax"
-	-- }
-	-- {
-	-- 	"ixru/nvim-markdown"
-	-- }
-	-- {
-	-- 	"plasticboy/vim-markdown",
-	-- 	branch = "master",
-	-- 	require = { "godlygeek/tabular" },
-	-- 	config = function ()
-	-- 		vim.g.vim_markdown_folding_disabled = 1
-	-- 		vim.g.vim_markdown_conceal = 2
-	-- 	end
-	-- },
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	config = function()
-	-- 		vim.opt.list = true
-	-- 		-- vim.opt.listchars:append("space:⋅")
-	-- 		-- vim.opt.listchars:append("eol:↴")
-	-- 		--
-	-- 		require("indent_blankline").setup({
-	-- 			space_char_blankline = " ",
-	-- 			show_current_context = true,
-	-- 			indent_blankline_char = "┆",
-	-- 		})
-	--
-	-- 		vim.g.indent_blankline_char = "¦"
-	-- 		vim.g.indent_blankline_char_blankline = ""
-	-- 	end,
-	-- },
+	{
+		"folke/twilight.nvim",
+		opts = {},
+	},
+	{
+		"dhruvasagar/vim-table-mode",
+		config = function ()
+			-- vim.g.table_mode_map_prefig = "<localleader>m"
+			vim.cmd("let g:table_mode_map_prefix = '<localleader>m'")
+		end,
+	},
+	{
+		"jbyuki/nabla.nvim",
+		config = function ()
+			-- require("nabla").setup()
+			vim.keymap.set("n", "<leader>o", "<cmd>lua require('nabla').popup()<CR>", { desc = "Open Nabla popup"})
+		end,
+	}
 }

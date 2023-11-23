@@ -5,6 +5,7 @@ return {
 		-- here to ensure ts-context-commentstring works fine.
 		-- "JoosepAlviste/nvim-ts-context-commentstring",
 		-- "numToStr/Comment.nvim",
+		"nvim-orgmode/orgmode",
 	},
 	build = ":TSUpdate",
 	config = function()
@@ -31,7 +32,6 @@ return {
 				"vue",
 				"latex",
 				"markdown",
-				"markdown_inline",
 			},
 
 			-- Install parsers synchronously (only applied to `ensure_installed`)
@@ -48,7 +48,7 @@ return {
 				-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
 				-- Using this option may slow down your editor, and you may see some duplicate highlights.
 				-- Instead of true it can also be a list of languages
-				additional_vim_regex_highlighting = false,
+				additional_vim_regex_highlighting = "org",
 			},
 
 			context_commentstring = {

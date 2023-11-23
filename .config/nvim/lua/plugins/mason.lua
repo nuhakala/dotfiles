@@ -19,6 +19,7 @@ return {
 					capabilities = lsp_capabilities,
 				})
 			end
+
 			require("mason-lspconfig").setup({
 				ensure_installed = {},
 				handlers = { default_setup },
