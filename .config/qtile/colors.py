@@ -7,8 +7,8 @@ oma = [
     ["#FFFFFF", "#FFFFFF"],  # fg = text color
     ["#4BE100", "#4BE100"],  # active window border
     ["#76D2FF", "#76D2FF"],  # normal window border
-    ["#FF9800", "#FF9800"],  # Screen 1 highlight
-    ["#26b60c", "#26b60c"],  # Screen 2 highlight
+    ["#26b60c", "#26b60c"],  # Active group highlight
+    ["#FF9800", "#FF9800"],  # Non-active group highlight
     ["#FFFFFF", "#FFFFFF"],
     ["#FFFFFF", "#FFFFFF"],
     ["#FFFFFF", "#FFFFFF"],

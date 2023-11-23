@@ -7,6 +7,8 @@ from libqtile.widget import base
 class PlayerctlWidget(base.InLoopPollText):
     """
     Simple widget to display the artist and song got from playerctl.
+
+    REQUIREMENTS: playerctl
     """
 
     defaults = [

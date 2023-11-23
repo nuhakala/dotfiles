@@ -68,7 +68,7 @@ keys = [
     Key([mod], "u", lazy.spawn("rofi -show combi -modes combi -combi-modes 'drun,run'"), desc="Spawn a command using rofi"),
     Key([mod], "e", lazy.spawn("wezterm start nnn"), desc="Start file explorer"),
     Key([mod], "p", lazy.spawn("i3lock"), desc="Lock the screen"),
-    Key([], "Print", lazy.spawn( "maim --select | xclip -selection clipboard -t image/png", shell=True), desc="Take screenshot"),
+    Key([], "Print", lazy.spawn( "screenshot-without-picom", shell=True), desc="Take screenshot"),
     Key([mod], "m", lazy.hide_show_bar("bottom"), desc="Toggle bar"),
 
     # Multimedia keys
@@ -106,11 +106,11 @@ for i in groups:
             # mod1 + letter of group = switch to group
             Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to group {}".format(i.name)),
             # mod1 + shift + letter of group = switch to & move focused window to group
-            Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True), desc="Switch to & move focused window to group {}".format(i.name)),
+            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True), desc="Switch to & move focused window to group {}".format(i.name)),
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
+            Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+                desc="move focused window to group {}".format(i.name)),
         ]
     )
 
@@ -123,7 +123,7 @@ colors = colors.oma
 # normal_color = "#76D2FF"
 active_color = colors[2]
 normal_color = colors[3]
-width = 1
+width = 2
 master_size = 0.618
 margin = 3
 columns = 2
@@ -170,6 +170,8 @@ layouts = [
         border_width=width,
         margin=margin,
         num_columns=columns,
+        border_on_single=False,
+        margin_on_single=False,
     ),
     layout.TreeTab(),
     # layout.Stack(num_stacks=2),
