@@ -39,7 +39,7 @@ return {
 					replace = "<leader>nr", -- Replace surrounding
 					update_n_lines = "<leader>nn", -- Update `n_lines`
 
-					suffix_last = "<leader>nl", -- Suffix to search with "prev" method
+                    suffix_last = "<leader>nl", -- Suffix to search with "prev" method
 					suffix_next = "<leader>nt", -- Suffix to search with "next" method
 				},
 			})
@@ -49,7 +49,9 @@ return {
 		"echasnovski/mini.sessions",
 		version = false,
 		config = function()
-			require("mini.sessions").setup()
+			require("mini.sessions").setup({
+                autoread = true,
+            })
 
 			-- Setup commands for saving
 			local ms = require("mini.sessions")
@@ -67,25 +69,20 @@ return {
 			-- end, { nargs = 1 })
 
 			-- Keymaps to save and read the session
-			vim.keymap.set("n", "<leader>sw", function()
-				local sessionName = vim.fn.input("Write session name to write: ")
-				ms.write(sessionName)
-			end, { desc = "Save session" })
-
-			vim.keymap.set("n", "<leader>sr", function()
-				local sessionName = vim.fn.input("Write session name to read: ")
-				ms.read(sessionName)
-			end, { desc = "Read session" })
-
-			vim.keymap.set("n", "<leader>sd", function()
-				local sessionName = vim.fn.input("Write session name to delete: ")
-				ms.delete(sessionName)
-			end, { desc = "Delete session" })
-
-			vim.keymap.set("n", "<leader>si", function()
-				local action = vim.fn.input("Write action: ")
-				ms.select(action)
-			end, { desc = "Interactively select action" })
+			vim.keymap.set("n", "<leader>sw", function() local sessionName = vim.fn.input("Write session name to write: ") ms.write(sessionName) end, { desc = "Save session" })
+			vim.keymap.set("n", "<leader>sr", function() local sessionName = vim.fn.input("Write session name to read: ") ms.read(sessionName) end, { desc = "Read session" })
+			vim.keymap.set("n", "<leader>sd", function() local sessionName = vim.fn.input("Write session name to delete: ") ms.delete(sessionName) end, { desc = "Delete session" })
+			vim.keymap.set("n", "<leader>si", function() local action = vim.fn.input("Write action: ") ms.select(action) end, { desc = "Interactively select action" })
 		end,
 	},
+	{
+		"echasnovski/mini.splitjoin",
+		version = false,
+        -- opts = {
+        --     mappings = {
+        --         toggle = "gt",
+        --     }
+        -- },
+		config = true,
+	}
 }

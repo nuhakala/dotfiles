@@ -8,17 +8,13 @@ return {
 	config = function()
 		local wk = require("which-key")
 		wk.setup({
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-
 			plugins = {
 				marks = false, -- shows a list of your marks on ' and `
 				registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
 				-- the presets plugin, adds help for a bunch of default keybindings in Neovim
 				-- No actual key bindings are created
 				spelling = {
-					enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+					enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
 				},
 				presets = {
 					operators = false, -- adds help for operators like d, y, ...
@@ -61,105 +57,39 @@ return {
 			show_help = true, -- show a help message in the command line for using WhichKey
 			show_keys = true, -- show the currently pressed key and its label as a message in the command line
 			-- triggers = "auto", -- automatically setup triggers with = "auto"
-			triggers = { "<leader>", "z", "<c-w>", "g" }, -- or specifiy a list manually
+			triggers = { "<leader>", "<localleader>", "z", "<c-w>", "g" }, -- or specifiy a list manually
 			triggers_blacklist = {
 				-- list of mode / prefixes that should never be hooked by WhichKey
 				-- this is mostly relevant for keymaps that start with a native binding
 				i = { "j", "k" },
 				v = { "j", "k" },
+                -- g = { "~", "?", "j", "J", "k", "p", "P", "q", "u", "U", "w"}
 			},
 		})
 
-		-- Org-mode
-		-- wk.register({ ["<leader>o"] = { name = "+Org-mode" } })
-
-		-- Leader x 2
 		wk.register({
 			["<leader>"] = {
-				["<leader>"] = { name = "+More" },
+                ["<leader>"] = { name = "More" },
+                -- Some bug here, wont show the group name correctly without having one other value also.
+                ["g"] = { name = "+Git", s = "Stage hunk", },
+                ["o"] = { name = "Open" },
+                ["r"] = { name = "Find and replace" },
+                ["q"] = { name = "Close lsp menus" },
+				["s"] = { name = "Session management" },
+				["e"] = { name = "Tablemode" },
+				["t"] = { name = "Telescope" },
+                ["u"] = { name = "Select", s = "Start selecting text with Treesitter" },
+				-- ["x"] = { name = "Trouble" },
+				["d"] = { name = "Delete buffer" },
+				["n"] = { name = "+Surround", n = "Update n-lines" },
 			},
+            ["<localleader>"] = {
+                ["n"] = { name = "New", n = "New Note" },
+                ["t"] = { name = "Todo", d = "Mark as Done" },
+                ["i"] = { name = "Insert", d = "Insert date" },
+                ["l"] = { name = "List", i = "Invert (Un)ordered List" },
+                ["m"] = { name = "Mode", n = "Neorg mode norg" },
+            },
 		})
-
-		-- Remap.lua
-		wk.register({ ["<leader>r"] = { name = "+Find and replace" } })
-		wk.register({ ["<leader>q"] = { name = "+Close lsp menus" } })
-
-		-- Git
-		wk.register({
-			["<leader>g"] = {
-				name = "+Git",
-				s = "Stage hunk",
-				r = "Reset hunk",
-				S = "Stage buffer",
-				u = "Undo stage hunk",
-				R = "Reset buffer",
-				p = "Preview hunk",
-				b = "Toggle line blame",
-				d = "Show difference",
-				t = "Toggle deleted",
-			},
-		})
-
-		-- Comment
-		wk.register({
-			["<leader>c"] = {
-				name = "+Comment",
-				c = "Single line comment",
-				b = "Block comment",
-				o = "Add new comment line below",
-				O = "Add new comment line above",
-				A = "Add comment to end of line",
-			},
-		})
-
-		-- Set Session maangement
-		wk.register({ ["<leader>s"] = { name = "+Session management" } })
-
-		-- Nvim-tree
-		wk.register({ ["<leader>e"] = { name = "+Explorer" } })
-
-		-- Telescope
-		wk.register({ ["<leader>t"] = { name = "+Telescope" } })
-
-		-- Trouble
-		wk.register({ ["<leader>x"] = { name = "+Trouble" } })
-
-		-- Terminal
-		wk.register({ ["<leader>d"] = { name = "+Terminal" } })
-
-		-- Mini surround
-		wk.register({
-			["<leader>n"] = {
-				name = "+Surround",
-				a = "Add surrounding",
-				d = "Delete surrounding",
-				f = "Find surrounding (to the right)",
-				F = "Find surrounding (to the left)",
-				h = "Highlight surrounding",
-				r = "Replace surrounding",
-				n = "Update n-lines",
-				l = "Suffix to search with 'prev' method",
-				t = "Suffix to search with 'next' method",
-			},
-		})
-
-		-- Terminal
-		-- wk.register({
-		-- 	["<leader>"] = {
-		-- 		[";"] = "Toggle terminal split",
-		-- 		["<leader>t"] = {
-		-- 			name = "Terminal horizontal size",
-		-- 			["i"] = "Grow terminal horizontally",
-		-- 			["d"] = "Shrink terminal horizontally",
-		-- 			["1"] = "Select terminal 1",
-		-- 			["2"] = "Select terminal 2",
-		-- 			["3"] = "Select terminal 3",
-		-- 			["4"] = "Select terminal 4",
-		-- 			["5"] = "Select terminal 5",
-		-- 			["+"] = "Grow terminal vertically",
-		-- 			["-"] = "Shrink terminal vertically",
-		-- 		},
-		-- 	},
-		-- })
 	end,
 }

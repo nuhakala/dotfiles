@@ -3,8 +3,8 @@ return {
 		"williamboman/mason.nvim",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
-			"jay-babu/mason-null-ls.nvim",
+			-- "jose-elias-alvarez/null-ls.nvim",
+			-- "jay-babu/mason-null-ls.nvim",
 			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
 		},
@@ -25,18 +25,18 @@ return {
 				handlers = { default_setup },
 			})
 
-			require("mason-null-ls").setup({
-				ensure_installed = {
-					-- Opt to list sources here, when available in mason.
-				},
-				automatic_installation = false,
-				handlers = {},
-			})
-			require("null-ls").setup({
-				sources = {
-					-- Anything not supported by mason.
-				},
-			})
+			-- require("mason-null-ls").setup({
+			-- 	ensure_installed = {
+			-- 		-- Opt to list sources here, when available in mason.
+			-- 	},
+			-- 	automatic_installation = false,
+			-- 	handlers = {},
+			-- })
+			-- require("null-ls").setup({
+			-- 	sources = {
+			-- 		-- Anything not supported by mason.
+			-- 	},
+			-- })
 		end,
 	},
 }

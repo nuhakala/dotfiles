@@ -42,7 +42,7 @@ return {
 					-- No idea what this complete does??
 					-- ["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
-					["<C-Space>"] = cmp.mapping.abort(),
+					["<C-Space>"] = cmp.mapping.complete(),
 
 					-- Enable navigating with arrows
 					["<Down>"] = cmp.mapping(function(fallback)

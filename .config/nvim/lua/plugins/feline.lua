@@ -1,5 +1,6 @@
 return {
 	"feline-nvim/feline.nvim",
+	dependencies = "stevearc/aerial.nvim",
 	config = function()
 		local one_monokai = {
 			fg = "#abb2bf",
@@ -24,6 +25,19 @@ return {
 			BLOCK = "dark_red",
 			REPLACE = "red",
 			COMMAND = "aqua",
+		}
+
+		local custom_providers = {
+			formatter = function()
+				local res = ""
+				-- get formatters from conform
+				local formatters = require("conform").list_formatters()
+				for _, v in pairs(formatters) do
+					res = res .. v.name .. ", "
+				end
+				-- strip the last ", "
+				return res:sub(1, -3)
+			end,
 		}
 
 		local c = {
@@ -54,11 +68,18 @@ return {
 				short_provider = {
 					name = "file_info",
 					opts = {
-						type = "base-only",
+						type = "relative-short",
 					},
 				},
 				left_sep = "block",
 				right_sep = "block",
+			},
+
+			functionname = {
+				provider = {
+					name = "function_name",
+					update = { "ModeChanged", "CursorMoved" },
+				},
 			},
 
 			lsp_client_names = {
@@ -68,6 +89,15 @@ return {
 					style = "bold",
 				},
 				left_sep = "block",
+				right_sep = "block",
+			},
+
+			formatters = {
+				provider = custom_providers.formatter,
+				hl = {
+					fg = "purple",
+					style = "bold",
+				},
 				right_sep = "block",
 			},
 
@@ -181,6 +211,7 @@ return {
 			c.gitDiffChanged,
 			-- c.separator,
 			c.fileinfo,
+			-- c.functionname,
 		}
 
 		local middle = {
@@ -193,6 +224,7 @@ return {
 			c.diagnostic_hints,
 			c.diagnostic_info,
 			c.lsp_client_names,
+			c.formatters,
 			c.file_encoding,
 			c.position,
 			c.line_percentage,
