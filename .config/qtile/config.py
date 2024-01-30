@@ -3,10 +3,10 @@
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
+from libqtile import hook
 import playerctl as playerctl
 import colors
-import os
+import subprocess
 
 
 # ========== Rules ==========
@@ -35,9 +35,6 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    # Alternative movements
-    # Key([mod], "o", lazy.layout.right(), desc="Move focus up"),
-    # Key([mod], "a", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
     # Move windows between left/right columns or move up/down in current stack.
@@ -54,6 +51,7 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "control"], "n", lazy.window.toggle_floating(), desc="Toggle floating status"),
 
     # Switch focus of monitors
     Key([mod], "o", lazy.next_screen(), desc='Move focus to next monitor'),
@@ -65,11 +63,12 @@ keys = [
     Key([mod, "shift"], "o", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown()),
+    Key([], "Print", lazy.spawn( "screenshot-without-picom", shell=True), desc="Take screenshot"),
     Key([mod], "u", lazy.spawn("rofi -show combi -modes combi -combi-modes 'drun,run'"), desc="Spawn a command using rofi"),
     Key([mod], "e", lazy.spawn("wezterm start nnn"), desc="Start file explorer"),
     Key([mod], "p", lazy.spawn("i3lock"), desc="Lock the screen"),
-    Key([], "Print", lazy.spawn( "screenshot-without-picom", shell=True), desc="Take screenshot"),
     Key([mod], "m", lazy.hide_show_bar("bottom"), desc="Toggle bar"),
+    Key([mod], "b", lazy.spawn("neovide -- -c 'Neorg workspace home'"), desc="Start notes"),
 
     # Multimedia keys
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+")),
@@ -84,19 +83,29 @@ keys = [
 ]
 
 
+# ========== Autostart ==========
+# @hook.subscribe.startup_once
+# def autostart():
+#     processes = [
+#         ["picom", "-b"]
+#     ]
+
+#     for p in processes:
+#         subprocess.Popen(p)
+
 # ========== Groups ==========
 
 groups = [
     # layout="monadtall"
     Group("1", spawn="firefox", label="Web", layout="monadtall"),
-    Group("2", label="Dev", layout="tile"),
-    Group("3", screen_affinity=2, spawn=["discord", "wezterm start --always-new-process profanity -a Koiskis"], label="Chat", layout="columns"),
+    Group("2", label="Notes", layout="tile"),
+    Group("3", spawn=["discord", "wezterm start --always-new-process profanity -a Koiskis"], label="Chat", layout="columns"),
     Group("4", spawn="thunderbird", label="Mail", layout="monadtall"),
     Group("5", spawn="lutris", label="Games", layout="max"),
-    Group("z", label="Dev2"),
-    Group("Adiaeresis", label="Dev3"),
-    Group("y", label="8"),
-    Group("i", label="9"),
+    Group("z", label="Dev"),
+    Group("Adiaeresis", label="Dev2"),
+    Group("y", label="Dev3"),
+    Group("i", label="Dev4"),
 ]
 
 # Keybindings for groups
@@ -173,7 +182,7 @@ layouts = [
         border_on_single=False,
         margin_on_single=False,
     ),
-    layout.TreeTab(),
+    # layout.TreeTab(),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -235,6 +244,7 @@ def init_widgets_list():
         ),
         # Prompt not needed, I use rofi
         # widget.Prompt(),
+
         widget.Spacer(),
 
         # Middle
@@ -304,22 +314,24 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    # delete playerctl widget
-    del widgets_screen2[4:5]
     # delete systray
-    del widgets_screen2[12:13]
+    del widgets_screen2[13:14]
+    # delete playerctl widget
+    # del widgets_screen2[4:5]
+    # delete playerctl widget
+    del widgets_screen2[5:11]
     return widgets_screen2
 
 
 def init_screens():
     return [
             Screen(
-                wallpaper="~/Pictures/wallpapers/mr_torgue_1.jpg",
-                wallpaper_mode="stretch",
+                wallpaper="~/Pictures/wallpapers/endless2.jpg",
+                wallpaper_mode="fill",
                 bottom=bar.Bar(widgets=init_widgets_screen1(), size=23)
                 ),
             Screen(
-                wallpaper="~/Pictures/wallpapers/mr_torgue_1.jpg",
+                wallpaper="~/Pictures/wallpapers/endless6.jpg",
                 wallpaper_mode="stretch",
                 bottom=bar.Bar(widgets=init_widgets_screen2(), size=23)
                 )
