@@ -4,8 +4,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Improved movement
-vim.keymap.set("n", "<S-l>", "<C-d>zz")
-vim.keymap.set("n", "<S-h>", "<C-u>zz")
+vim.keymap.set({"n", "v"}, "<S-l>", "<C-d>zz")
+vim.keymap.set({"n", "v"}, "<S-h>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
@@ -31,16 +31,8 @@ vim.keymap.set({"n", "v"}, "<leader>p", '"+p', { desc = "Paste from system clipb
 vim.keymap.set("n", "<leader>,", "<Cmd>:noh<CR>", { desc = "Remove search highlighting" })
 
 -- Replace/edit the word under cursor
-vim.keymap.set("n", "<leader>ra", function()
-	local word = vim.fn.expand("<cword>")
-	local replacement = vim.fn.input("Replace all '" .. word .. "' with: ")
-	vim.cmd(":%s/" .. word .. "/" .. replacement .. "/g")
-end, { desc = "Replace all" })
-vim.keymap.set("n", "<leader>rs", function()
-	local word = vim.fn.expand("<cword>")
-	local replacement = vim.fn.input("Choose to replace every '" .. word .. "' with: ")
-	vim.cmd(":%s/" .. word .. "/" .. replacement .. "/gc")
-end, { desc = "Select and replace" })
+vim.keymap.set("n", "<leader>ra", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace all" })
+vim.keymap.set("n", "<leader>rs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]], { desc = "Select and replace" })
 
 -- Format document
 -- vim.keymap.set("n", "<leader>z", function()
@@ -69,9 +61,10 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- Save files
 vim.keymap.set("n", "<leader>w", "<Cmd>:wa<CR>", { desc = "Save all buffers" })
 
--- Close quickfix menu
+-- Quickfix
 vim.keymap.set("n", "<leader>qq", "<Cmd>:ccl<CR>", { desc = "Close quickfix menu" })
 vim.keymap.set("n", "<leader>ql", "<Cmd>:lcl<CR>", { desc = "Close locations menu" })
+vim.keymap.set("n", "<leader>oq", "<Cmd>:copen<CR>", { desc = "Open quickfix" })
 
 -- Open internet link
 vim.keymap.set("n", "<leader>ol", "<Cmd>:execute '!firefox ' . shellescape(expand('<cfile>'), 1)<CR>", { desc = "Open link" })

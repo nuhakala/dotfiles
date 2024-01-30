@@ -10,4 +10,3 @@ vim.diagnostic.config({
         prefix = '●', -- Could be '●', '▎', 'x'
     }
 })
-

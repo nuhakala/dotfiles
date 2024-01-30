@@ -31,6 +31,7 @@ return {
         vim.keymap.set("n", "<leader>tw", builtin.current_buffer_fuzzy_find, { desc = "Search in this buffer" })
         vim.keymap.set("n", "<leader>tr", builtin.lsp_references, { desc = "LSP references" })
         vim.keymap.set("n", "<leader>td", builtin.lsp_definitions, { desc = "LSP definitions" })
+        vim.keymap.set("n", "<leader>tD", builtin.diagnostics, { desc = "Diagnostics" })
         vim.keymap.set("n", "<leader>ts", builtin.lsp_document_symbols, { desc = "LSP document symbols" })
     end,
 }

@@ -51,28 +51,45 @@ return {
 		config = function()
 			require("mini.sessions").setup({
                 autoread = true,
+                hooks = {
+                    post = { read = function ()
+                        -- mini.sessions does not execute post-session autocommand
+                        -- for whatever reason, so we have to load arrow cache file here
+                        -- to make it work.
+                        require("arrow.git").refresh_git_branch()
+                        require("arrow.persist").load_cache_file()
+                    end, write = nil, delete = nil },
+                },
             })
 
 			-- Setup commands for saving
 			local ms = require("mini.sessions")
 
-			-- vim.api.nvim_create_user_command("Sesw", function(opts)
-			-- 	ms.write({opts.fargs[1]})
-			-- end, { nargs = 1 })
-			--
-			-- vim.api.nvim_create_user_command("Sesr", function(opts)
-			-- 	ms.read({opts.fargs[1]})
-			-- end, { nargs = 1 })
-			--
-			-- vim.api.nvim_create_user_command("Sesd", function(opts)
-			-- 	ms.delet({opts.fargs[1]})
-			-- end, { nargs = 1 })
-
 			-- Keymaps to save and read the session
-			vim.keymap.set("n", "<leader>sw", function() local sessionName = vim.fn.input("Write session name to write: ") ms.write(sessionName) end, { desc = "Save session" })
-			vim.keymap.set("n", "<leader>sr", function() local sessionName = vim.fn.input("Write session name to read: ") ms.read(sessionName) end, { desc = "Read session" })
-			vim.keymap.set("n", "<leader>sd", function() local sessionName = vim.fn.input("Write session name to delete: ") ms.delete(sessionName) end, { desc = "Delete session" })
-			vim.keymap.set("n", "<leader>si", function() local action = vim.fn.input("Write action: ") ms.select(action) end, { desc = "Interactively select action" })
+			vim.keymap.set("n", "<leader>sw", function ()
+			 vim.ui.input({prompt = "Session name to write"}, function (input)
+                 if input == nil then return end
+			     ms.write(input)
+			 end)
+            end, { desc = "Save session" })
+			vim.keymap.set("n", "<leader>sr", function()
+			 vim.ui.input({prompt = "Session name to read"}, function (input)
+                 if input == nil then return end
+			     ms.read(input)
+			 end)
+            end, { desc = "Read session" })
+			vim.keymap.set("n", "<leader>sd", function()
+			 vim.ui.input({prompt = "Session name to delete"}, function (input)
+                 if input == nil then return end
+			     ms.delete(input)
+			 end)
+            end, { desc = "Delete session" })
+			vim.keymap.set("n", "<leader>si", function()
+			 vim.ui.input({prompt = "Write action to take"}, function (input)
+                 if input == nil then return end
+			     ms.select(input)
+			 end)
+            end, { desc = "Interactively select action" })
 		end,
 	},
 	{

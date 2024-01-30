@@ -8,7 +8,7 @@ return {
                 disable_background = true,
                 disable_float_background = true,
             })
-            vim.cmd('colorscheme rose-pine-moon')
+            -- vim.cmd('colorscheme rose-pine-moon')
         end,
     },
 	{
@@ -66,4 +66,15 @@ return {
 		-- 	-- vim.cmd([[hi clear Todo]])
 		-- end,
 	},
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function (opts)
+            require("catppuccin").setup({
+                transparent_background = true,
+            })
+            vim.cmd('colorscheme catppuccin-mocha')
+        end,
+    }
 }

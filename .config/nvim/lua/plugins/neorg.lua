@@ -36,7 +36,7 @@ return {
                             -- conc = "~/filen-drive/muistiinpanot/conc/",
                             -- linux = "~/filen-drive/muistiinpanot/linux/",
                             -- hpc = "~/filen-drive/muistiinpanot/hpc/",
-                            notes = "~/filen-drive/muistiinpanot/",
+                            notes = "~/muistiinpanot/",
                             -- sekalaiset = "~/filen-drive/muistiinpanot/sekalaiset/",
                             -- historia = "~/filen-drive/muistiinpanot/historia/",
                         },
@@ -71,35 +71,36 @@ return {
                             vim.keymap.set("n", "<localleader>nn", function ()
                                 local dirman = require('neorg').modules.get_module("core.dirman")
 
-                                -- Get file name + title from user
-                                local user_input = vim.fn.input("Enter note name: ")
-                                local title = ""
-                                for str in string.gmatch(user_input, "([^_]+)") do
-                                    title = title .. str .. " "
-                                end
-                                title = string.sub(title, 1, -2) -- remove whitespace
+                                vim.ui.input({prompt = "Enter note name: "}, function (user_input)
+                                    local title = ""
+                                    for str in string.gmatch(user_input, "([^_]+)") do
+                                        title = title .. str .. " "
+                                    end
+                                    title = string.sub(title, 1, -2) -- remove whitespace
+                                    local date = os.date("%Y-%m-%d--")
 
-                                -- Get subfolder
-                                local file_path = vim.api.nvim_buf_get_name(0)
-                                local path = vim.fs.dirname(file_path)
-                                local ws = dirman.get_current_workspace()[2]
-                                if path ~= ws then
-                                    path = string.sub(path, string.len(ws), -1)
-                                else
-                                    path = ""
-                                end
+                                    -- Get subfolder
+                                    local file_path = vim.api.nvim_buf_get_name(0)
+                                    local path = vim.fs.dirname(file_path)
+                                    local ws = dirman.get_current_workspace()[2]
+                                    if path ~= ws then
+                                        path = string.sub(path, string.len(ws), -1)
+                                    else
+                                        path = ""
+                                    end
 
-                                dirman.create_file(path.."/"..user_input, nil, {
-                                    no_open  = false,  -- open file after creation?
-                                    force    = false,  -- overwrite file if exists
-                                    metadata = {
-                                        title = require("neorg.core").lib.title(title),
-                                    }
-                                })
+                                    dirman.create_file(path.."/"..date..user_input, nil, {
+                                        no_open  = false,  -- open file after creation?
+                                        force    = false,  -- overwrite file if exists
+                                        metadata = {
+                                            title = require("neorg.core").lib.title(title),
+                                        }
+                                    })
 
-                                -- Set cursor to after metadata
-                                vim.api.nvim_buf_set_lines(0, 10, 10, false, { "" })
-                                vim.api.nvim_win_set_cursor(0, { 11, 0 })
+                                    -- Set cursor to after metadata
+                                    vim.api.nvim_buf_set_lines(0, 10, 10, false, { "" })
+                                    vim.api.nvim_win_set_cursor(0, { 11, 0 })
+                                end)
                             end, { desc = "Create New Note" })
                         end,
                     },

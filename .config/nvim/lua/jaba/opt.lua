@@ -26,10 +26,11 @@ vim.opt.virtualedit = "block"
 vim.opt.inccommand = "split"
 
 -- FUNCTIONALITY
-vim.opt.swapfile = false
+vim.opt.swapfile = true
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+vim.opt.dir = os.getenv("HOME") .. "/.vim/swap/"
 
 -- Required for many plugins! Enables some color support related to terminal.
 vim.opt.termguicolors = true

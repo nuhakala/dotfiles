@@ -32,12 +32,27 @@ return {
 				local res = ""
 				-- get formatters from conform
 				local formatters = require("conform").list_formatters()
-				for _, v in pairs(formatters) do
+            for _, v in pairs(formatters) do
 					res = res .. v.name .. ", "
 				end
 				-- strip the last ", "
 				return res:sub(1, -3)
 			end,
+            function_scope = function(_, opts)
+                local symbols = require("aerial").get_location(true)
+                local depth = opts.depth or #symbols
+                local sep = opts.sep or " ⟩ "
+
+                depth = depth < #symbols and depth or #symbols
+                local res = ""
+                for idx = #symbols - depth + 1, #symbols do
+                    res = res .. symbols[idx].icon .. symbols[idx].name .. sep
+                end
+                if string.len(res) > 0 then
+                    res = res:sub(1, -6)
+                end
+                return res
+            end,
 		}
 
 		local c = {
@@ -71,15 +86,11 @@ return {
 						type = "relative-short",
 					},
 				},
+                hl = {
+                    fg = "orange"
+                },
 				left_sep = "block",
 				right_sep = "block",
-			},
-
-			functionname = {
-				provider = {
-					name = "function_name",
-					update = { "ModeChanged", "CursorMoved" },
-				},
 			},
 
 			lsp_client_names = {
@@ -93,13 +104,36 @@ return {
 			},
 
 			formatters = {
-				provider = custom_providers.formatter,
+				provider = {
+                    name = "formatter",
+                },
 				hl = {
 					fg = "purple",
 					style = "bold",
 				},
 				right_sep = "block",
 			},
+
+            function_scope = {
+                provider = {
+                    name = "function_scope",
+                    opts = {
+                        depth = 3,
+                    },
+                },
+                short_provider = {
+                    name = "function_scope",
+                    opts = {
+                        depth = 1
+                    },
+                },
+                update = { "ModeChanged", "CursorMoved" },
+                hl = {
+                    fg = "yellow",
+                    style = "bold",
+                },
+                left_sep = "block",
+            },
 
 			file_encoding = {
 				provider = "file_encoding",
@@ -202,50 +236,45 @@ return {
 			},
 		}
 
-		local left = {
-			-- c.separator,
-			-- c.vim_mode,
-			c.gitBranch,
-			c.gitDiffAdded,
-			c.gitDiffRemoved,
-			c.gitDiffChanged,
-			-- c.separator,
-			c.fileinfo,
-			-- c.functionname,
-		}
-
-		local middle = {
-			-- c.fileinfo,
-		}
-
-		local right = {
-			c.diagnostic_errors,
-			c.diagnostic_warnings,
-			c.diagnostic_hints,
-			c.diagnostic_info,
-			c.lsp_client_names,
-			c.formatters,
-			c.file_encoding,
-			c.position,
-			c.line_percentage,
-		}
-
 		local components = {
+            -- Components for active window
 			active = {
-				left,
-				middle,
-				right,
+                {
+                    c.gitBranch,
+                    c.gitDiffAdded,
+                    c.gitDiffRemoved,
+                    c.gitDiffChanged,
+                    c.fileinfo,
+                    c.function_scope
+                },
+                {},
+                {
+                    c.diagnostic_errors,
+                    c.diagnostic_warnings,
+                    c.diagnostic_hints,
+                    c.diagnostic_info,
+                    c.lsp_client_names,
+                    c.formatters,
+                    -- c.file_encoding,
+                    c.position,
+                    c.line_percentage,
+                }
 			},
+            -- Components for inactive window
 			inactive = {
-				left,
-				middle,
-				right,
+                {
+                    c.fileinfo
+                },
+                {},
+                {}
 			},
 		}
 		require("feline").setup({
 			components = components,
 			theme = one_monokai,
 			vi_mode_colors = vi_mode_colors,
+            custom_providers = custom_providers,
 		})
+        -- require("feline").winbar.setup()
 	end,
 }
