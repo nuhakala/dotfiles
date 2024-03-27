@@ -1,0 +1,57 @@
+! Purkka korjaus ISO_Level3_shiftin paikkaamiseksi. Jossain kohtaa keväällä
+! 2024 vissiin järjestelmäpäivityksen myötä xkb tiputti jotai tukia pois, minkä
+! päälle sovellukset oli rakentaneet tomintaa. Seurauksena altgr lakkas
+! toimimasta tykkänään, mikä oli aikamoinen ongelma, koska kaikki
+! erikoissymbolit oli sen takana. No, muutaman tunnin tutkinnan päätteeksi
+! keksin korjauksen, joka oli heittää IL3S hiuksista vittuun ja tilalle
+! Mode_switch joka toimi.
+
+! Oletettavasti sovellukset toimii Mode_switchin avulla, eli jos sitä ei
+! paineta, sovellukset luulee että kolmostason symboleita ei haluta käyttää.
+! Toisin kuin xkb, joka päivittyi siten, että IL3S riittää kolmos tason
+! symboleihin.
+
+keycode  10 = 1 exclam 1 exclam NoSymbol exclamdown
+keycode  11 = 2 quotedbl 2 at NoSymbol at rightdoublequotemark
+keycode  12 = 3 numbersign 3 sterling NoSymbol sterling guillemetright
+keycode  13 = 4 currency 4 dollar NoSymbol dollar guillemetleft
+keycode  14 = 5 percent 5 permille NoSymbol permille leftdoublequotemark
+keycode  15 = 6 ampersand 6 singlelowquotemark NoSymbol singlelowquotemark doublelowquotemark
+keycode  16 = 7 slash 7 braceleft NoSymbol braceleft
+keycode  17 = 8 parenleft 8 bracketleft NoSymbol bracketleft less
+keycode  18 = 9 parenright 9 bracketright NoSymbol bracketright greater
+keycode  19 = 0 equal 0 braceright NoSymbol braceright degree
+keycode  20 = aring Aring
+keycode  21 = dead_acute dead_grave
+keycode  24 = z Z ssharp NoSymbol q Q
+keycode  25 = adiaeresis Adiaeresis percent NoSymbol w W
+keycode  26 = y Y quotedbl NoSymbol EuroSign
+keycode  27 = i I ampersand NoSymbol r R
+keycode  28 = odiaeresis Odiaeresis dollar NoSymbol thorn THORN
+keycode  29 = f F y Y y Y
+keycode  30 = p P u U u U
+keycode  31 = c C parenleft
+keycode  32 = r R parenright NoSymbol oe OE
+keycode  33 = l L dead_horn dead_hook
+keycode  34 = plus question backslash NoSymbol dead_doubleacute dead_abovering
+keycode  35 = dead_diaeresis dead_circumflex dead_tilde NoSymbol dead_tilde dead_macron
+keycode  38 = a A at NoSymbol schwa SCHWA
+keycode  39 = o O equal NoSymbol ssharp U1E9E
+keycode  40 = e E slash NoSymbol eth ETH
+keycode  41 = u U exclam NoSymbol f F
+keycode  42 = g G EuroSign NoSymbol g G
+keycode  43 = k K h H h H
+keycode  44 = h H bracketleft NoSymbol j J
+keycode  45 = t T braceleft NoSymbol kra dead_greek
+keycode  46 = n N braceright NoSymbol dead_stroke dead_currency
+keycode  47 = s S bracketright NoSymbol oslash Oslash
+keycode  53 = q Q asterisk periodcentered
+keycode  54 = j J less NoSymbol c C
+keycode  55 = b B greater NoSymbol v V
+keycode  56 = x X questiondown NoSymbol b B
+keycode  57 = d D
+keycode  58 = m M mu NoSymbol mu emdash
+keycode  59 = w W
+keycode  60 = v V
+keycode  94 = greater less bar
+keycode  108 = Mode_switch Mode_switch Mode_switch
