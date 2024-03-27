@@ -6,7 +6,10 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
 
 # Source shell-independent stuff
-source "$HOME/.profile"
+source "$HOME/.shell/profile.sh"
+source "$HOME/.shell/git.sh"
+source "$HOME/.shell/fzf.sh"
+source "$HOME/.shell/nnn.sh"
 
 # Settings: based on supercharge and manjaro config
 
@@ -141,8 +144,8 @@ setopt prompt_subst
 
 # Add info to git messages, namely, calculate git changes in the directory.
 # Manual: https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#vcs_005finfo-Configuration
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-+vi-git-untracked(){
+# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+# +vi-git-untracked(){
     # I do this by calculating the changed/staged/untracked files, and then adding
     # those files to the branch variable. It makes formatting so much easier.
     # I guess it would fail if we are in a situation that there is no branch, but
@@ -150,28 +153,28 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
     # staged/unstaged git variables, they are %u and %c
 
 	# calculate untracked items and add it to git info
-	untracked=$(git ls-files --others --exclude-standard | wc -l)
-	staged=$(git diff --name-only --cached | wc -l)
+	# untracked=$(git ls-files --others --exclude-standard | wc -l)
+	# staged=$(git diff --name-only --cached | wc -l)
 
-	if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-		[ $untracked -ge 1 ] ; then
-		hook_com[branch]+=" N${untracked}"
-	fi
+	# if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+	# 	[ $untracked -ge 1 ] ; then
+	# 	hook_com[branch]+=" %F{44}N${untracked}"
+	# fi
 
-	# calculate staged files and add it
-	staged=$(git diff --name-only --cached | wc -l)
-	if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-		[ $staged -ge 1 ] ; then
-		hook_com[branch]+=" S${staged}"
-	fi
+	# # calculate staged files and add it
+	# staged=$(git diff --name-only --cached | wc -l)
+	# if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+	# 	[ $staged -ge 1 ] ; then
+	# 	hook_com[branch]+=" %F{44}S${staged}"
+	# fi
 
-	# calculate modified files and add
-	modified=$(git ls-files --modified --exclude-standard | wc -l)
-	if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-		[ $modified -ge 1 ] ; then
-		hook_com[branch]+=" %F{44}M${modified}" # signify new files with a bang
-	fi
-}
+	# # calculate modified files and add
+	# modified=$(git ls-files --modified --exclude-standard | wc -l)
+	# if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+	# 	[ $modified -ge 1 ] ; then
+	# 	hook_com[branch]+=" %F{44}M${modified}" # signify new files with a bang
+	# fi
+# }
 
 # Apply git formatting
 zstyle ':vcs_info:*' check-for-changes true
