@@ -15,4 +15,4 @@ xset m 0 0
 # feh --bg-scale ~/Pictures/mr_torgue_3.png
 
 # compton &
-picom -b
+# picom &
