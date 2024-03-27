@@ -29,11 +29,12 @@ return {
 		config = function()
 			require("aerial").setup({
 				-- optionally use on_attach to set keymaps when aerial has attached to a buffer
-				on_attach = function(bufnr)
+				-- on_attach = function(bufnr)
+                    -- vim.api.nvim_buf_set_name(0, "Aerial")
 					-- Jump forwards/backwards with '{' and '}'
-					vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-					vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-				end,
+					-- vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+					-- vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+				-- end,
 			})
 			-- You probably also want to set a keymap to toggle aerial
 			vim.keymap.set("n", "<leader>oa", "<cmd>AerialToggle!<CR>")
@@ -49,14 +50,17 @@ return {
 					-- Conform will run multiple formatters sequentially
 					python = { "black" },
 					-- Use a sub-list to run only the first available formatter
-					javascript = { { "prettierd", "prettier" } },
+                    javascript = { { "prettierd", "prettier" } },
 					c = { "clang_format" },
+					cpp = { "clang_format" },
+                    ["*"] = { "codespell" },
 				},
 			})
-			vim.keymap.set({ "n", "v" }, "<leader>z", function()
-				require("conform").format()
-				print("File formatted")
-			end, { desc = "Format" })
+
+            vim.keymap.set({ "n", "v", "x" }, "<leader>z", function()
+                require("conform").format({ lsp_fallback = true })
+                print("File formatted")
+            end, { desc = "Format" })
 		end,
 	},
 	{

@@ -28,9 +28,12 @@ local k = require("luasnip.nodes.key_indexer").new_key
 
 return {
 	-- Latex number sets
-	s("realnum", { t("\\mathbb{R}") }),
-	s("intnum", { t("\\mathbb{Z}") }),
-	s("natnum", { t("\\mathbb{N}") }),
-	s("ratnum", { t("\\mathbb{Q}") }),
-	s("compnum", { t("\\mathbb{C}") }),
+	s("numreal", { t("\\mathbb{R}") }),
+	s("numint", { t("\\mathbb{Z}") }),
+	s("numnat", { t("\\mathbb{N}") }),
+	s("numrat", { t("\\mathbb{Q}") }),
+	s("numcomp", { t("\\mathbb{C}") }),
+
+    -- Workspace link
+    s("linkfile", { t("{:./"), i(1, "Link"), t(":}["), i(2, "Description"), t("]"), i(0) })
 }

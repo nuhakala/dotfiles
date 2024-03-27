@@ -77,7 +77,7 @@ return {
 		version = "*",
 		opts = {
             autochdir = true,
-            direction = "float",
+            direction = "tab",
         },
 		keys = {
 			{ "<leader>ot", "<CMD>ToggleTerm<CR>", desc = "Open terminal" },
@@ -92,12 +92,12 @@ return {
 			{ "<leader>ri", "<CMD>IncRename<CR>", desc = "Inclusive rename" },
 		},
 	},
-    {
-        "ggandor/leap.nvim",
-        config = function ()
-            require("leap").create_default_mappings()
-        end
-    },
+    -- {
+    --     "ggandor/leap.nvim",
+    --     config = function ()
+    --         require("leap").create_default_mappings()
+    --     end
+    -- },
     {
         "otavioschwanck/arrow.nvim",
         config = function ()
@@ -109,5 +109,37 @@ return {
                 end,
             })
         end
+    },
+    {
+        'nanozuki/tabby.nvim',
+        event = 'VimEnter',
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require("tabby.tabline").use_preset("active_wins_at_tail")
+        end,
+    },
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		lazy = false,
+		config = {
+            merge_keywords = true,
+            keywords = {
+                BOOKMARK = { icon = "", color = "test" },
+            },
+        },
+		keys = {
+			-- { "<leader>xt", "<CMD>:TodoTrouble<CR>", desc = "Toggle Todo-comments" },
+			{ "<leader>tt", "<Cmd>:TodoTelescope<CR>", desc = "Todo-comments" },
+			{ "<leader>tm", "<Cmd>:TodoTelescope<CR>bookmark", desc = "Search bookmarks" },
+			{ "<leader>qt", "<Cmd>:TodoQuickFix<CR>", desc = "Todo-comments" },
+		},
+	},
+    -- {
+    --     "LintaoAmons/bookmarks.nvim",
+    --     config = true,
+    -- },
+    {
+        "ThePrimeagen/vim-be-good"
     },
 }

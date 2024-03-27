@@ -13,10 +13,13 @@ return {
                 path_display = {
                     truncate = 1,
                 },
-                -- mappings = {
-                --     i = { ["<c-t>"] = trouble.open_with_trouble },
-                --     n = { ["<c-t>"] = trouble.open_with_trouble },
-                -- },
+                layout_strategy = "bottom_pane",
+                sorting_strategy = "ascending",
+                mappings = {
+                    i = { ["<C-s>"] = require("telescope.actions").select_default }
+                    -- i = { ["<c-t>"] = trouble.open_with_trouble },
+                    -- n = { ["<c-t>"] = trouble.open_with_trouble },
+                },
             },
         })
 

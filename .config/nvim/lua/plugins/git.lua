@@ -6,10 +6,19 @@ return {
 			"nvim-telescope/telescope.nvim", -- optional
 			"sindrets/diffview.nvim", -- optional
 		},
-		config = function()
+        opts = {
+            -- disable_line_numbers = false,
+            signs = {
+                -- { CLOSED, OPENED }
+                hunk = { "+", "-" },
+                item = { ">", "v" },
+                section = { ">", "v" },
+            },
+        },
+		config = function(_, opts)
 			local neogit = require("neogit")
+			neogit.setup(opts)
 			vim.keymap.set("n", "<leader>og", neogit.open, { desc = "Open Neogit" })
-			neogit.setup({})
 		end,
 	},
 	{

@@ -41,7 +41,7 @@ return {
 				mapping = {
 					-- No idea what this complete does??
 					-- ["<C-Space>"] = cmp.mapping.complete(),
-					["<CR>"] = cmp.mapping.confirm({ select = false }),
+					["<C-s>"] = cmp.mapping.confirm({ select = false }),
 					["<C-Space>"] = cmp.mapping.complete(),
 
 					-- Enable navigating with arrows
@@ -60,14 +60,14 @@ return {
 						end
 					end, { "i", "s" }),
 					-- Navigation with tab also
-					["<Tab>"] = cmp.mapping(function(fallback)
+					["<C-n>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
 						else
 							fallback()
 						end
 					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
+					["<C-p>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
 						else
@@ -98,6 +98,7 @@ return {
 				}),
 			})
 
+
 			-- vim.keymap.set({"i"}, "<C-Space>", function() luasnip.expand() end, {silent = true})
 			vim.keymap.set({ "i", "s" }, "<C-L>", function()
 				luasnip.jump(1)
@@ -105,6 +106,11 @@ return {
 			vim.keymap.set({ "i", "s" }, "<C-K>", function()
 				luasnip.jump(-1)
 			end, { silent = true })
+            vim.keymap.set({"i", "s"}, "<C-s>", function()
+                if luasnip.choice_active() then
+                    luasnip.change_choice(1)
+                end
+            end, {silent = true})
 		end,
 	},
 }

@@ -27,7 +27,7 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
 return {
-	s("tcomment", {
+	s("commentswitch", {
 		t({ "---[[", "" }),
 		i(1),
 		t({

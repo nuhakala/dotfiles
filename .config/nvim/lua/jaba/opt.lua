@@ -39,8 +39,8 @@ vim.opt.termguicolors = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.scrolloff = 999
-vim.opt.sidescrolloff = 10
+vim.opt.scrolloff = 8
+-- vim.opt.sidescrolloff = 10
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
@@ -54,5 +54,9 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevelstart = 999
 
--- Required for ts-contex-comment-string, without it, shows a warning when opening.
+-- Required for ts-context-comment-string, without it, shows a warning when opening.
 vim.g.skip_ts_context_commentstring_module = true
+
+-- Spelling
+-- vim.opt.spell = true
+-- vim.opt.spelllang = "en"

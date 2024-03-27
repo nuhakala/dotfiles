@@ -25,16 +25,6 @@ return {
 		end,
 	},
 	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		lazy = false,
-		config = true,
-		keys = {
-			-- { "<leader>xt", "<CMD>:TodoTrouble<CR>", desc = "Toggle Todo-comments" },
-			{ "<leader>tt", "<Cmd>:TodoTelescope<CR>", desc = "Toggle Todo-comments" },
-		},
-	},
-	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
@@ -60,4 +50,14 @@ return {
 			require("lsp_signature").setup(opts)
 		end,
 	},
+    {
+        "levouh/tint.nvim",
+        opts = {
+            tint = -90,
+        }
+    },
+    {
+        'mcauley-penney/visual-whitespace.nvim',
+        config = true
+    },
 }
