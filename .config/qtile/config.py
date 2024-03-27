@@ -3,10 +3,22 @@
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile import hook
+# from libqtile import hook
+# from libqtile import qtile
+# from libqtile.backend.wayland import InputConfig
 import playerctl as playerctl
 import colors
-import subprocess
+# import subprocess
+
+# if qtile.core.name == "x11":
+    # do nothing
+# if qtile.core.name == "wayland":
+    # kb_layout="fi"
+
+# wl_input_rules = {
+#     "type:keyboard": InputConfig(kb_layout="se"),
+# }
+# lazy.core.set_keymap(layout="fi")
 
 
 # ========== Rules ==========
@@ -99,7 +111,7 @@ groups = [
     # layout="monadtall"
     Group("1", spawn="firefox", label="Web", layout="monadtall"),
     Group("2", label="Notes", layout="tile"),
-    Group("3", spawn=["discord", "wezterm start --always-new-process profanity -a Koiskis"], label="Chat", layout="columns"),
+    Group("3", spawn=["discord", "wezterm start --always-new-process profanity -a Koiskis"], label="Chat", layout="max"),
     Group("4", spawn="thunderbird", label="Mail", layout="monadtall"),
     Group("5", spawn="lutris", label="Games", layout="max"),
     Group("z", label="Dev"),

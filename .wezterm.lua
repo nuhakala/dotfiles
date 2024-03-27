@@ -13,7 +13,10 @@ end
 -- This is where you actually apply your config choices
 
 config.hide_tab_bar_if_only_one_tab = true
-config.window_background_opacity = 0.92
+config.window_background_opacity = 0.85
+config.font_size = 14.0
+-- Disable ligatures
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 config.colors = {
   -- Make the selection text color fully transparent.
