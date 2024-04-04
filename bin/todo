@@ -1,0 +1,26 @@
+#!/bin/bash
+
+name=$(date +"%Y%m%d%H%M%S")
+date=$(date +"%d.%m.%Y--%H:%M:%S")
+path=~/filen-drive/muistiinpanot/home
+
+todos=~/gtd/
+
+content="# [ ] 
+
+## Tasks
+
+Created: ${date}
+"
+
+# ***** TODO *****
+if [ $# -eq 0 ]; then
+    cd ${todos}
+    nvim ./todo.norg
+elif [ "$1" = "rail" ]; then 
+    cd ${todos}
+    nvim ./interrail.norg
+elif [ "$1" = "some" ]; then 
+    cd ${todos}
+    nvim ./someday.norg
+fi

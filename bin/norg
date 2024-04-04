@@ -1,0 +1,23 @@
+#!/bin/bash
+
+muistiinpanot=~/muistiinpanot/
+todos=~/gtd/
+
+if [ $# -eq 0 ]; then
+    cd ${muistiinpanot}
+	nvim -c ":Neorg workspace notes"
+    # nvim <<< "<esc>:Neorg workspace notes"
+    # "lua vim.api.nvim_create_autocmd({':L'}, { command = 'Neorg workspace notes' })"
+# ***** Kansiot *****
+elif [ "$1" = "dir" ]; then
+    cd ${muistiinpanot}
+	nvim -c ":Neorg workspace notes" -c ":edit $2/index.norg"
+
+# ***** Neorg indexit *****
+elif [ "$1" = "hissa" ]; then
+    cd ${muistiinpanot}
+    nvim -c ":Neorg workspace notes" -c ":edit 2024-03-06--historia_index.norg"
+elif [ "$1" = "lkp" ]; then
+    cd ${muistiinpanot}
+    nvim -c ":Neorg workspace notes" -c ":edit 2024-02-24--lkp_index.norg"
+fi
