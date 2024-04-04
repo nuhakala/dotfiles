@@ -4,4 +4,4 @@ require("jaba.opt")
 require("jaba.remap")
 require("jaba.neovide")
 require("jaba.filetypes")
-
+require("jaba.bufonly")

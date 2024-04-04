@@ -47,29 +47,29 @@ return {
 					-- Enable navigating with arrows
 					["<Down>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							cmp.select_next_item()
+							cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 						else
 							fallback()
 						end
 					end, { "i", "s" }),
 					["<Up>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							cmp.select_prev_item()
+							cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
 						else
 							fallback()
 						end
 					end, { "i", "s" }),
-					-- Navigation with tab also
+					-- Navigation with control-n and control-p
 					["<C-n>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							cmp.select_next_item()
+							cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 						else
 							fallback()
 						end
 					end, { "i", "s" }),
 					["<C-p>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
-							cmp.select_prev_item()
+							cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
 						else
 							fallback()
 						end
@@ -106,7 +106,7 @@ return {
 			vim.keymap.set({ "i", "s" }, "<C-K>", function()
 				luasnip.jump(-1)
 			end, { silent = true })
-            vim.keymap.set({"i", "s"}, "<C-s>", function()
+            vim.keymap.set({"i", "s"}, "<C-c>", function()
                 if luasnip.choice_active() then
                     luasnip.change_choice(1)
                 end

@@ -4,10 +4,12 @@ return {
 	{ "vivien/vim-linux-coding-style" },
 	{
 		"nuhakala/nvim-simple-tables",
+        event = "VeryLazy",
 		config = true,
 	},
 	{
 		"m4xshen/hardtime.nvim",
+        event = "VeryLazy",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
 		opts = {
 			disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil" },
@@ -18,11 +20,13 @@ return {
 	},
 	{
 		"folke/neodev.nvim",
+        event = "VeryLazy",
 		dependencies = { "neovim/nvim-lspconfig" },
 		opts = {},
 	},
 	{
 		"jbyuki/nabla.nvim",
+        event = "VeryLazy",
 		keys = {
 			{"<leader>on", "<cmd>lua require('nabla').popup()<CR>", desc = "Open Nabla popup",},
 			{"<leader>oN", "<cmd>lua require('nabla').enable_virt({ autogen = true })<CR>", desc = "Enable nabla mode",},
@@ -55,6 +59,7 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-bqf",
+        event = "VeryLazy",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			-- fzf integration for neat fzf search
@@ -74,6 +79,7 @@ return {
 	},
 	{
 		"akinsho/toggleterm.nvim",
+        event = "VeryLazy",
 		version = "*",
 		opts = {
             autochdir = true,
@@ -100,6 +106,7 @@ return {
     -- },
     {
         "otavioschwanck/arrow.nvim",
+        event = "VeryLazy",
         config = function ()
             require('arrow').setup({
                 show_icons = true,
@@ -120,6 +127,7 @@ return {
     },
 	{
 		"folke/todo-comments.nvim",
+        event = "VeryLazy",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		lazy = false,
 		config = {
@@ -131,7 +139,7 @@ return {
 		keys = {
 			-- { "<leader>xt", "<CMD>:TodoTrouble<CR>", desc = "Toggle Todo-comments" },
 			{ "<leader>tt", "<Cmd>:TodoTelescope<CR>", desc = "Todo-comments" },
-			{ "<leader>tm", "<Cmd>:TodoTelescope<CR>bookmark", desc = "Search bookmarks" },
+			-- { "<leader>tm", "<Cmd>:TodoTelescope<CR>bookmark", desc = "Search bookmarks" },
 			{ "<leader>qt", "<Cmd>:TodoQuickFix<CR>", desc = "Todo-comments" },
 		},
 	},
@@ -142,4 +150,21 @@ return {
     {
         "ThePrimeagen/vim-be-good"
     },
+    {
+        'crusj/bookmarks.nvim',
+        branch = 'main',
+        dependencies = { 'nvim-web-devicons' },
+        event = "VeryLazy",
+        config = function()
+            require("bookmarks").setup({
+                virt_text = "Bookmark",
+                virt_pattern = {"*.*"},
+                storage_dir = "/home/nuuttih/.vim/bookmarks",
+                keymaps = {
+                    toggle = "<leader>tm",
+                },
+            })
+			vim.keymap.set("n", "<leader>tm", require("bookmarks").toggle_bookmarks, { desc = "Search bookmarks" })
+        end
+    }
 }

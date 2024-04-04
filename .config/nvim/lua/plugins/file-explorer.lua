@@ -30,6 +30,7 @@ return {
 	    end
 	},
     --]=]
+    --[=[
 	{
 		"luukvbaal/nnn.nvim",
 		config = function()
@@ -42,4 +43,5 @@ return {
 			vim.keymap.set("n", "<leader>oe", "<CMD>NnnExplorer<CR>", { desc = "Open NNN" })
 		end,
 	},
+    --]=]
 }

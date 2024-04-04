@@ -40,7 +40,8 @@ vim.keymap.set({"n", "v"}, "<leader>ys", '"sy', { desc = "Yank to s-register" })
 vim.keymap.set({"n", "v"}, "<leader>pp", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set({"n", "v"}, "<leader>pa", '"ap', { desc = "Paste from a-register" })
 vim.keymap.set({"n", "v"}, "<leader>ps", '"sp', { desc = "Paste from s-register" })
-vim.keymap.set("x", "<leader>pv", '"_dp', { desc = "Paste into void register" })
+-- Deleting
+vim.keymap.set("n", "<leader>dv", '"_', { desc = "Paste into void register" })
 
 vim.keymap.set("n", "<leader>,", "<Cmd>:noh<CR>", { desc = "Remove search highlighting" })
 

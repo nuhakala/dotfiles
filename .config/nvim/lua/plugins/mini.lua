@@ -9,6 +9,7 @@ return {
 	{
 		"echasnovski/mini.indentscope",
 		version = false,
+        event = "VeryLazy",
 		config = function()
 			require("mini.indentscope").setup()
 		end,
@@ -16,6 +17,7 @@ return {
 	{
 		"echasnovski/mini.align",
 		version = false,
+        event = "VeryLazy",
 		config = function()
 			require("mini.align").setup({
 				mappings = {
@@ -28,6 +30,7 @@ return {
 	{
 		"echasnovski/mini.surround",
 		version = false,
+        event = "VeryLazy",
 		config = function()
 			require("mini.surround").setup({
 				mappings = {
@@ -99,6 +102,7 @@ return {
 	{
 		"echasnovski/mini.splitjoin",
 		version = false,
+        event = "VeryLazy",
         -- opts = {
         --     mappings = {
         --         toggle = "gt",

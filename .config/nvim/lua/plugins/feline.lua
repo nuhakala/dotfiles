@@ -1,5 +1,5 @@
 return {
-	"feline-nvim/feline.nvim",
+	"freddiehaddad/feline.nvim",
 	dependencies = "stevearc/aerial.nvim",
 	config = function()
 		local one_monokai = {
@@ -38,6 +38,7 @@ return {
 				-- strip the last ", "
 				return res:sub(1, -3)
 			end,
+
             function_scope = function(_, opts)
                 local symbols = require("aerial").get_location(true)
                 local depth = opts.depth or #symbols
@@ -52,6 +53,35 @@ return {
                     res = res:sub(1, -6)
                 end
                 return res
+            end,
+
+            my_git_branch = function(_, opts)
+                -- NOTE: This script must be in path  
+                local handle = io.popen("git_branch.sh")
+                local result = handle and handle:read("*a"):sub(1, -2) or ""
+                if result ~= "" then
+                    result = " " .. result
+                end
+                if handle then handle:close() end
+                return result
+            end,
+
+            my_git_diff_added = function(_, opts)
+                -- NOTE: This script must be in path  
+                local file_path = vim.api.nvim_buf_get_name(0)
+                local handle = io.popen("git_diff.sh " .. file_path .. " add")
+                local result = handle and handle:read("*a"):sub(1, -2) or ""
+                if handle then handle:close() end
+                return result
+            end,
+
+            my_git_diff_removed = function(_, opts)
+                -- NOTE: This script must be in path  
+                local file_path = vim.api.nvim_buf_get_name(0)
+                local handle = io.popen("git_diff.sh " .. file_path .. " delete")
+                local result = handle and handle:read("*a"):sub(1, -2) or ""
+                if handle then handle:close() end
+                return result
             end,
 		}
 
@@ -156,7 +186,7 @@ return {
 
 			-- Git
 			gitBranch = {
-				provider = "git_branch",
+				provider = "my_git_branch",
 				hl = {
 					fg = "peanut",
 					style = "bold",
@@ -165,7 +195,7 @@ return {
 				right_sep = "block",
 			},
 			gitDiffAdded = {
-				provider = "git_diff_added",
+				provider = "my_git_diff_added",
 				hl = {
 					fg = "green",
 				},
@@ -176,7 +206,7 @@ return {
 				right_sep = "block",
 			},
 			gitDiffRemoved = {
-				provider = "git_diff_removed",
+				provider = "my_git_diff_removed",
 				hl = {
 					fg = "red",
 				},
@@ -243,7 +273,7 @@ return {
                     c.gitBranch,
                     c.gitDiffAdded,
                     c.gitDiffRemoved,
-                    c.gitDiffChanged,
+                    -- c.gitDiffChanged,
                     c.fileinfo,
                     c.function_scope
                 },

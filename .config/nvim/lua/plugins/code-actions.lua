@@ -1,6 +1,7 @@
 return {
 	{
 		"danymat/neogen",
+        event = "VeryLazy",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"L3MON4D3/LuaSnip",
@@ -8,11 +9,7 @@ return {
 		config = function()
 			require("neogen").setup({ snippet_engine = "luasnip" })
 			-- local opts = { noremap = true, silent = true }
-			vim.api.nvim_set_keymap(
-				"n",
-				"gn",
-				":lua require('neogen').generate()<CR>",
-				{ desc = "Generate annotations", noremap = true, silent = true }
+			vim.api.nvim_set_keymap( "n", "gn", ":lua require('neogen').generate()<CR>", { desc = "Generate annotations", noremap = true, silent = true }
 			)
 		end,
 		-- Uncomment next line if you want to follow only stable versions
@@ -20,6 +17,7 @@ return {
 	},
 	{
 		"stevearc/aerial.nvim",
+        event = "VeryLazy",
 		opts = {},
 		-- Optional dependencies
 		dependencies = {
@@ -51,6 +49,7 @@ return {
 					python = { "black" },
 					-- Use a sub-list to run only the first available formatter
                     javascript = { { "prettierd", "prettier" } },
+                    typescript = { { "prettierd", "prettier" } },
 					c = { "clang_format" },
 					cpp = { "clang_format" },
                     ["*"] = { "codespell" },
@@ -63,16 +62,17 @@ return {
             end, { desc = "Format" })
 		end,
 	},
-	{
-		"cshuaimin/ssr.nvim",
-		keys = {
-			{ "<leader>rn", function() require("ssr").open() end, { "n", "x" }, desc = "Structural replace" },
-		},
-	},
+	-- {
+	-- 	"cshuaimin/ssr.nvim",
+	-- 	keys = {
+	-- 		{ "<leader>rn", function() require("ssr").open() end, { "n", "x" }, desc = "Structural replace" },
+	-- 	},
+	-- },
     {
         "L3MON4D3/LuaSnip",
         -- follow latest release.
         version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        event = "VeryLazy",
         -- install jsregexp (optional!).
         build = "make install_jsregexp",
         config = function()

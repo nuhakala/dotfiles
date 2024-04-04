@@ -1,24 +1,13 @@
 return {
-	---[[
-    -- Luarocks version
 	{
 		"vhyrro/luarocks.nvim",
         priority = 1000,
 		config = true,
+        -- event = "VeryLazy",
 	},
 	{
 		"nvim-neorg/neorg",
-		-- branch = "luarocks",
-
-        --[=[]]
-	-- Regular lazy installation
-	{
-		"nvim-neorg/neorg",
-		-- build = ":Neorg sync-parsers",
-        version = "v7.0.0",
-		--]=]
-
-		-- lazy = true,
+        -- event = "VeryLazy",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
 			{ "numToStr/Comment.nvim" },
@@ -56,14 +45,7 @@ return {
 					["core.dirman"] = { -- Manages Neorg workspaces
 						config = {
 							workspaces = {
-								-- bpm = "~/filen-drive/muistiinpanot/bpm/",
-								-- str = "~/filen-drive/muistiinpanot/str/",
-								-- conc = "~/filen-drive/muistiinpanot/conc/",
-								-- linux = "~/filen-drive/muistiinpanot/linux/",
-								-- hpc = "~/filen-drive/muistiinpanot/hpc/",
 								notes = "~/muistiinpanot/",
-								-- sekalaiset = "~/filen-drive/muistiinpanot/sekalaiset/",
-								-- historia = "~/filen-drive/muistiinpanot/historia/",
 							},
 						},
 					},
@@ -147,11 +129,11 @@ return {
 							end,
 						},
 					},
-					-- ["core.summary"] = {
-					-- 	config = {
-					-- 		strategy = "current_dir",
-					-- 	},
-					-- },
+					["core.summary"] = {
+						-- config = {
+						-- 	strategy = "current_dir",
+						-- },
+					},
 
 					-- requires nvim 10+
 					-- ["core.integrations.image"] = {},
