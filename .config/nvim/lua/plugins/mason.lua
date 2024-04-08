@@ -1,43 +1,51 @@
 return {
-	{
-		"williamboman/mason.nvim",
-        event = "VeryLazy",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			-- "jose-elias-alvarez/null-ls.nvim",
-			-- "jay-babu/mason-null-ls.nvim",
-			"neovim/nvim-lspconfig",
-			"hrsh7th/cmp-nvim-lsp",
-		},
-		config = function()
-			require("mason").setup()
+    {
+        "williamboman/mason.nvim",
+        dependencies = {
+            "williamboman/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
+            "hrsh7th/cmp-nvim-lsp",
+            "folke/neoconf.nvim",
+        },
+        config = function()
+            require("neoconf").setup()
+            require("mason").setup({})
+            require("mason-lspconfig").setup({})
 
-			-- Set up capabilities automatically
-			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
-            local default_setup = function(server)
-				lspconfig[server].setup({
-					capabilities = lsp_capabilities,
-				})
-			end
+            -- Set up capabilities automatically
+            local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+            require("mason-lspconfig").setup_handlers({
+                function(server_name)
+                    require("lspconfig")[server_name].setup({
+                        capabilities = lsp_capabilities
+                    })
+                end
+            })
 
-			require("mason-lspconfig").setup({
-				ensure_installed = {},
-				handlers = { default_setup },
-			})
+            vim.api.nvim_create_autocmd("LspAttach", {
+                desc = "LSP actions",
+                callback = function(event)
+                    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Hover", buffer = event.buf })
+                    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = event.buf })
+                    vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { desc = "Implementation", buffer = event.buf })
+                    vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature help", buffer = event.buf })
+                    vim.keymap.set("n", "<leader>rl", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = event.buf })
+                    vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", { desc = "Format", buffer = event.buf })
+                    vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code action", buffer = event.buf })
+                    -- These are set in trouble
+                    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "Definitions", buffer = event.buf })
+                    vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { desc = "Type Definition", buffer = event.buf })
+                    vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { desc = "References", buffer = event.buf })
 
-			-- require("mason-null-ls").setup({
-			-- 	ensure_installed = {
-			-- 		-- Opt to list sources here, when available in mason.
-			-- 	},
-			-- 	automatic_installation = false,
-			-- 	handlers = {},
-			-- })
-			-- require("null-ls").setup({
-			-- 	sources = {
-			-- 		-- Anything not supported by mason.
-			-- 	},
-			-- })
-		end,
-	},
+                    vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Open diagnostics float", buffer = event.buf })
+                    vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Diagnostics goto previous", buffer = event.buf })
+                    vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Diagnostics goto next", buffer = event.buf })
+
+                    -- Add keymap to open hover, to remember to use it easier.
+                    -- It is also mapped to "K"
+                    vim.keymap.set("n", "gK", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Open hover, double 'K' -> window" })
+                end,
+            })
+        end,
+    },
 }
