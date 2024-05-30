@@ -1,21 +1,11 @@
 return {
 	---[[
-	{
-		"stevearc/oil.nvim",
-		opts = {},
-		-- Optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		lazy = false,
-		keys = {
-			{ "-", "<CMD><leader>Oil<CR>", desc = "Open parent directory" },
-		},
-	},
 	--[=[]]
 	{
 	    'simonmclean/triptych.nvim',
 	    event = 'VeryLazy',
 	    dependencies = {
-	        'nvim-lua/plenary.nvim', -- required
+	       'nvim-lua/plenary.nvim', -- required
 	        'nvim-tree/nvim-web-devicons', -- optional
 	    },
 	    config = function ()

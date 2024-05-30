@@ -1,7 +1,8 @@
 return {
 	{ "lambdalisue/suda.vim" },
-	{ "folke/twilight.nvim" },
+	-- { "folke/twilight.nvim" },
 	{ "vivien/vim-linux-coding-style" },
+    { "jbyuki/quickmath.nvim" },
 	{
 		"nuhakala/nvim-simple-tables",
         event = "VeryLazy",
@@ -30,45 +31,31 @@ return {
 		keys = {
 			{"<leader>on", "<cmd>lua require('nabla').popup()<CR>", desc = "Open Nabla popup",},
 			{"<leader>oN", "<cmd>lua require('nabla').enable_virt({ autogen = true })<CR>", desc = "Enable nabla mode",},
+			{"<leader>dn", "<cmd>lua require('nabla').disable_virt()<CR>", desc = "Disable nabla mode",},
 		},
 	},
 	{
 		"okuuva/auto-save.nvim",
 		cmd = "ASToggle", -- optional for lazy loading on command
-        -- commit = "610e72307d675fcc15098c5a435ad89e45aaf855",
 		event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
         opts = {
             execution_message = {
                 enabled = false,
             },
-            -- condition = function(buf)
-            --     local fn = vim.fn
-            --     local utils = require("auto-save.utils.data")
+            condition = function(buf)
+                local fn = vim.fn
+                local utils = require("auto-save.utils.data")
 
-            --     -- don't save for `norg` file types
-            --     if utils.not_in(fn.getbufvar(buf, "&filetype"), {'norg'}) then
-            --         return true
-            --     end
-            --     return false
-            -- end
+                -- don't save for `norg` file types
+                if utils.not_in(fn.getbufvar(buf, "&filetype"), {'oil'}) then
+                    return true
+                end
+                return false
+            end
         },
         config = true,
 		keys = {
 			{ "<leader>+", ":ASToggle<CR>", desc = "Toggle auto-save" },
-		},
-	},
-	{
-		"kevinhwang91/nvim-bqf",
-        event = "VeryLazy",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			-- fzf integration for neat fzf search
-			{
-				"junegunn/fzf",
-				build = function()
-					vim.fn["fzf#install"]() -- installs always newest version
-				end,
-			},
 		},
 	},
 	{
@@ -84,26 +71,27 @@ return {
 		opts = {
             autochdir = true,
             direction = "tab",
+            float_opts = {
+                border = "double",
+            },
+            on_open = function (_)
+                vim.b.miniindentscope_config = { symbol = "" }
+            end
         },
 		keys = {
 			{ "<leader>ot", "<CMD>ToggleTerm<CR>", desc = "Open terminal" },
 		},
+        config = function (_, opts)
+            require("toggleterm").setup(opts)
+
+            local git = function ()
+                vim.cmd("TermExec cmd='jj st || git status'")
+                vim.cmd("startinsert!")
+            end
+
+            vim.keymap.set("n", "<leader>gg", git, {noremap = true, silent = true, desc = "Open commandline git" })
+        end
 	},
-	{
-		"smjonas/inc-rename.nvim",
-		config = function()
-			require("inc_rename").setup()
-		end,
-		keys = {
-			{ "<leader>ri", "<CMD>IncRename<CR>", desc = "Inclusive rename" },
-		},
-	},
-    -- {
-    --     "ggandor/leap.nvim",
-    --     config = function ()
-    --         require("leap").create_default_mappings()
-    --     end
-    -- },
     {
         "otavioschwanck/arrow.nvim",
         event = "VeryLazy",
@@ -117,54 +105,46 @@ return {
             })
         end
     },
-    {
-        'nanozuki/tabby.nvim',
-        event = 'VimEnter',
-        dependencies = 'nvim-tree/nvim-web-devicons',
-        config = function()
-            require("tabby.tabline").use_preset("active_wins_at_tail")
-        end,
-    },
 	{
 		"folke/todo-comments.nvim",
         event = "VeryLazy",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		lazy = false,
-		config = {
+		opts = {
             merge_keywords = true,
             keywords = {
                 BOOKMARK = { icon = "", color = "test" },
             },
         },
 		keys = {
-			-- { "<leader>xt", "<CMD>:TodoTrouble<CR>", desc = "Toggle Todo-comments" },
+			{ "<leader>xt", "<CMD>:TodoTrouble<CR>", desc = "Toggle Todo-comments" },
 			{ "<leader>tt", "<Cmd>:TodoTelescope<CR>", desc = "Todo-comments" },
-			-- { "<leader>tm", "<Cmd>:TodoTelescope<CR>bookmark", desc = "Search bookmarks" },
-			{ "<leader>qt", "<Cmd>:TodoQuickFix<CR>", desc = "Todo-comments" },
 		},
 	},
-    -- {
-    --     "LintaoAmons/bookmarks.nvim",
-    --     config = true,
-    -- },
     {
-        "ThePrimeagen/vim-be-good"
+        "LintaoAmons/bookmarks.nvim",
+        dependencies = {
+            {"stevearc/dressing.nvim"}
+        },
+        opts = {
+            json_db_path = "/home/nuuttih/.vim/bookmarks.db.json"
+        },
+        keys = {
+            {"mm", "<cmd>BookmarksMark<cr>",  desc = "Mark current line into active BookmarkList." },
+            {"mo", "<cmd>BookmarksGoto<cr>",  desc = "Go to bookmark at current active BookmarkList" },
+            {"ma", "<cmd>BookmarksCommands<cr>",  desc = "Find and trigger a bookmark command." },
+        },
+        config = true,
     },
-    {
-        'crusj/bookmarks.nvim',
-        branch = 'main',
-        dependencies = { 'nvim-web-devicons' },
-        event = "VeryLazy",
-        config = function()
-            require("bookmarks").setup({
-                virt_text = "Bookmark",
-                virt_pattern = {"*.*"},
-                storage_dir = "/home/nuuttih/.vim/bookmarks",
-                keymaps = {
-                    toggle = "<leader>tm",
-                },
-            })
-			vim.keymap.set("n", "<leader>tm", require("bookmarks").toggle_bookmarks, { desc = "Search bookmarks" })
-        end
-    }
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		lazy = false,
+		keys = {
+			{ "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+			{ "<leader>do", "<CMD>lua require('oil').discard_all_changes()<CR>", desc = "Discard changes" },
+        },
+	},
 }

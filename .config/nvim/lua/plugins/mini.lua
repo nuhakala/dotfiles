@@ -1,11 +1,4 @@
 return {
-	-- {
-	-- 	"echasnovski/mini.cursorword",
-	-- 	version = false,
-	-- 	config = function()
-	-- 		require("mini.cursorword").setup()
-	-- 	end,
-	-- },
 	{
 		"echasnovski/mini.indentscope",
 		version = false,
@@ -79,24 +72,6 @@ return {
                     ms.write(input)
                 end)
             end, { desc = "Save session" })
-			-- vim.keymap.set("n", "<leader>sr", function()
-			--  vim.ui.input({prompt = "Session name to read"}, function (input)
-   --               if input == nil then return end
-			--      ms.read(input)
-			--  end)
-   --          end, { desc = "Read session" })
-			-- vim.keymap.set("n", "<leader>sd", function()
-			--  vim.ui.input({prompt = "Session name to delete"}, function (input)
-   --               if input == nil then return end
-			--      ms.delete(input)
-			--  end)
-   --          end, { desc = "Delete session" })
-			-- vim.keymap.set("n", "<leader>si", function()
-			--  vim.ui.input({prompt = "Write action to take"}, function (input)
-   --               if input == nil then return end
-			--      ms.select(input)
-			--  end)
-   --          end, { desc = "Interactively select action" })
 		end,
 	},
 	{
@@ -109,5 +84,25 @@ return {
         --     }
         -- },
 		config = true,
-	}
+	},
+    {
+        'echasnovski/mini.trailspace',
+        version = false,
+        keys = {
+			{"<leader>dt", "<cmd>lua require('mini.trailspace').trim()<CR>", desc = "Trim trailspace",},
+        }
+    },
+    -- {
+    --     'echasnovski/mini.files',
+    --     version = false,
+    --     config = true,
+    --     -- opts = {
+    --         -- mappings = {
+    --         --     go_in_plus = "<CR>"
+    --         -- }
+    --     -- },
+    --     keys = {
+    --         {"-", "<CMD>lua require('mini.files').open(vim.api.nvim_buf_get_name(0))<CR>", desc = "Open mini.files"}
+    --     }
+    -- },
 }

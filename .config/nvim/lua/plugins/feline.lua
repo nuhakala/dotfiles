@@ -67,21 +67,18 @@ return {
             end,
 
             my_git_diff_added = function(_, opts)
-                -- NOTE: This script must be in path  
-                local file_path = vim.api.nvim_buf_get_name(0)
-                local handle = io.popen("git_diff.sh " .. file_path .. " add")
-                local result = handle and handle:read("*a"):sub(1, -2) or ""
-                if handle then handle:close() end
-                return result
+                local t = vim.b.minidiff_summary
+                return t and t.add or ""
+            end,
+
+            my_git_diff_changed = function(_, opts)
+                local t = vim.b.minidiff_summary
+                return t and t.change or ""
             end,
 
             my_git_diff_removed = function(_, opts)
-                -- NOTE: This script must be in path  
-                local file_path = vim.api.nvim_buf_get_name(0)
-                local handle = io.popen("git_diff.sh " .. file_path .. " delete")
-                local result = handle and handle:read("*a"):sub(1, -2) or ""
-                if handle then handle:close() end
-                return result
+                local t = vim.b.minidiff_summary
+                return t and t.delete or ""
             end,
 		}
 
@@ -217,7 +214,7 @@ return {
 				right_sep = "block",
 			},
 			gitDiffChanged = {
-				provider = "git_diff_changed",
+				provider = "my_git_diff_changed",
 				hl = {
 					fg = "aqua",
 				},
@@ -273,7 +270,7 @@ return {
                     c.gitBranch,
                     c.gitDiffAdded,
                     c.gitDiffRemoved,
-                    -- c.gitDiffChanged,
+                    c.gitDiffChanged,
                     c.fileinfo,
                     c.function_scope
                 },

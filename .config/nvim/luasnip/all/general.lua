@@ -57,13 +57,33 @@ local function get_comment_snippet(ctype, before, after)
   }
 end
 
+local date_options = {
+    -- Pure date
+    fmt("<{}>", i(1, os.date("%d.%m.%Y"))),
+    -- Weekday + date
+    fmt("<{}>", i(1, os.date("%a %d.%m.%Y"))),
+    -- week + date
+    fmt("<Viikko {}>", { i(1, os.date("%W, %d.%m.%Y")) }),
+    -- Date + clock
+    fmt("<{}>", i(1, os.date("%d.%m.%Y %H:%M:%S"))),
+    -- Day + month
+    fmt("<{}>", i(1, os.date("%d.%m"))),
+}
+
+local time_options = {
+    fmt("<{}>", i(1, os.date("%H:%M"))),
+    fmt("<{}>", i(1, os.date("%H:%M:%S"))),
+}
+
 return {
     s("header", get_comment_snippet(1, " ***** ", " *****")),
-    s("braces", { t("{"), i(0), t("}") }),
-    s("brackets", { t("["), i(0), t("]") }),
-    s("at", { t("@") }),
-    s("percent", { t("%") }),
-    s("and", { t("&") }),
-    s("dollar", { t("$") }),
-    s("ssharp", { t("ß") }),
+    -- s("braces", { t("{"), i(0), t("}") }),
+    -- s("brackets", { t("["), i(0), t("]") }),
+    -- s("at", { t("@") }),
+    -- s("percent", { t("%") }),
+    -- s("and", { t("&") }),
+    -- s("dollar", { t("$") }),
+    -- s("ssharp", { t("ß") }),
+	s("tänään", { c(1, date_options) }),
+    s("klo", { c(1, time_options) }),
 }

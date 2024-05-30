@@ -9,7 +9,7 @@ vim.opt.shiftwidth = tabs
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 2
 
 vim.opt.wrap = false
 vim.opt.linebreak = true
@@ -51,7 +51,9 @@ vim.g.maplocalleader = ","
 -- Set folding to work with treesitter
 -- Need to be set after treesitter is loaded.
 vim.opt.foldmethod = "expr"
+-- vim.opt.foldmethod = "indent"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- For neorg, comment foldlevelstart out if you want fold stuff by default.
 vim.opt.foldlevelstart = 999
 
 -- Required for ts-context-comment-string, without it, shows a warning when opening.

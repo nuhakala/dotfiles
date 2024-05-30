@@ -27,13 +27,20 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
 return {
-	-- Latex number sets
+	-- Latex stuff
 	s("numreal", { t("\\mathbb{R}") }),
 	s("numint", { t("\\mathbb{Z}") }),
 	s("numnat", { t("\\mathbb{N}") }),
 	s("numrat", { t("\\mathbb{Q}") }),
 	s("numcomp", { t("\\mathbb{C}") }),
+	s("setminus", { t("\\setminus \\{"), i(1), t("\\}") }),
+	s("sgame", { t("(N, (S_i)_{i \\in N} (u_i)_{i \\in N})") }),
 
     -- Workspace link
-    s("linkfile", { t("{:./"), i(1, "Link"), t(":}["), i(2, "Description"), t("]"), i(0) })
+    s("linkfile", { t("{:./"), i(1, "Link"), t(":}["), i(2, "Description"), t("]"), i(0) }),
+
+    -- References
+    s("quellen", { t({ "*Quellen:*", "- " }), i(1) }),
+    s("sources", { t({ "*Sources:*", "- " }), i(1) }),
+    s("lähteet", { t({ "*Lähteet:*", "- " }), i(1) }),
 }

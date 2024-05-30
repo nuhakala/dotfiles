@@ -85,6 +85,7 @@ return {
 				["n"] = { name = "+Surround", n = "Update n-lines" },
 			},
             ["<localleader>"] = {
+                ["f"] = { name = "+Find", f = "Find file" },
                 ["n"] = { name = "New", n = "New Note" },
                 ["t"] = { name = "Todo", d = "Mark as Done" },
                 ["i"] = { name = "Insert", d = "Insert date" },

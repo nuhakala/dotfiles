@@ -8,6 +8,8 @@ return {
 			},
 		},
 	},
+    -- nvim-notify is quite cool, but notifier is more minimalisti and less distractive
+    --[[
 	{
 		"rcarriga/nvim-notify",
 		opts = {
@@ -18,26 +20,20 @@ return {
 			vim.notify = require("notify")
 		end,
 	},
-	{
-		"yorickpeterse/nvim-pqf",
-		config = function()
-			require("pqf").setup()
-		end,
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function
-	},
-	{
-		"sahlte/timed-highlight.nvim",
-		config = function()
-			require("timed-highlight").setup({
-				highlight_timeout_ms = 5000,
-			})
-		end,
-	},
+    --[=[]]
     {
+        "vigoux/notifier.nvim",
+        config = function()
+            require'notifier'.setup {
+                components = {  -- Order of the components to draw from top to bottom (first nvim notifications, then lsp)
+                    "nvim",  -- Nvim notifications (vim.notify and such)
+                    "lsp"  -- LSP status updates
+                },
+            }
+        end
+    },
+    --]=]
+	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
 		opts = {
@@ -50,14 +46,31 @@ return {
 			require("lsp_signature").setup(opts)
 		end,
 	},
+	{
+		"levouh/tint.nvim",
+		opts = {
+			tint = -90,
+		},
+	},
+	{
+		-- Highlighting to color codes #ff00ff
+		"NvChad/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup({
+                -- filetypes = {
+                --     '*', -- Highlight all files, but customize some others.
+                --     "!norg",
+                -- },
+                user_default_options = { names = false }
+			})
+		end,
+	},
     {
-        "levouh/tint.nvim",
-        opts = {
-            tint = -90,
-        }
-    },
-    {
-        'mcauley-penney/visual-whitespace.nvim',
-        config = true
+        'nanozuki/tabby.nvim',
+        event = 'VimEnter',
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require("tabby.tabline").use_preset("active_wins_at_tail")
+        end,
     },
 }

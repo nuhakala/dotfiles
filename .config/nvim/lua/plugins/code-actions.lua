@@ -27,12 +27,12 @@ return {
 		config = function()
 			require("aerial").setup({
 				-- optionally use on_attach to set keymaps when aerial has attached to a buffer
-				-- on_attach = function(bufnr)
+				on_attach = function(bufnr)
                     -- vim.api.nvim_buf_set_name(0, "Aerial")
 					-- Jump forwards/backwards with '{' and '}'
-					-- vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-					-- vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-				-- end,
+					vim.keymap.set("n", "{[", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+					vim.keymap.set("n", "}]", "<cmd>AerialNext<CR>", { buffer = bufnr })
+				end,
 			})
 			-- You probably also want to set a keymap to toggle aerial
 			vim.keymap.set("n", "<leader>oa", "<cmd>AerialToggle!<CR>")
@@ -52,7 +52,7 @@ return {
                     typescript = { { "prettierd", "prettier" } },
 					c = { "clang_format" },
 					cpp = { "clang_format" },
-                    ["*"] = { "codespell" },
+                    -- ["*"] = { "codespell" },
 				},
 			})
 
@@ -62,12 +62,6 @@ return {
             end, { desc = "Format" })
 		end,
 	},
-	-- {
-	-- 	"cshuaimin/ssr.nvim",
-	-- 	keys = {
-	-- 		{ "<leader>rn", function() require("ssr").open() end, { "n", "x" }, desc = "Structural replace" },
-	-- 	},
-	-- },
     {
         "L3MON4D3/LuaSnip",
         -- follow latest release.
@@ -78,5 +72,34 @@ return {
         config = function()
             require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/luasnip/" } })
         end,
+    },
+    {
+        'dgagn/diagflow.nvim',
+        -- event = 'LspAttach', This is what I use personnally and it works great
+        opts = {
+            scope = "line",
+            show_borders = true,
+        }
+    },
+    {
+        "folke/trouble.nvim",
+        -- branch = "dev", -- IMPORTANT!
+        keys = {
+            { "<leader>xX", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)", },
+            { "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)", },
+            { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)", },
+            { "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)", },
+            { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)", },
+            { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)", },
+            { "<leader>xe", "<cmd>Trouble errorDiags toggle<cr>", desc = "Diagnostic errors (Trouble)"}
+        },
+        opts = {
+            auto_close = true,
+        },
+    },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {}, -- this is equalent to setup({}) function
     },
 }

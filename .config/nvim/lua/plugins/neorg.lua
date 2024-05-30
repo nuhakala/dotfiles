@@ -9,9 +9,11 @@ return {
 		"nvim-neorg/neorg",
         -- event = "VeryLazy",
 		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
+            { "vhyrro/luarocks.nvim" },
+			-- { "nvim-lua/plenary.nvim" },
 			{ "numToStr/Comment.nvim" },
 			{ "nvim-neorg/neorg-telescope" },
+            { "benlubas/neorg-conceal-wrap" },
 			-- { "samodostal/image.nvim" }, -- requires nvim 10+
 			-- {
 			-- 	"pysan3/neorg-templates",
@@ -22,15 +24,42 @@ return {
 		config = function()
 			require("neorg").setup({
 				load = {
-					["core.concealer"] = {}, -- Adds pretty icons to your documents
+                    -- Wait for neovim 0.10.0
+                    ["external.conceal-wrap"] = {},
 					["core.integrations.telescope"] = {},
 					["core.export"] = {},
+					["core.concealer"] = {
+                        config = {
+                            icon_preset = "diamond",
+                            icons = {
+                                -- Enable concealing of @code and @end
+                                code_block = {
+                                    conceal = true
+                                },
+                                todo = {
+                                    on_hold = {
+                                        icon = ""
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    ["core.highlights"] = {
+                        config = {
+                            highlights = {
+                                todo_items = {
+                                    -- Remove annoying background highlight
+                                    on_hold = "+@module"
+                                }
+                            }
+                        }
+                    },
 
 					["core.defaults"] = {
 						config = {
 							disable = {
-								-- "core.itero",
 								"core.journal",
+                                "core.clipboard.code-blocks"
 							},
 						},
 					}, -- Loads default behaviour
@@ -64,7 +93,8 @@ return {
 								-- In normal mode, opens a link to vertical split
 								keybinds.remap_key("norg", "n", "<M-CR>", "<S-CR>")
 								keybinds.map("norg", "n", keybinds.leader .. "mi", "<CMD>Neorg index<CR>")
-								keybinds.map( "norg", "n", keybinds.leader .. "g", "<CMD>Neorg generate-workspace-summary<CR>", { desc = "Generate summary" })
+								-- keybinds.map("norg", "n", keybinds.leader .. "gg", "<CMD>Neorg generate-workspace-summary<CR>", { desc = "Generate summary" })
+								keybinds.map("norg", "n", keybinds.leader .. "c", "<CMD>Neorg toc<CR>", { desc = "Table of contents" })
 
 								-- Telescope
 								keybinds.remap_event( "norg", "n", keybinds.leader .. "fl", "core.integrations.telescope.find_linkable", { desc = "Neorg find linkable" })
@@ -75,7 +105,7 @@ return {
 								keybinds.remap_event( "norg", "i", "<C-f>", "core.integrations.telescope.insert_file_link", { desc = "Neorg insert link" })
 
 								keybinds.unmap("norg", "n", keybinds.leader .. "nn")
-								vim.keymap.set("n", "<localleader>nn", function()
+								keybinds.map("norg", "n", "<localleader>nn", function()
 									local dirman = require("neorg").modules.get_module("core.dirman")
 
 									vim.ui.input({ prompt = "Enter note name: " }, function(user_input)
@@ -84,36 +114,32 @@ return {
 											return
 										end
 
-										local title = ""
-										for str in string.gmatch(user_input, "([^_]+)") do
-											title = title .. str .. " "
-										end
-										title = string.sub(title, 1, -2) -- remove whitespace
+                                        local file_name = user_input:gsub(" ", "_")
 										local date = os.date("%Y-%m-%d--")
+										local ws = dirman.get_current_workspace()[1]
 
-										-- Get subfolder
-										local file_path = vim.api.nvim_buf_get_name(0)
-										local path = vim.fs.dirname(file_path)
-										local ws = dirman.get_current_workspace()[2]
-										if path ~= ws then
-											path = string.sub(path, string.len(ws), -1)
-										else
-											path = ""
-										end
-
-										dirman.create_file(path .. "/" .. date .. user_input, nil, {
+										dirman.create_file(date .. file_name, ws, {
 											no_open = false, -- open file after creation?
 											force = false, -- overwrite file if exists
 											metadata = {
-												title = require("neorg.core").lib.title(title),
+												title = require("neorg.core").lib.title(user_input),
+                                                -- title = user_input,
 											},
 										})
 
 										-- Set cursor to after metadata
-										vim.api.nvim_buf_set_lines(0, 10, 10, false, { "" })
-										vim.api.nvim_win_set_cursor(0, { 11, 0 })
+                                        vim.api.nvim_buf_set_lines(0, 10, 14, false, { "*Lähteet*:", "- %|TODO: lähde|%", "", ""})
+										vim.api.nvim_win_set_cursor(0, { 14, 0 })
 									end)
 								end, { desc = "Create New Note" })
+
+                                -- Create workspace summary using above line
+                                keybinds.map("norg", "n", "<localleader>g", function ()
+                                    local current_line = vim.api.nvim_win_get_cursor(0)[1]
+                                    local line = vim.api.nvim_buf_get_lines(0, current_line - 2, current_line - 1, false)[1]
+                                    local cmd = string.sub(line, 2, -2)
+                                    vim.cmd(cmd)
+                                end)
 
                                 -- Undojoin
                                 keybinds.map("norg", "n", "u", function()
