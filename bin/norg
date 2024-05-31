@@ -17,7 +17,10 @@ elif [ "$1" = "dir" ]; then
 elif [ "$1" = "hissa" ]; then
     cd ${muistiinpanot}
     nvim -c ":Neorg workspace notes" -c ":edit 2024-03-06--historia_index.norg"
-elif [ "$1" = "lkp" ]; then
+elif [ "$1" = "ait" ]; then
     cd ${muistiinpanot}
-    nvim -c ":Neorg workspace notes" -c ":edit 2024-02-24--lkp_index.norg"
+    nvim -c ":Neorg workspace notes" -c ":edit 2024-04-12--internet_technology_index.norg"
+elif [ "$1" = "agt" ]; then
+    cd ${muistiinpanot}
+    nvim -c ":Neorg workspace notes" -c ":edit 2024-04-11--algorithmic_game_theory_index.norg"
 fi

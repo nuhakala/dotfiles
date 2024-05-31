@@ -2,7 +2,6 @@
 
 name=$(date +"%Y%m%d%H%M%S")
 date=$(date +"%d.%m.%Y--%H:%M:%S")
-path=~/filen-drive/muistiinpanot/home
 
 todos=~/gtd/
 
@@ -16,11 +15,11 @@ Created: ${date}
 # ***** TODO *****
 if [ $# -eq 0 ]; then
     cd ${todos}
-    nvim ./todo.norg
-elif [ "$1" = "rail" ]; then 
-    cd ${todos}
-    nvim ./interrail.norg
+    nvim ./next-action.norg
 elif [ "$1" = "some" ]; then 
     cd ${todos}
     nvim ./someday.norg
+elif [ "$1" = "next" ]; then 
+    cd ${todos}
+    nvim ./next-action.norg
 fi

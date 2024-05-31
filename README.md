@@ -45,17 +45,19 @@ config config --local status.showUntrackedFiles no
 12. gajim
 13. thunderbird
 14. lutris
-15. `screenshot-without-picom` script in path
 
 # Neovim requirements
 1. neovim 9.0+
 2. ripgrep
 3. git
-5. `git_diff.sh` and `git_branch.sh` scripts in path
+5. `git_branch.sh` scripts in path
 
 # ZSH requirement
 1. zap
 
-# others
+# others / command line tools
 - picom
 - wezterm
+- fzf
+- bat
+- eza
