@@ -62,8 +62,8 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod, "control"], "n", lazy.window.toggle_floating(), desc="Toggle floating status"),
+    Key([mod, "control"], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "control"], "f", lazy.window.toggle_floating(), desc="Toggle floating status"),
 
     # Switch focus of monitors
     Key([mod], "o", lazy.next_screen(), desc='Move focus to next monitor'),
@@ -75,7 +75,7 @@ keys = [
     Key([mod, "shift"], "o", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown()),
-    Key([], "Print", lazy.spawn( "screenshot-without-picom", shell=True), desc="Take screenshot"),
+    Key([], "Print", lazy.spawn("maim --select | xclip -selection clipboard -t image/png", shell=True), desc="Take screenshot"),
     Key([mod], "u", lazy.spawn("rofi -show combi -modes combi -combi-modes 'drun,run'"), desc="Spawn a command using rofi"),
     Key([mod], "e", lazy.spawn("wezterm start nnn"), desc="Start file explorer"),
     Key([mod], "p", lazy.spawn("i3lock"), desc="Lock the screen"),
@@ -95,16 +95,6 @@ keys = [
 ]
 
 
-# ========== Autostart ==========
-# @hook.subscribe.startup_once
-# def autostart():
-#     processes = [
-#         ["picom", "-b"]
-#     ]
-
-#     for p in processes:
-#         subprocess.Popen(p)
-
 # ========== Groups ==========
 
 groups = [
@@ -113,7 +103,7 @@ groups = [
     Group("2", label="Notes", layout="tile"),
     Group("3", spawn=["discord", "wezterm start --always-new-process profanity -a Koiskis"], label="Chat", layout="max"),
     Group("4", spawn="thunderbird", label="Mail", layout="monadtall"),
-    Group("5", spawn="lutris", label="Games", layout="max"),
+    Group("5", spawn=["lutris", "/home/nuuttih/bin/freetube"], label="Games", layout="max"),
     Group("z", label="Dev"),
     Group("Adiaeresis", label="Dev2"),
     Group("y", label="Dev3"),
@@ -330,8 +320,8 @@ def init_widgets_screen2():
     del widgets_screen2[13:14]
     # delete playerctl widget
     # del widgets_screen2[4:5]
-    # delete playerctl widget
-    del widgets_screen2[5:11]
+    # Delete performance indicators
+    del widgets_screen2[6:12]
     return widgets_screen2
 
 
