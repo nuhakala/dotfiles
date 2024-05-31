@@ -7,7 +7,10 @@ export BROWSER=/usr/bin/firefox
 export PATH="$HOME/.config/emacs/bin:$HOME/bin:$PATH"
 # export NODE_OPTIONS=--openssl-legacy-provider
 # alias notes="nvim ~/beanbakers/notes.md"
-source /usr/share/nvm/init-nvm.sh 
+
+# Sources node version manager script, slows the startup considerably, so
+# keep commented if not needed
+# source /usr/share/nvm/init-nvm.sh 
 . "$HOME/.cargo/env"
 
 # Random aliases
@@ -18,11 +21,14 @@ alias vim="nvim"
 alias rwth="ssh -X tu167332@login18-1.hpc.itc.rwth-aachen.de"
 export TRAINING_FILE="$HOME/filen-drive/dokumentit/treenit.csv"
 alias treenit="~/OmatProjektit/training-diary/treenit.sh"
+sää() {
+    curl "v2.wttr.in/$1"
+}
 
 #Shorthands
 alias sanasto="nvim ~/filen-drive/dokumentit/saSanasto.txt"
 alias salasanat="libreoffice ~/filen-drive/dokumentit/salasanat.odt"
-alias musat="libreoffice ~/filen-drive/dokumentit/musat.ods"
+alias musat="vim ~/muistiinpanot/sekalaiset/musat.norg"
 alias ostokset="libreoffice ~/filen-drive/dokumentit/ostokset.ods"
 alias gifit="nvim ~/muistiinpanot/sekalaiset/gifit.norg       "
 alias muistettavaa="nvim ~/muistiinpanot/sekalaiset/muistettavaa.norg"

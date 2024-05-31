@@ -9,6 +9,9 @@ fd() {
 # Find file and open it with xdg-open
 ff() {
     local target
-    target=$(fzf +m)
-    xdg-open "$target"
+    target=$(fzf +m --preview 'bat --color=always {}')
+    # Open only if file is chosen
+    if [[ ${target} != "" ]]; then
+        xdg-open "$target"
+    fi
 }

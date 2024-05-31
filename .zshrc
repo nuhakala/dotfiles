@@ -1,3 +1,7 @@
+# Use this to track startuptime on each session start. Remember to also the
+# counterpart at the last line.
+# zmodload zsh/zprof
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
@@ -6,10 +10,10 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
 
 # Source shell-independent stuff
-source "$HOME/.shell/profile.sh"
-source "$HOME/.shell/git.sh"
-source "$HOME/.shell/fzf.sh"
-source "$HOME/.shell/nnn.sh"
+plug "$HOME/.shell/profile.sh"
+plug "$HOME/.shell/git.sh"
+plug "$HOME/.shell/fzf.sh"
+plug "$HOME/.shell/nnn.sh"
 
 # Settings: based on supercharge and manjaro config
 
@@ -37,7 +41,7 @@ setopt INTERACTIVE_COMMENTS
 setopt APPEND_HISTORY
 setopt AUTO_LIST
 
-HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"
+HISTFILE="${HOME}/.zsh/zhistory.txt"
 HISTSIZE=50000
 SAVEHIST=50000
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
@@ -189,3 +193,6 @@ zstyle ':vcs_info:git:*' actionformats " %F{219} %b %F{44}➜ %F{197}%a"
 PROMPT=" %F{172}%2c\$vcs_info_msg_0_ %F{93}❯%{$reset_color%} "
 # add empty line before new line, wrap two times to prevent new line on startup
 precmd() { precmd() { print "" } }
+
+# Startup time track stop.
+# zprof
