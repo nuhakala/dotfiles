@@ -8,19 +8,6 @@ return {
 			},
 		},
 	},
-    -- nvim-notify is quite cool, but notifier is more minimalisti and less distractive
-    --[[
-	{
-		"rcarriga/nvim-notify",
-		opts = {
-			background_colour = "#000000",
-		},
-		config = function(_, opts)
-			require("notify").setup(opts)
-			vim.notify = require("notify")
-		end,
-	},
-    --[=[]]
     {
         "vigoux/notifier.nvim",
         config = function()
@@ -32,20 +19,6 @@ return {
             }
         end
     },
-    --]=]
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
-		opts = {
-			hint_enable = false,
-			-- floating_window_off_y = -1,
-			-- floating_window_off_x = 10,
-			floating_window_above_cur_line = true,
-		},
-		config = function(_, opts)
-			require("lsp_signature").setup(opts)
-		end,
-	},
 	{
 		"levouh/tint.nvim",
 		opts = {

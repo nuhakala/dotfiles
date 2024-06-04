@@ -51,4 +51,10 @@ return {
             vim.keymap.set("n", "<leader>go", require("mini.diff").toggle_overlay, { desc = "Toggle overlay" })
         end
     },
+    {
+        "ejrichards/baredot.nvim", -- to have git for bare git repo
+        opts = {
+            git_dir = "~/.cfg"
+        }
+    }
 }

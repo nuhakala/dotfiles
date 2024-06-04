@@ -11,13 +11,21 @@ return {
             require("neoconf").setup()
             require("mason").setup({})
             require("mason-lspconfig").setup({})
+            local cmp_lsp = require("cmp_nvim_lsp")
+            local capabilities = vim.tbl_deep_extend(
+            "force",
+            {},
+            vim.lsp.protocol.make_client_capabilities(),
+            cmp_lsp.default_capabilities())
+
+            -- Load friendly-snippets
+            -- require("luasnip.loaders.from_vscode").lazy_load()
 
             -- Set up capabilities automatically
-            local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
             require("mason-lspconfig").setup_handlers({
                 function(server_name)
                     require("lspconfig")[server_name].setup({
-                        capabilities = lsp_capabilities
+                        capabilities = capabilities
                     })
                 end
             })
@@ -29,6 +37,7 @@ return {
                     vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { desc = "Declaration", buffer = event.buf })
                     vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { desc = "Implementation", buffer = event.buf })
                     vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature help", buffer = event.buf })
+                    vim.keymap.set("i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { desc = "Signature help", buffer = event.buf })
                     vim.keymap.set("n", "<leader>rl", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Rename", buffer = event.buf })
                     vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", { desc = "Format", buffer = event.buf })
                     vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code action", buffer = event.buf })
@@ -43,7 +52,7 @@ return {
 
                     -- Add keymap to open hover, to remember to use it easier.
                     -- It is also mapped to "K"
-                    vim.keymap.set("n", "gK", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Open hover, double 'K' -> window" })
+                    -- vim.keymap.set("n", "gK", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Open hover, double 'K' -> window" })
                 end,
             })
         end,

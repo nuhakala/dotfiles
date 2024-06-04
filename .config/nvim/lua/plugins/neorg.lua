@@ -28,6 +28,7 @@ return {
                     ["external.conceal-wrap"] = {},
 					["core.integrations.telescope"] = {},
 					["core.export"] = {},
+					-- ["core.ui.calendar"] = {},
 					["core.concealer"] = {
                         config = {
                             icon_preset = "diamond",

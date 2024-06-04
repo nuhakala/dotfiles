@@ -75,7 +75,7 @@ return {
                 ["o"] = { name = "Open" },
                 ["r"] = { name = "Find and replace" },
                 ["q"] = { name = "Quickfix" },
-				["s"] = { name = "Session management" },
+				["s"] = { name = "Session and spell management" },
 				["e"] = { name = "Tablemode" },
 				["t"] = { name = "Telescope" },
                 ["u"] = { name = "Select", s = "Start selecting text with Treesitter" },

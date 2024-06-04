@@ -68,6 +68,13 @@ set("n", "<leader>rs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Lef
 -- Select all
 set("n", "<C-a>", "ggVG", { desc = "Select all"})
 
+-- Spelling
+set("n", "<leader>ss", "]s", { desc = "Next spelling mistake" })
+set("n", "<leader>sc", ":lua require('telescope.builtin').spell_suggest{}<cr>", { desc = "Correct mistake" })
+set("n", "<leader>st", function ()
+    vim.opt.spell = not vim.o.spell
+    vim.opt.spelllang=en
+end, { desc = "Toggle spelling" })
 
 -- ***** Functionality *****
 -- Close buffer without closing window
