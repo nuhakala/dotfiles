@@ -7,7 +7,6 @@ from libqtile.lazy import lazy
 # from libqtile import qtile
 # from libqtile.backend.wayland import InputConfig
 import playerctl as playerctl
-import colors
 # import subprocess
 
 # if qtile.core.name == "x11":
@@ -75,12 +74,12 @@ keys = [
     Key([mod, "shift"], "o", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown()),
-    Key([], "Print", lazy.spawn("maim --select | xclip -selection clipboard -t image/png", shell=True), desc="Take screenshot"),
+    # Key([], "Print", lazy.spawn("maim --select | xclip -selection clipboard -t image/png", shell=True), desc="Take screenshot"),
+    Key([], "Print", lazy.spawn("flameshot gui", shell=True), desc="Take screenshot"),
     Key([mod], "u", lazy.spawn("rofi -show combi -modes combi -combi-modes 'drun,run'"), desc="Spawn a command using rofi"),
     Key([mod], "e", lazy.spawn("wezterm start nnn"), desc="Start file explorer"),
-    Key([mod], "p", lazy.spawn("i3lock"), desc="Lock the screen"),
+    Key([mod], "p", lazy.spawn("/home/nuuttih/bin/lock", shell=True), desc="Lock the screen"),
     Key([mod], "m", lazy.hide_show_bar("bottom"), desc="Toggle bar"),
-    Key([mod], "b", lazy.spawn("neovide -- -c 'Neorg workspace home'"), desc="Start notes"),
 
     # Multimedia keys
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+")),
@@ -99,15 +98,16 @@ keys = [
 
 groups = [
     # layout="monadtall"
-    Group("1", spawn="firefox", label="Web", layout="monadtall"),
-    Group("2", label="Notes", layout="tile"),
-    Group("3", spawn=["discord", "wezterm start --always-new-process profanity -a Koiskis"], label="Chat", layout="max"),
-    Group("4", spawn="thunderbird", label="Mail", layout="monadtall"),
-    Group("5", spawn=["lutris", "/home/nuuttih/bin/freetube"], label="Games", layout="max"),
-    Group("z", label="Dev"),
-    Group("Adiaeresis", label="Dev2"),
-    Group("y", label="Dev3"),
-    Group("i", label="Dev4"),
+    Group("1", spawn=["librewolf", "keepassxc"], label="Netti", layout="monadtall"),
+    Group("2", label="Panot", layout="tile"),
+    # Group("3", spawn=["discord", "wezterm start --always-new-process profanity -a Koiskis"], label="Chat", layout="max"),
+    Group("3", spawn=["discord", "gajim"], label="Viestit", layout="max"),
+    Group("4", spawn="thunderbird", label="Posti", layout="monadtall"),
+    Group("5", spawn=["lutris", "/home/nuuttih/bin/freetube"], label="Viihde", layout="max"),
+    Group("z", label="Achtung"),
+    Group("Adiaeresis", label="Verdammt"),
+    Group("y", label="Scheiße"),
+    Group("i", label="Arsch"),
 ]
 
 # Keybindings for groups
@@ -126,14 +126,19 @@ for i in groups:
     )
 
 # ========== Colorscheme ==========
-colors = colors.oma
-
+colors = [
+    ["#000000", "#000000"],  # panel background
+    ["#ffffff", "#ffffff"],  # font color
+    ["#58008B", "#58008B"],  # active group border/background on current monitor
+    ["#434242", "#434242"],  # box background 1
+    ["#302C2C", "#302C2C"],  # box background 2
+    ["#4BE100", "#4BE100"],  # active screen border 
+    ["#76D2FF", "#76D2FF"],  # active screen border 
+]
 # ========== Layouts ==========
 
-# active_color = "#4BE100"
-# normal_color = "#76D2FF"
-active_color = colors[2]
-normal_color = colors[3]
+active_color = colors[5]
+normal_color = colors[6]
 width = 2
 master_size = 0.618
 margin = 3
@@ -149,14 +154,6 @@ layouts = [
         border_on_single=False,
         margin_on_single=False,
     ),
-    # layout.VerticalTile(
-    #     border_focus=active_color,
-    #     border_normal=normal_color,
-    #     border_width=width,
-    #     margin=margin,
-    #     single_border_width=None,
-    #     single_margin=None,
-    # ),
     layout.MonadTall(
         border_focus=active_color,
         border_normal=normal_color,
@@ -166,15 +163,6 @@ layouts = [
         single_border_width=0,
         single_margin=0,
     ),
-    # layout.MonadWide(
-    #     border_focus=active_color,
-    #     border_normal=normal_color,
-    #     border_width=width,
-    #     ratio=master_size,
-    #     margin=margin,
-    #     single_border_width=0,
-    #     single_margin=0,
-    # ),
     layout.Max(),
     layout.Columns(
         border_focus=active_color,
@@ -184,13 +172,6 @@ layouts = [
         border_on_single=False,
         margin_on_single=False,
     ),
-    # layout.TreeTab(),
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.RatioTile(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 # Floating layout
@@ -226,7 +207,8 @@ mouse = [
 widget_defaults = dict(
     font="sans",
     fontsize=16,
-    padding=3,
+    margin_y=1, # little space below
+    padding=5, # separate from each other
     background = colors[0],
     foreground = colors[1]
 )
@@ -238,72 +220,80 @@ def init_widgets_list():
         # Left side
         widget.GroupBox(
             hide_unused=True,
-            active = colors[1],
-            this_current_screen_border = colors[4],
-            this_screen_border = colors [5],
-            other_current_screen_border = colors[4],
-            other_screen_border = colors[5],
+            center_aligned = True,
+            disable_drag = True,
+            active = colors[1], # active group font
+            inactive = colors[1], # inactive group font
+            highlight_method = "block",
+            rounded = False,
+            this_current_screen_border = colors[2],
+            this_screen_border = colors [0],
+            other_current_screen_border = colors[0],
+            other_screen_border = colors[0],
         ),
-        # Prompt not needed, I use rofi
-        # widget.Prompt(),
 
         widget.Spacer(),
 
         # Middle
-        # widget.Notify(),
         widget.Clock(
             format="%H:%M:%S",
-            # foreground = colors[3]
+            background = colors[0],
         ),
+
         widget.Spacer(),
 
         # Right side
-        playerctl.PlayerctlWidget(),
+        widget.TextBox(
+            text = "🞀",
+            fontsize = 34,
+            foreground = colors[3],
+            padding = -3,
+            ),
         widget.WidgetBox(
+            background = colors[3],
+            fontsize = 25,
+            text_closed = " < ",
+            text_opened = " > ",
             widgets = [
                 widget.CurrentLayout(
-                    # foreground = colors[4],
+                    background = colors[3],
                 ),
-                widget.Sep(),
                 widget.Volume(
                     fmt = "vol: {}",
-                    # foreground = colors[5],
+                    background = colors[4],
                 ),
-                widget.Sep(),
                 widget.Backlight(
                     backlight_name = "intel_backlight", fmt="Br: {}",
-                    # foreground = colors[6],
+                    background = colors[3],
                 ),
-                widget.Sep(),
             ]
         ),
+        playerctl.PlayerctlWidget(
+            background = colors[3],
+            ),
         widget.CPU(
             format = "{load_percent}%",
             update_interval = 15.0,
-            # foreground = colors[7],
+            background = colors[4],
         ),
-        widget.Sep(),
         widget.Memory(
             measure_mem = "G",
             format = "{MemUsed: .2f}{mm}/{MemTotal: .1f}{mm}",
-            # foreground = colors[8],
+            background = colors[3],
         ),
-        widget.Sep(),
         widget.Battery(
             discharge_char = "",
             format = "B{char}{percent:2.0%}",
             charge_char = "^",
-            # foreground = colors[3],
+            background = colors[4],
         ),
-        # ]),
-        widget.Sep(),
         widget.Clock(
             format = "%a %d.%m.%Y",
-            # foreground = colors[4],
+            background = colors[3],
         ),
-        widget.Systray(),
-        # widget.Sep(),
-        # widget.QuickExit(),
+        widget.Systray(
+            background = colors[4],
+        ),
     ]
     return widgets_list
 
@@ -328,7 +318,8 @@ def init_widgets_screen2():
 def init_screens():
     return [
             Screen(
-                wallpaper="~/Pictures/wallpapers/endless2.jpg",
+                # wallpaper="~/Pictures/wallpapers/endless2.jpg",
+                wallpaper="~/Pictures/wallpapers/xero-wallpapers/Xero-Plasma49.png",
                 wallpaper_mode="fill",
                 bottom=bar.Bar(widgets=init_widgets_screen1(), size=23)
                 ),
