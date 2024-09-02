@@ -76,5 +76,36 @@ return {
             })
             vim.cmd('colorscheme catppuccin-mocha')
         end,
+    },
+    {
+        "slugbyte/lackluster.nvim",
+        lazy = false,
+        priority = 1000,
+        init = function()
+            -- vim.cmd.colorscheme("lackluster")
+        end,
+    },
+    {
+        "aktersnurra/no-clown-fiesta.nvim",
+        lazy = false,
+        priority = 1000,
+        init = function()
+            -- vim.cmd.colorscheme("no-clown-fiesta")
+        end,
+    },
+    {
+        "0xstepit/flow.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+        config = function()
+            require("flow").setup{
+                transparent = true,
+                fluo_color = "green",
+                mode = "desaturate",
+                aggressive_spell = false,
+            }
+            -- vim.cmd.colorscheme("flow")
+        end,
     }
 }

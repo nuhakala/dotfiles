@@ -13,13 +13,14 @@ return {
             require("mason-lspconfig").setup({})
             local cmp_lsp = require("cmp_nvim_lsp")
             local capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
+                "force",
+                {},
+                vim.lsp.protocol.make_client_capabilities(),
+                cmp_lsp.default_capabilities()
+            )
 
             -- Load friendly-snippets
-            -- require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip.loaders.from_vscode").lazy_load()
 
             -- Set up capabilities automatically
             require("mason-lspconfig").setup_handlers({

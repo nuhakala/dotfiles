@@ -30,8 +30,8 @@ return {
 				on_attach = function(bufnr)
                     -- vim.api.nvim_buf_set_name(0, "Aerial")
 					-- Jump forwards/backwards with '{' and '}'
-					vim.keymap.set("n", "{[", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-					vim.keymap.set("n", "}]", "<cmd>AerialNext<CR>", { buffer = bufnr })
+					-- vim.keymap.set("n", "{[", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+					-- vim.keymap.set("n", "}]", "<cmd>AerialNext<CR>", { buffer = bufnr })
 				end,
 			})
 			-- You probably also want to set a keymap to toggle aerial
@@ -62,13 +62,22 @@ return {
             end, { desc = "Format" })
 		end,
 	},
+    -- {
+    --     "dgagn/diagflow.nvim",
+    --     -- event = 'LspAttach', This is what I use personnally and it works great
+    --     opts = {
+    --         scope = "line",
+    --         show_borders = true,
+    --     }
+    -- },
     {
-        'dgagn/diagflow.nvim',
-        -- event = 'LspAttach', This is what I use personnally and it works great
-        opts = {
-            scope = "line",
-            show_borders = true,
-        }
+        -- show lightbuld when code action available
+        "kosayoda/nvim-lightbulb",
+        config = function ()
+            require("nvim-lightbulb").setup({
+                autocmd = { enabled = true }
+            })
+        end
     },
     {
         "folke/trouble.nvim",

@@ -59,20 +59,20 @@ end
 
 local date_options = {
     -- Pure date
-    fmt("<{}>", i(1, os.date("%d.%m.%Y"))),
+    fmt("{}", i(1, os.date("%d.%m.%Y"))),
     -- Weekday + date
-    fmt("<{}>", i(1, os.date("%a %d.%m.%Y"))),
+    fmt("{}", i(1, os.date("%a %d.%m.%Y"))),
     -- week + date
-    fmt("<Viikko {}>", { i(1, os.date("%W, %d.%m.%Y")) }),
+    fmt("Viikko {}", { i(1, os.date("%W, %d.%m.%Y")) }),
     -- Date + clock
-    fmt("<{}>", i(1, os.date("%d.%m.%Y %H:%M:%S"))),
+    fmt("{}", i(1, os.date("%d.%m.%Y %H:%M:%S"))),
     -- Day + month
-    fmt("<{}>", i(1, os.date("%d.%m"))),
+    fmt("{}", i(1, os.date("%d.%m"))),
 }
 
 local time_options = {
-    fmt("<{}>", i(1, os.date("%H:%M"))),
-    fmt("<{}>", i(1, os.date("%H:%M:%S"))),
+    fmt("{}", i(1, os.date("%H:%M"))),
+    fmt("{}", i(1, os.date("%H:%M:%S"))),
 }
 
 return {

@@ -1,11 +1,8 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = {
-		-- comment.nvim is not required as deps here, but lets add it
 		-- here to ensure ts-context-commentstring works fine.
 		-- "JoosepAlviste/nvim-ts-context-commentstring",
-		-- "numToStr/Comment.nvim",
-		-- "nvim-orgmode/orgmode",
         "nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	build = ":TSUpdate",

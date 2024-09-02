@@ -1,8 +1,17 @@
 return {
 	{ "lambdalisue/suda.vim" },
 	-- { "folke/twilight.nvim" },
-	{ "vivien/vim-linux-coding-style" },
+	-- { "vivien/vim-linux-coding-style" },
     { "jbyuki/quickmath.nvim" },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {
+            exclude = {
+                filetypes = { "norg" }
+            }
+        },
+    },
 	{
 		"nuhakala/nvim-simple-tables",
         event = "VeryLazy",
@@ -74,9 +83,6 @@ return {
             float_opts = {
                 border = "double",
             },
-            on_open = function (_)
-                vim.b.miniindentscope_config = { symbol = "" }
-            end
         },
 		keys = {
 			{ "<leader>ot", "<CMD>ToggleTerm<CR>", desc = "Open terminal" },
@@ -105,22 +111,25 @@ return {
             })
         end
     },
-	{
-		"folke/todo-comments.nvim",
-        event = "VeryLazy",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		lazy = false,
-		opts = {
-            merge_keywords = true,
-            keywords = {
-                BOOKMARK = { icon = "", color = "test" },
-            },
-        },
-		keys = {
-			{ "<leader>xt", "<CMD>:TodoTrouble<CR>", desc = "Toggle Todo-comments" },
-			{ "<leader>tt", "<Cmd>:TodoTelescope<CR>", desc = "Todo-comments" },
-		},
-	},
+	-- {
+	-- 	"folke/todo-comments.nvim",
+	--        event = "VeryLazy",
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	lazy = false,
+	-- 	opts = {
+	--            merge_keywords = true,
+	--            keywords = {
+	--                BOOKMARK = { icon = "", color = "test" },
+	--            },
+	--            highlight = {
+	--                keyword = "fg",
+	--            },
+	--        },
+	-- 	keys = {
+	-- 		{ "<leader>xt", "<CMD>:TodoTrouble<CR>", desc = "Toggle Todo-comments" },
+	-- 		{ "<leader>tt", "<Cmd>:TodoTelescope<CR>", desc = "Todo-comments" },
+	-- 	},
+	-- },
     {
         "LintaoAmons/bookmarks.nvim",
         dependencies = {
@@ -143,8 +152,25 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
 		keys = {
-			{ "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+			{ "<leader>-", "<CMD>Oil<CR>", desc = "Open parent directory" },
 			{ "<leader>do", "<CMD>lua require('oil').discard_all_changes()<CR>", desc = "Discard changes" },
         },
 	},
+    {
+        'stevearc/quicker.nvim',
+        event = "FileType qf",
+        ---@module "quicker"
+        ---@type quicker.SetupOptions
+        opts = {},
+        config = function ()
+            require("quicker").setup({
+                keys = {
+                    { ">", function() require("quicker").expand({ before = 2, after = 2, add_to_existing = true }) end, desc = "Expand quickfix context", },
+                    { "<", function() require("quicker").collapse() end, desc = "Collapse quickfix context", },
+                },
+            })
+            vim.keymap.set("n", "<leader>q", function() require("quicker").toggle() end, { desc = "Toggle quickfix", })
+            vim.keymap.set("n", "<leader>l", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist", })
+        end
+    },
 }

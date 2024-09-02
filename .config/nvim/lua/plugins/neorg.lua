@@ -26,7 +26,13 @@ return {
 				load = {
                     -- Wait for neovim 0.10.0
                     ["external.conceal-wrap"] = {},
-					["core.integrations.telescope"] = {},
+					["core.integrations.telescope"] = {
+                        config = {
+                            insert_file_link = {
+                                show_title_preview = false,
+                            },
+                        }
+                    },
 					["core.export"] = {},
 					-- ["core.ui.calendar"] = {},
 					["core.concealer"] = {
@@ -75,7 +81,8 @@ return {
 					["core.dirman"] = { -- Manages Neorg workspaces
 						config = {
 							workspaces = {
-								notes = "~/muistiinpanot/",
+								notes = "~/muistiinpanot/zettelkasten/",
+								sekalaiset = "~/muistiinpanot/sekalaiset/",
 							},
 						},
 					},
@@ -172,8 +179,8 @@ return {
 			})
 
 			-- Set filetype comment
-			local ft = require("Comment.ft")
-			ft.norg = { "%|%s|%", "%|%s|%" }
+			-- local ft = require("Comment.ft")
+			-- ft.norg = { "%|%s|%", "%|%s|%" }
 		end,
 	},
 }

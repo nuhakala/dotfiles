@@ -50,8 +50,9 @@ set({"n", "v"}, "<leader>ys", '"sy', { desc = "Yank to s-register" })
 set({"n", "v"}, "<leader>pp", '"+p', { desc = "Paste from system clipboard" })
 set({"n", "v"}, "<leader>pa", '"ap', { desc = "Paste from a-register" })
 set({"n", "v"}, "<leader>ps", '"sp', { desc = "Paste from s-register" })
+set("x", "<leader>pv", [["_dP]], { desc = "Delete to void and paste" })
 -- Deleting
-set("n", "<leader>dv", '"_', { desc = "Paste into void register" })
+set("n", "<leader>dv", '"_', { desc = "Deleteinto void register" })
 
 set("n", "<leader>,", "<Cmd>:noh<CR>", { desc = "Remove search highlighting" })
 
@@ -90,12 +91,12 @@ set("t", "<Esc>", "<C-\\><C-n>")
 set("n", "<leader>w", "<Cmd>:w<CR>", { desc = "Save buffer" })
 
 -- Quickfix
-set("n", "<leader>qq", "<Cmd>:ccl<CR>", { desc = "Close quickfix menu" })
-set("n", "<leader>ql", "<Cmd>:lcl<CR>", { desc = "Close locations menu" })
-set("n", "<leader>qo", "<Cmd>:copen<CR>", { desc = "Open quickfix" })
+-- set("n", "<leader>qq", "<Cmd>:ccl<CR>", { desc = "Close quickfix menu" })
+-- set("n", "<leader>ql", "<Cmd>:lcl<CR>", { desc = "Close locations menu" })
+-- set("n", "<leader>qo", "<Cmd>:copen<CR>", { desc = "Open quickfix" })
 
 -- Open internet link
-set("n", "<leader>ol", "<Cmd>:execute '!firefox ' . shellescape(expand('<cfile>'), 1)<CR>", { desc = "Open link" })
+-- set("n", "<leader>ol", "<Cmd>:execute '!firefox ' . shellescape(expand('<cfile>'), 1)<CR>", { desc = "Open link" })
 
 -- Remap esc on the laptop keyboard
 set("i", "§", "<ESC>")
