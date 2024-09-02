@@ -37,7 +37,7 @@ config config --local status.showUntrackedFiles no
 3. wezterm
 4. nnn
 5. i3lock
-6. maim
+6. flameshot
 8. amixer
 9. brightnessctl
 10. firefox
@@ -61,3 +61,4 @@ config config --local status.showUntrackedFiles no
 - fzf
 - bat
 - eza
+- Tomb

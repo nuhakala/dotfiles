@@ -1,7 +1,7 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export EDITOR=/usr/bin/nvim export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # fix "xdg-open fork-bomb" export your preferred browser from here
-export BROWSER=/usr/bin/firefox
+# export BROWSER=/usr/bin/firefox
 
 # export PATH="$HOME/bin:/opt/cuda/extras/compute-sanitize:$PATH"
 export PATH="$HOME/.config/emacs/bin:$HOME/bin:$PATH"
@@ -24,6 +24,7 @@ alias treenit="~/OmatProjektit/training-diary/treenit.sh"
 sää() {
     curl "v2.wttr.in/$1"
 }
+alias du="du -h" # human readable
 
 #Shorthands
 alias sanasto="nvim ~/filen-drive/dokumentit/saSanasto.txt"

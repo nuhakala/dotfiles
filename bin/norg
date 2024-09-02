@@ -1,26 +1,21 @@
 #!/bin/bash
 
-muistiinpanot=~/muistiinpanot/
+muistiinpanot=~/muistiinpanot/zettelkasten/
+sekalaiset=~/muistiinpanot/sekalaiset/
 todos=~/gtd/
 
+# ***** Muistiinpanot *****
 if [ $# -eq 0 ]; then
     cd ${muistiinpanot}
 	nvim -c ":Neorg workspace notes"
-    # nvim <<< "<esc>:Neorg workspace notes"
-    # "lua vim.api.nvim_create_autocmd({':L'}, { command = 'Neorg workspace notes' })"
-# ***** Kansiot *****
-elif [ "$1" = "dir" ]; then
-    cd ${muistiinpanot}
-	nvim -c ":Neorg workspace notes" -c ":edit $2/index.norg"
 
-# ***** Neorg indexit *****
-elif [ "$1" = "hissa" ]; then
+# ***** Sekalaiset *****
+elif [ "$1" = "sek" ]; then
     cd ${muistiinpanot}
-    nvim -c ":Neorg workspace notes" -c ":edit 2024-03-06--historia_index.norg"
-elif [ "$1" = "ait" ]; then
-    cd ${muistiinpanot}
-    nvim -c ":Neorg workspace notes" -c ":edit 2024-04-12--internet_technology_index.norg"
-elif [ "$1" = "agt" ]; then
-    cd ${muistiinpanot}
-    nvim -c ":Neorg workspace notes" -c ":edit 2024-04-11--algorithmic_game_theory_index.norg"
+	nvim -c ":Neorg workspace sekalaiset"
+
+# ***** Filut *****
+elif [ "$1" = "muist" ]; then
+    cd ${sekalaiset}
+    nvim -c ":Neorg workspace sekalaiset" -c ":edit muistettavaa.norg"
 fi
