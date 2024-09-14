@@ -67,12 +67,12 @@ return {
 			{ "<leader>+", ":ASToggle<CR>", desc = "Toggle auto-save" },
 		},
 	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		config = function()
-			require("ts_context_commentstring").setup({})
-		end,
-	},
+	-- {
+	-- 	"JoosepAlviste/nvim-ts-context-commentstring",
+	-- 	config = function()
+	-- 		require("ts_context_commentstring").setup({})
+	-- 	end,
+	-- },
 	{
 		"akinsho/toggleterm.nvim",
         event = "VeryLazy",

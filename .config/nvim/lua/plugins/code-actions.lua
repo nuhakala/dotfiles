@@ -38,30 +38,6 @@ return {
 			vim.keymap.set("n", "<leader>oa", "<cmd>AerialToggle!<CR>")
 		end,
 	},
-	{
-		"stevearc/conform.nvim",
-		opts = {},
-		config = function()
-			require("conform").setup({
-				formatters_by_ft = {
-					lua = { "stylua" },
-					-- Conform will run multiple formatters sequentially
-					python = { "black" },
-					-- Use a sub-list to run only the first available formatter
-                    javascript = { { "prettierd", "prettier" } },
-                    typescript = { { "prettierd", "prettier" } },
-					c = { "clang_format" },
-					cpp = { "clang_format" },
-                    -- ["*"] = { "codespell" },
-				},
-			})
-
-            vim.keymap.set({ "n", "v", "x" }, "<leader>z", function()
-                require("conform").format({ lsp_fallback = true })
-                print("File formatted")
-            end, { desc = "Format" })
-		end,
-	},
     -- {
     --     "dgagn/diagflow.nvim",
     --     -- event = 'LspAttach', This is what I use personnally and it works great

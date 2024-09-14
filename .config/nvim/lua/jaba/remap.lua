@@ -25,7 +25,7 @@ set("n", "<M-,>", "<C-w>-")
 
 -- Open split
 set("n", "<C-s>", ":vsplit<CR>", { desc = "Open vertical split" })
-set("n", "<C-m>", ":split<CR>", { desc = "Open vertical split" })
+-- set("n", "<C-m>", ":split<CR>", { desc = "Open vertical split" })
 
 -- Remap jumplist actions
 set("n", "<leader><BS>", "<C-o>", { desc = "Jump back"})
@@ -88,7 +88,7 @@ end, { desc = "Delete buffer" })
 set("t", "<Esc>", "<C-\\><C-n>")
 
 -- Save file
-set("n", "<leader>w", "<Cmd>:w<CR>", { desc = "Save buffer" })
+-- set("n", "<leader>w", "<Cmd>:w<CR>", { desc = "Save buffer" })
 
 -- Quickfix
 -- set("n", "<leader>qq", "<Cmd>:ccl<CR>", { desc = "Close quickfix menu" })
