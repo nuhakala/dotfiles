@@ -2,7 +2,7 @@ return {
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = {
-			{ "rafamadriz/friendly-snippets" }, -- Snippet library
+			-- { "rafamadriz/friendly-snippets" }, -- Snippet library
 		},
 		-- follow latest release.
 		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
@@ -11,9 +11,10 @@ return {
 		build = "make install_jsregexp",
 		config = function()
 			require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/luasnip/" } })
+            require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/vsc_snippets/" } })
 
 			-- Load friendly-snippets
-			require("luasnip.loaders.from_vscode").lazy_load()
+			-- require("luasnip.loaders.from_vscode").lazy_load()
 
 			local luasnip = require("luasnip")
 			-- vim.keymap.set({"i"}, "<C-Space>", function() luasnip.expand() end, {silent = true})

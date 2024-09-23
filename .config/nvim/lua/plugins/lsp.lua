@@ -18,9 +18,11 @@ return {
                 vim.lsp.protocol.make_client_capabilities(),
                 cmp_lsp.default_capabilities()
             )
+            -- disable LSP snippets
+            capabilities.textDocument.completion.completionItem.snippetSupport = false
 
             -- Load friendly-snippets
-            require("luasnip.loaders.from_vscode").lazy_load()
+            -- require("luasnip.loaders.from_vscode").lazy_load()
 
             -- Set up capabilities automatically
             require("mason-lspconfig").setup_handlers({

@@ -9,22 +9,31 @@ return {
 		},
 	},
     {
-        "vigoux/notifier.nvim",
+        "rcarriga/nvim-notify",
         config = function()
-            require'notifier'.setup {
-                components = {  -- Order of the components to draw from top to bottom (first nvim notifications, then lsp)
-                    "nvim",  -- Nvim notifications (vim.notify and such)
-                    "lsp"  -- LSP status updates
-                },
-            }
+            require("notify").setup({
+                background_colour = "#000000"
+            })
+            vim.notify = require("notify")
         end
     },
-	{
-		"levouh/tint.nvim",
-		opts = {
-			tint = -90,
-		},
-	},
+    -- {
+    --     "vigoux/notifier.nvim",
+    --     config = function()
+    --         require'notifier'.setup {
+    --             components = {  -- Order of the components to draw from top to bottom (first nvim notifications, then lsp)
+    --                 "nvim",  -- Nvim notifications (vim.notify and such)
+    --                 "lsp"  -- LSP status updates
+    --             },
+    --         }
+    --     end
+    -- },
+	-- {
+	-- 	"levouh/tint.nvim",
+	-- 	opts = {
+	-- 		tint = -70,
+	-- 	},
+	-- },
 	{
 		-- Highlighting to color codes #ff00ff
 		"NvChad/nvim-colorizer.lua",

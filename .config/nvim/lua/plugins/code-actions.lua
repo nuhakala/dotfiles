@@ -46,15 +46,15 @@ return {
     --         show_borders = true,
     --     }
     -- },
-    {
-        -- show lightbuld when code action available
-        "kosayoda/nvim-lightbulb",
-        config = function ()
-            require("nvim-lightbulb").setup({
-                autocmd = { enabled = true }
-            })
-        end
-    },
+    -- {
+    --     -- show lightbuld when code action available
+    --     "kosayoda/nvim-lightbulb",
+    --     config = function ()
+    --         require("nvim-lightbulb").setup({
+    --             autocmd = { enabled = true }
+    --         })
+    --     end
+    -- },
     {
         "folke/trouble.nvim",
         -- branch = "dev", -- IMPORTANT!
