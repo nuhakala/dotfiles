@@ -1,0 +1,18 @@
+{
+    "name": "Jäbän snippetit",
+    "engines": {
+        "vscode": "^1.11.0"
+    },
+    "contributes": {
+        "snippets": [
+            {
+                "language": ["cpp"],
+                "path": "./snippets/cpp.json"
+            },
+            {
+                "language": ["norg"],
+                "path": "./snippets/norg.json"
+            }
+        ]
+    }
+}
