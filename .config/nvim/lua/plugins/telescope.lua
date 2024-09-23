@@ -9,8 +9,14 @@ return {
     config = function()
         -- local trouble = require("trouble.providers.telescope")
 
+        local file_ignore_patterns = {
+            "node_modules/", -- node modules
+            "%.git/", -- git folder
+            "%.o", -- c object files
+        }
         require("telescope").setup({
             defaults = {
+                file_ignore_patterns = file_ignore_patterns,
                 path_display = {
                     truncate = 1,
                 },
