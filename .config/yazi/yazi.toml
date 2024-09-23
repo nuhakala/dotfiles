@@ -1,0 +1,7 @@
+[manager]
+ratio = [0, 1, 1]
+
+[opener]
+open = [
+	{ run = 'xdg-open "$@"', orphan = true, desc = "Open" },
+]

@@ -40,11 +40,11 @@ config config --local status.showUntrackedFiles no
 6. flameshot
 8. amixer
 9. brightnessctl
-10. firefox
-11. discord
-12. gajim
-13. thunderbird
-14. lutris
+10. discord
+11. gajim
+12. thunderbird
+13. lutris
+14. Librewolf
 
 # Neovim requirements
 1. neovim 9.0+
@@ -54,6 +54,12 @@ config config --local status.showUntrackedFiles no
 
 # ZSH requirement
 1. zap
+
+# Yazi
+- Onedark flavor https://github.com/BennyOe/onedark.yazi
+- Hide preview plugin: https://github.com/yazi-rs/plugins/tree/main/hide-preview.yazi
+- Hide status bar: https://github.com/yazi-rs/plugins/tree/main/no-status.yazi
+- Full border: https://github.com/yazi-rs/plugins/tree/main/full-border.yazi
 
 # others / command line tools
 - picom

@@ -1,0 +1,63 @@
+# School bookmarks
+[[manager.prepend_keymap]]
+on   = [ "g", "k" ]
+run  = "cd ~/kurssit/"
+desc = "Kurssit"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "c" ]
+run  = "cd ~/kurssit/competitive_programming/"
+desc = "Competitive programming"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "e" ]
+run  = "cd ~/kurssit/declarative_programming/"
+desc = "Declarative programming"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = "cd ~/kurssit/PAT/"
+desc = "PAT"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "a" ]
+run  = "cd ~/kurssit/graph_theory/"
+desc = "Graph theory"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "r" ]
+run  = "cd ~/kurssit/computer_graphics/"
+desc = "Computer graphics"
+
+# Other bookmarks
+[[manager.prepend_keymap]]
+on   = [ "g", "n" ]
+run  = "cd /media/sdc/"
+desc = "USB stick"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "," ]
+run  = "cd ~/hdd/"
+desc = "HDD"
+
+[[manager.prepend_keymap]]
+on   = [ "g", "m" ]
+run  = "cd ~/muistiinpanot/"
+desc = "Muistiinpanot"
+
+# Overwrite enter to go to directory instead of opening
+[[manager.prepend_keymap]]
+on = "o"
+run = """ shell --confirm 'wezterm start $EDITOR "$@"' """
+desc = "Edit file in new window"
+
+[[manager.prepend_keymap]]
+on = "e"
+run = "open"
+desc = "Open file in place"
+
+# Toggle preview with the plugin
+[[manager.prepend_keymap]]
+on   = "T"
+run  = "plugin --sync hide-preview"
+desc = "Hide or show preview"
