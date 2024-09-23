@@ -3,7 +3,7 @@
 name=$(date +"%Y%m%d%H%M%S")
 date=$(date +"%d.%m.%Y--%H:%M:%S")
 
-todos=~/gtd/
+todos=~/muistiinpanot/gtd/
 
 content="# [ ] 
 

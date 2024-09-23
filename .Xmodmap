@@ -46,6 +46,7 @@ keycode  44 = h H bracketleft NoSymbol j J
 keycode  45 = t T braceleft NoSymbol kra dead_greek
 keycode  46 = n N braceright NoSymbol dead_stroke dead_currency
 keycode  47 = s S bracketright NoSymbol oslash Oslash
+keycode  48 = comma semicolon comma semicolon cedilla ogonek cedilla
 ! keycode  51 = dead_diaeresis dead_circumflex dead_tilde NoSymbol dead_tilde dead_macron
 keycode  52 = period colon periodcentered periodcentered
 keycode  53 = q Q asterisk periodcentered

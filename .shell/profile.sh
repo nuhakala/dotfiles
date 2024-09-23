@@ -1,17 +1,18 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
-export EDITOR=/usr/bin/nvim export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export EDITOR=/usr/bin/nvim
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # fix "xdg-open fork-bomb" export your preferred browser from here
 # export BROWSER=/usr/bin/firefox
 
 # export PATH="$HOME/bin:/opt/cuda/extras/compute-sanitize:$PATH"
-export PATH="$HOME/.config/emacs/bin:$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 # export NODE_OPTIONS=--openssl-legacy-provider
 # alias notes="nvim ~/beanbakers/notes.md"
 
 # Sources node version manager script, slows the startup considerably, so
 # keep commented if not needed
 # source /usr/share/nvm/init-nvm.sh 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # Random aliases
 # LKP vm startup
@@ -19,7 +20,7 @@ alias vm="~/filen-drive/lipasto/tietotekniikka_maisteri/linux_kernel_programming
 alias matlab="~/ohjelmat/matlab/bin/matlab"
 alias vim="nvim"
 alias rwth="ssh -X tu167332@login18-1.hpc.itc.rwth-aachen.de"
-export TRAINING_FILE="$HOME/filen-drive/dokumentit/treenit.csv"
+# export TRAINING_FILE="$HOME/filen-drive/dokumentit/treenit.csv"
 alias treenit="~/OmatProjektit/training-diary/treenit.sh"
 sää() {
     curl "v2.wttr.in/$1"

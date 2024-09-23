@@ -1,13 +1,20 @@
 export NNN_PLUG="m:nmount;p:preview-tui;f:fzopen"
-NNN_BMS="u:~/filen-drive/;"
-NNN_BMS+="t:~/filen-drive/lipasto/tietotekniikka_maisteri/;"
-NNN_BMS+="l:~/filen-drive/lipasto/;"
+
+NNN_BMS+="t:/run/media/jaba/hdd/koulut/lipasto/tietotekniikka_maisteri/;"
+NNN_BMS+="l:/run/media/jaba/hdd/koulut/lipasto/;"
 NNN_BMS+="d:~/Downloads/;"
 NNN_BMS+="m:~/muistiinpanot/;"
 NNN_BMS+="o:~/OmatProjektit/;"
-NNN_BMS+="r:~/OmatProjektit/treenit-v2/;"
+
 # Kurssien kirjanmerkit
+NNN_BMS+="k:~/kurssit/;"
+NNN_BMS+="c:~/kurssit/competitive_programming/;"
+NNN_BMS+="e:~/kurssit/declarative_programming/;"
+NNN_BMS+="p:~/kurssit/PAT/;"
+NNN_BMS+="g:~/kurssit/graph_theroy/;"
+NNN_BMS+="r:~/kurssit/computer_graphics/;"
 export NNN_BMS
+
 export NNN_FIFO="/tmp/nnn.fifo nnn" # Required for preview-tui
 NNN_OPENER="/usr/bin/nvim"
 

@@ -14,6 +14,7 @@ plug "$HOME/.shell/profile.sh"
 plug "$HOME/.shell/git.sh"
 plug "$HOME/.shell/fzf.sh"
 plug "$HOME/.shell/nnn.sh"
+plug "$HOME/.shell/yazi.sh"
 
 # Settings: based on supercharge and manjaro config
 
@@ -41,7 +42,7 @@ setopt INTERACTIVE_COMMENTS
 setopt APPEND_HISTORY
 setopt AUTO_LIST
 
-HISTFILE="${HOME}/.zsh/zhistory.txt"
+HISTFILE="${HOME}/.shell/zhistory.txt"
 HISTSIZE=50000
 SAVEHIST=50000
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
