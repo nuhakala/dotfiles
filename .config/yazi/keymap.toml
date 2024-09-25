@@ -32,7 +32,7 @@ desc = "Computer graphics"
 # Other bookmarks
 [[manager.prepend_keymap]]
 on   = [ "g", "n" ]
-run  = "cd /media/sdc/"
+run  = "cd /media/usb/"
 desc = "USB stick"
 
 [[manager.prepend_keymap]]
@@ -47,12 +47,12 @@ desc = "Muistiinpanot"
 
 # Overwrite enter to go to directory instead of opening
 [[manager.prepend_keymap]]
-on = "o"
+on = "e"
 run = """ shell --confirm 'wezterm start $EDITOR "$@"' """
 desc = "Edit file in new window"
 
 [[manager.prepend_keymap]]
-on = "e"
+on = "o"
 run = "open"
 desc = "Open file in place"
 
