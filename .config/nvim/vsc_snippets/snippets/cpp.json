@@ -35,5 +35,19 @@
             "vector<vector<${1:int}>> matrix(${2:n}, vector<$1>(${3:m}));"
         ],
         "description": "Initialize matrix with vectors"
+    },
+    "Print line": {
+        "prefix": "prl",
+        "body": [
+            "cout << \"${1:value of}: \" << ${2:n} << ${0}\"\\n\";"
+        ],
+        "description": "Print value of variable in one line"
+    },
+    "Print variable": {
+        "prefix": "pr",
+        "body": [
+            "\"${1:value of}: \" << ${2:n} << "
+        ],
+        "description": "Print value of variable in one line"
     }
 }

@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		-- here to ensure ts-context-commentstring works fine.
 		-- "JoosepAlviste/nvim-ts-context-commentstring",
-        "nvim-treesitter/nvim-treesitter-textobjects",
+        -- "nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	build = ":TSUpdate",
 	config = function()
@@ -29,22 +29,6 @@ return {
 			highlight = {
 				enable = true,
 			},
-
-			-- context_commentstring = {
-				-- These are required for ts-context-commentstring
-			-- 	enable = true,
-			-- 	enable_autocmd = false,
-			-- },
-            --
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<leader>us", -- set to `false` to disable one of the mappings
-                    node_incremental = "<leader>ui",
-                    scope_incremental = "<leader>uc",
-                    node_decremental = "<leader>ud",
-                },
-            },
 
             textobjects = {
                 select = {

@@ -63,35 +63,36 @@ return {
 				-- this is mostly relevant for keymaps that start with a native binding
 				i = { "j", "k" },
 				v = { "j", "k" },
-                -- g = { "~", "?", "j", "J", "k", "p", "P", "q", "u", "U", "w"}
+				-- g = { "~", "?", "j", "J", "k", "p", "P", "q", "u", "U", "w"}
 			},
 		})
 
 		wk.register({
 			["<leader>"] = {
-                ["<leader>"] = { name = "More" },
-                -- Some bug here, wont show the group name correctly without having one other value also.
-                ["g"] = { name = "+Git", s = "Stage hunk", },
-                ["o"] = { name = "Open" },
-                ["r"] = { name = "Find and replace" },
-                ["q"] = { name = "Quickfix" },
-				["s"] = { name = "Session and spell management" },
+				["<leader>"] = { name = "More" },
+				-- Some bug here, wont show the group name correctly without having one other value also.
+				["g"] = { name = "Git" },
+				["o"] = { name = "Open" },
+				["r"] = { name = "Find and replace" },
+				["."] = { name = "Session" },
+				["s"] = { name = "Surround and spell management" },
 				["e"] = { name = "Tablemode" },
 				["t"] = { name = "Telescope" },
-                ["u"] = { name = "Select", s = "Start selecting text with Treesitter" },
+				-- ["u"] = { name = "Select", s = "Start selecting text with Treesitter" },
 				["d"] = { name = "+Delete" },
-				["y"] = { name = "+Yank" },
-				["p"] = { name = "+Paste" },
-				["n"] = { name = "+Surround", n = "Update n-lines" },
+				["y"] = { name = "Yank" },
+				["p"] = { name = "Paste" },
+				-- ["n"] = { name = "Surround" },
+				["h"] = { name = "Open Arrow" },
 			},
-            ["<localleader>"] = {
-                ["f"] = { name = "+Find", f = "Find file" },
-                ["n"] = { name = "New", n = "New Note" },
-                ["t"] = { name = "Todo", d = "Mark as Done" },
-                ["i"] = { name = "Insert", d = "Insert date" },
-                ["l"] = { name = "List", i = "Invert (Un)ordered List" },
-                ["m"] = { name = "Mode", n = "Neorg mode norg" },
-            },
+			["<localleader>"] = {
+				["f"] = { name = "+Find", f = "Find file" },
+				["n"] = { name = "New", n = "New Note" },
+				["t"] = { name = "Todo", d = "Mark as Done" },
+				["i"] = { name = "Insert", d = "Insert date" },
+				["l"] = { name = "List", i = "Invert (Un)ordered List" },
+				["m"] = { name = "Mode", n = "Neorg mode norg" },
+			},
 		})
 	end,
 }

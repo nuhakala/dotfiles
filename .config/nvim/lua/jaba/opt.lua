@@ -6,7 +6,7 @@ local tabs = 4
 vim.opt.tabstop = tabs
 vim.opt.softtabstop = tabs
 vim.opt.shiftwidth = tabs
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 
 vim.opt.smartindent = true
 vim.opt.conceallevel = 2
@@ -14,6 +14,8 @@ vim.opt.conceallevel = 2
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.showbreak = "+++ "
+vim.opt.listchars = "tab: -,lead:." -- space:·,
+vim.opt.list = true
 
 -- When typing a search command, show where the pattern matches
 vim.opt.incsearch = true

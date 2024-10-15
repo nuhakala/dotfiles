@@ -15,12 +15,12 @@ return {
 					cpp = { "clang_format" },
 					-- ["*"] = { "codespell" },
 				},
-                formatters = {
-                    clang_format = {
-                        -- By default, use the linux kernel coding style
-                        prepend_args = { "-style=file:/home/jaba/.vim/linux_kernel_coding_style.clang-format" },
-                    }
-                }
+				formatters = {
+					clang_format = {
+						-- By default, use the linux kernel coding style
+						prepend_args = { "-style=file:/home/jaba/.vim/linux_kernel_coding_style.clang-format" },
+					},
+				},
 			})
 
 			vim.keymap.set({ "n", "v", "x" }, "<leader>z", function()

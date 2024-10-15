@@ -8,8 +8,8 @@ set("v", "K", ":m '<-2<CR>gv=gv")
 -- Improved movement
 -- set({"n", "v"}, "<S-l>", "<C-d>zz")
 -- set({"n", "v"}, "<S-h>", "<C-u>zz")
-set({"n", "v"}, "<C-d>", "<C-d>zz")
-set({"n", "v"}, "<C-u>", "<C-u>zz")
+set({ "n", "v" }, "<C-d>", "<C-d>zz")
+set({ "n", "v" }, "<C-u>", "<C-u>zz")
 set("n", "n", "nzz")
 set("n", "N", "Nzz")
 
@@ -28,31 +28,30 @@ set("n", "<C-s>", ":vsplit<CR>", { desc = "Open vertical split" })
 -- set("n", "<C-m>", ":split<CR>", { desc = "Open vertical split" })
 
 -- Remap jumplist actions
-set("n", "<leader><BS>", "<C-o>", { desc = "Jump back"})
-set("n", "<leader><CR>", "<C-i>", { desc = "Jump forward"})
+set("n", "<leader><BS>", "<C-o>", { desc = "Jump back" })
+set("n", "<leader><CR>", "<C-i>", { desc = "Jump forward" })
 
 -- Buffer actions
-set("n", "<leader>>", vim.cmd.bnext, { desc = "Next buffer" })
-set("n", "<leader><", vim.cmd.bprevious, { desc = "Previous buffer" })
+-- set("n", "<leader>>", vim.cmd.bnext, { desc = "Next buffer" })
+-- set("n", "<leader><", vim.cmd.bprevious, { desc = "Previous buffer" })
 
 -- Tab actions
 set("n", "<leader><tab>", vim.cmd.tabNext, { desc = "Next tab" })
-
 
 -- ***** Text editing *****
 -- Paste on top of text and move that text to void register
 set("x", "<leader>dv", '"_d', { desc = "Delete by pasting into void register" })
 -- Improved yanking and pasting
-set({"n", "v"}, "<leader>yy", '"+y', { desc = "Yank to system clipboard" })
-set({"n", "v"}, "<leader>ya", '"ay', { desc = "Yank to a-register" })
-set({"n", "v"}, "<leader>ys", '"sy', { desc = "Yank to s-register" })
+set({ "n", "v" }, "<leader>yy", '"+y', { desc = "Yank to system clipboard" })
+set({ "n", "v" }, "<leader>ya", '"ay', { desc = "Yank to a-register" })
+set({ "n", "v" }, "<leader>ys", '"sy', { desc = "Yank to s-register" })
 -- Pasting
-set({"n", "v"}, "<leader>pp", '"+p', { desc = "Paste from system clipboard" })
-set({"n", "v"}, "<leader>pa", '"ap', { desc = "Paste from a-register" })
-set({"n", "v"}, "<leader>ps", '"sp', { desc = "Paste from s-register" })
+set({ "n", "v" }, "<leader>pp", '"+p', { desc = "Paste from system clipboard" })
+set({ "n", "v" }, "<leader>pa", '"ap', { desc = "Paste from a-register" })
+set({ "n", "v" }, "<leader>ps", '"sp', { desc = "Paste from s-register" })
 set("x", "<leader>pv", [["_dP]], { desc = "Delete to void and paste" })
 -- Deleting
-set("n", "<leader>dv", '"_', { desc = "Deleteinto void register" })
+set("n", "<leader>dv", '"_', { desc = "Delete into void register" })
 
 set("n", "<leader>,", "<Cmd>:noh<CR>", { desc = "Remove search highlighting" })
 
@@ -67,14 +66,14 @@ set("n", "<leader>rs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Lef
 -- end, { desc = "Format file" })
 
 -- Select all
-set("n", "<C-a>", "ggVG", { desc = "Select all"})
+set("n", "<C-a>", "ggVG", { desc = "Select all" })
 
 -- Spelling
 set("n", "<leader>ss", "]s", { desc = "Next spelling mistake" })
 set("n", "<leader>sc", ":lua require('telescope.builtin').spell_suggest{}<cr>", { desc = "Correct mistake" })
-set("n", "<leader>st", function ()
-    vim.opt.spell = not vim.o.spell
-    vim.opt.spelllang=en
+set("n", "<leader>st", function()
+	vim.opt.spell = not vim.o.spell
+	vim.opt.spelllang = en
 end, { desc = "Toggle spelling" })
 
 -- ***** Functionality *****

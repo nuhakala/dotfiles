@@ -32,54 +32,56 @@ return {
 				local res = ""
 				-- get formatters from conform
 				local formatters = require("conform").list_formatters()
-            for _, v in pairs(formatters) do
+				for _, v in pairs(formatters) do
 					res = res .. v.name .. ", "
 				end
 				-- strip the last ", "
 				return res:sub(1, -3)
 			end,
 
-            function_scope = function(_, opts)
-                local symbols = require("aerial").get_location(true)
-                local depth = opts.depth or #symbols
-                local sep = opts.sep or " ⟩ "
+			function_scope = function(_, opts)
+				local symbols = require("aerial").get_location(true)
+				local depth = opts.depth or #symbols
+				local sep = opts.sep or " ⟩ "
 
-                depth = depth < #symbols and depth or #symbols
-                local res = ""
-                for idx = #symbols - depth + 1, #symbols do
-                    res = res .. symbols[idx].icon .. symbols[idx].name .. sep
-                end
-                if string.len(res) > 0 then
-                    res = res:sub(1, -6)
-                end
-                return res
-            end,
+				depth = depth < #symbols and depth or #symbols
+				local res = ""
+				for idx = #symbols - depth + 1, #symbols do
+					res = res .. symbols[idx].icon .. symbols[idx].name .. sep
+				end
+				if string.len(res) > 0 then
+					res = res:sub(1, -6)
+				end
+				return res
+			end,
 
-            my_git_branch = function(_, opts)
-                -- NOTE: This script must be in path  
-                local handle = io.popen("git_branch.sh")
-                local result = handle and handle:read("*a"):sub(1, -2) or ""
-                if result ~= "" then
-                    result = " " .. result
-                end
-                if handle then handle:close() end
-                return result
-            end,
+			my_git_branch = function(_, opts)
+				-- NOTE: This script must be in path
+				local handle = io.popen("git_branch.sh")
+				local result = handle and handle:read("*a"):sub(1, -2) or ""
+				if result ~= "" then
+					result = " " .. result
+				end
+				if handle then
+					handle:close()
+				end
+				return result
+			end,
 
-            my_git_diff_added = function(_, opts)
-                local t = vim.b.minidiff_summary
-                return t and t.add or ""
-            end,
+			my_git_diff_added = function(_, opts)
+				local t = vim.b.minidiff_summary
+				return t and t.add or ""
+			end,
 
-            my_git_diff_changed = function(_, opts)
-                local t = vim.b.minidiff_summary
-                return t and t.change or ""
-            end,
+			my_git_diff_changed = function(_, opts)
+				local t = vim.b.minidiff_summary
+				return t and t.change or ""
+			end,
 
-            my_git_diff_removed = function(_, opts)
-                local t = vim.b.minidiff_summary
-                return t and t.delete or ""
-            end,
+			my_git_diff_removed = function(_, opts)
+				local t = vim.b.minidiff_summary
+				return t and t.delete or ""
+			end,
 		}
 
 		local c = {
@@ -113,9 +115,9 @@ return {
 						type = "relative-short",
 					},
 				},
-                hl = {
-                    fg = "orange"
-                },
+				hl = {
+					fg = "orange",
+				},
 				left_sep = "block",
 				right_sep = "block",
 			},
@@ -132,8 +134,8 @@ return {
 
 			formatters = {
 				provider = {
-                    name = "formatter",
-                },
+					name = "formatter",
+				},
 				hl = {
 					fg = "purple",
 					style = "bold",
@@ -141,26 +143,26 @@ return {
 				right_sep = "block",
 			},
 
-            function_scope = {
-                provider = {
-                    name = "function_scope",
-                    opts = {
-                        depth = 3,
-                    },
-                },
-                short_provider = {
-                    name = "function_scope",
-                    opts = {
-                        depth = 1
-                    },
-                },
-                update = { "ModeChanged", "CursorMoved" },
-                hl = {
-                    fg = "yellow",
-                    style = "bold",
-                },
-                left_sep = "block",
-            },
+			function_scope = {
+				provider = {
+					name = "function_scope",
+					opts = {
+						depth = 3,
+					},
+				},
+				short_provider = {
+					name = "function_scope",
+					opts = {
+						depth = 1,
+					},
+				},
+				update = { "ModeChanged", "CursorMoved" },
+				hl = {
+					fg = "yellow",
+					style = "bold",
+				},
+				left_sep = "block",
+			},
 
 			file_encoding = {
 				provider = "file_encoding",
@@ -264,44 +266,44 @@ return {
 		}
 
 		local components = {
-            -- Components for active window
+			-- Components for active window
 			active = {
-                {
-                    c.gitBranch,
-                    c.gitDiffAdded,
-                    c.gitDiffRemoved,
-                    c.gitDiffChanged,
-                    c.fileinfo,
-                    c.function_scope
-                },
-                {},
-                {
-                    c.diagnostic_errors,
-                    c.diagnostic_warnings,
-                    c.diagnostic_hints,
-                    c.diagnostic_info,
-                    c.lsp_client_names,
-                    c.formatters,
-                    -- c.file_encoding,
-                    c.position,
-                    c.line_percentage,
-                }
+				{
+					c.gitBranch,
+					c.gitDiffAdded,
+					c.gitDiffRemoved,
+					c.gitDiffChanged,
+					c.fileinfo,
+					c.function_scope,
+				},
+				{},
+				{
+					c.diagnostic_errors,
+					c.diagnostic_warnings,
+					c.diagnostic_hints,
+					c.diagnostic_info,
+					c.lsp_client_names,
+					c.formatters,
+					-- c.file_encoding,
+					c.position,
+					c.line_percentage,
+				},
 			},
-            -- Components for inactive window
+			-- Components for inactive window
 			inactive = {
-                {
-                    c.fileinfo
-                },
-                {},
-                {}
+				{
+					c.fileinfo,
+				},
+				{},
+				{},
 			},
 		}
 		require("feline").setup({
 			components = components,
 			theme = one_monokai,
 			vi_mode_colors = vi_mode_colors,
-            custom_providers = custom_providers,
+			custom_providers = custom_providers,
 		})
-        -- require("feline").winbar.setup()
+		-- require("feline").winbar.setup()
 	end,
 }
