@@ -21,14 +21,14 @@ return {
 				mappings = {
 					add = "<leader>sa", -- Add surrounding in Normal and Visual modes
 					delete = "<leader>sd", -- Delete surrounding
-					-- find = "<leader>nf", -- Find surrounding (to the right)
-					-- find_left = "<leader>nF", -- Find surrounding (to the left)
-					-- highlight = "<leader>nh", -- Highlight surrounding
 					replace = "<leader>sr", -- Replace surrounding
-					-- update_n_lines = "<leader>nn", -- Update `n_lines`
 
-					-- suffix_last = "<leader>nl", -- Suffix to search with "prev" method
-					-- suffix_next = "<leader>nt", -- Suffix to search with "next" method
+					find_left = "", -- Find surrounding (to the left)
+					highlight = "", -- Highlight surrounding
+					update_n_lines = "", -- Update `n_lines`
+					find = "", -- Find surrounding (to the right)
+					suffix_last = "", -- Suffix to search with "prev" method
+					suffix_next = "" -- Suffix to search with "next" method
 				},
 			})
 		end,
