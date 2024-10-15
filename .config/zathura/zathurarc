@@ -1,0 +1,5 @@
+set guioptions "shv"
+set scroll-step 300
+set selection-clipboard "clipboard"
+set statusbar-home-tilde true
+set selection-notification false
