@@ -29,6 +29,11 @@ on   = [ "g", "r" ]
 run  = "cd ~/kurssit/computer_graphics/"
 desc = "Computer graphics"
 
+[[manager.prepend_keymap]]
+on   = [ "g", "s" ]
+run  = "cd ~/kurssit/distributed_algorithms/"
+desc = "Distributed Algorithms"
+
 # Other bookmarks
 [[manager.prepend_keymap]]
 on   = [ "g", "n" ]
