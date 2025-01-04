@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Show last training date and type
+# Not very elegant solution but works for now
+echo_last_training () {
+    line=$(tail -1 ./data/2025.csv)
+    echo "Edellinen treenikerta ${line::10}."
+
+    type=${line:11:1}
+    case ${type} in
+        "y")
+            echo "Edellinen treeni oli ylävartalo."
+            ;;
+        "j")
+            echo "Edellinen treeni oli juoksu."
+            ;;
+        "h")
+            echo "Edellinen treeni oli hiihto."
+            ;;
+        "c")
+            echo "Edellinen treeni oli crossfit."
+            ;;
+        "k")
+            echo "Edellinen treeni oli kävely."
+            ;;
+        "a")
+            echo "Edellinen treeni oli jalkatreeni."
+            ;;
+        *)
+            echo "Tuntematon"
+            ;;
+    esac
+}
+
+collect() {
+	FILE=./data_collector.o
+	if test -f "$FILE"; then
+		./data_collector.o $2
+	else
+		make build
+		./data_collector.o $2
+	fi
+}
+
+statistics()
+{
+	FILE=./statistics_tool.o
+	if test -f "$FILE"; then
+		./statistics_tool.o $1
+	else
+		make build
+		./statistics_tool.o $1
+	fi
+}
+
+# if [ $# -eq 0 ]; then
+# 	echo "Usage:"
+# 	echo "Collect data: c <optional:file_name>"
+# 	echo "Print statistics: stat <optional:file_name>"
+# fi
+
+source_dir=~/OmatProjektit/training-diary-v2/
+if [ $# -eq 0 ]; then
+	cd ${source_dir}
+	echo_last_training
+	collect $2
+elif [ "$1" = "stat" ]; then
+	cd ${source_dir}
+	statistics $2
+fi

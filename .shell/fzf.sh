@@ -1,4 +1,7 @@
-# Find direcotry and cd to it
+# Default keybinds
+source <(fzf --zsh)
+
+# Find directory and cd to it
 fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
