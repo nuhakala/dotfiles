@@ -1,6 +1,6 @@
 return {
 	"freddiehaddad/feline.nvim",
-	dependencies = "stevearc/aerial.nvim",
+	-- dependencies = "stevearc/aerial.nvim",
 	config = function()
 		local one_monokai = {
 			fg = "#abb2bf",
@@ -39,21 +39,21 @@ return {
 				return res:sub(1, -3)
 			end,
 
-			function_scope = function(_, opts)
-				local symbols = require("aerial").get_location(true)
-				local depth = opts.depth or #symbols
-				local sep = opts.sep or " ⟩ "
+			-- function_scope = function(_, opts)
+			-- 	local symbols = require("aerial").get_location(true)
+			-- 	local depth = opts.depth or #symbols
+			-- 	local sep = opts.sep or " ⟩ "
 
-				depth = depth < #symbols and depth or #symbols
-				local res = ""
-				for idx = #symbols - depth + 1, #symbols do
-					res = res .. symbols[idx].icon .. symbols[idx].name .. sep
-				end
-				if string.len(res) > 0 then
-					res = res:sub(1, -6)
-				end
-				return res
-			end,
+			-- 	depth = depth < #symbols and depth or #symbols
+			-- 	local res = ""
+			-- 	for idx = #symbols - depth + 1, #symbols do
+			-- 		res = res .. symbols[idx].icon .. symbols[idx].name .. sep
+			-- 	end
+			-- 	if string.len(res) > 0 then
+			-- 		res = res:sub(1, -6)
+			-- 	end
+			-- 	return res
+			-- end,
 
 			my_git_branch = function(_, opts)
 				-- NOTE: This script must be in path
@@ -143,26 +143,26 @@ return {
 				right_sep = "block",
 			},
 
-			function_scope = {
-				provider = {
-					name = "function_scope",
-					opts = {
-						depth = 3,
-					},
-				},
-				short_provider = {
-					name = "function_scope",
-					opts = {
-						depth = 1,
-					},
-				},
-				update = { "ModeChanged", "CursorMoved" },
-				hl = {
-					fg = "yellow",
-					style = "bold",
-				},
-				left_sep = "block",
-			},
+			-- function_scope = {
+			-- 	provider = {
+			-- 		name = "function_scope",
+			-- 		opts = {
+			-- 			depth = 3,
+			-- 		},
+			-- 	},
+			-- 	short_provider = {
+			-- 		name = "function_scope",
+			-- 		opts = {
+			-- 			depth = 1,
+			-- 		},
+			-- 	},
+			-- 	update = { "ModeChanged", "CursorMoved" },
+			-- 	hl = {
+			-- 		fg = "yellow",
+			-- 		style = "bold",
+			-- 	},
+			-- 	left_sep = "block",
+			-- },
 
 			file_encoding = {
 				provider = "file_encoding",
@@ -274,7 +274,7 @@ return {
 					c.gitDiffRemoved,
 					c.gitDiffChanged,
 					c.fileinfo,
-					c.function_scope,
+					-- c.function_scope,
 				},
 				{},
 				{
@@ -284,7 +284,7 @@ return {
 					c.diagnostic_info,
 					c.lsp_client_names,
 					c.formatters,
-					-- c.file_encoding,
+					c.file_encoding,
 					c.position,
 					c.line_percentage,
 				},

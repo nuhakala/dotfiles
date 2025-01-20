@@ -14,7 +14,7 @@ vim.opt.conceallevel = 2
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.showbreak = "+++ "
-vim.opt.listchars = "tab: -,lead:." -- space:·,
+vim.opt.listchars = "tab:▎-,lead:." -- space:·,
 vim.opt.list = true
 
 -- When typing a search command, show where the pattern matches
@@ -64,3 +64,11 @@ vim.g.skip_ts_context_commentstring_module = true
 -- Spelling
 -- vim.opt.spell = true
 -- vim.opt.spelllang = "en"
+
+-- Netrw
+-- vim.g.netrw_banner = 0
+
+-- -- Hide dot files by default
+-- local ghregex="\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
+-- vim.g.netrw_list_hide=ghregex
+-- vim.g.netrw_sort_options = "i"

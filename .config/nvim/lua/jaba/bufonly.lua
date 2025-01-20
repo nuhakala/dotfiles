@@ -1,8 +1,4 @@
----@module BufOnly
----@author Jäbä
----@license MIT
--- Small function and keybind for deleting all but current buffer. Based on
--- https://github.com/numToStr/BufOnly.nvim
+-- Based on https://github.com/numToStr/BufOnly.nvim
 
 local api = vim.api
 local option = api.nvim_buf_get_option

@@ -1,11 +1,11 @@
 return {
-    {
-        'echasnovski/mini-git',
-        version = false,
-        config = function ()
-            require('mini.git').setup()
-        end
-    },
+    -- {
+    --     'echasnovski/mini-git',
+    --     version = false,
+    --     config = function ()
+    --         require('mini.git').setup()
+    --     end
+    -- },
 	{
 		"NeogitOrg/neogit",
         event = "VeryLazy",

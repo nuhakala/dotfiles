@@ -100,6 +100,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function (args)
 		vim.opt.textwidth = 80
 		vim.opt.colorcolumn = "80"
+		local tabs = 2
+		vim.bo.tabstop = tabs
+		vim.bo.softtabstop = tabs
+		vim.bo.shiftwidth = tabs
+		vim.bo.expandtab = true
 	end,
 })
 

@@ -28,5 +28,15 @@
         "prefix": "task",
         "body": ["- ( ) ${1:task}"],
         "description": "task"
+    },
+    "typst": {
+        "prefix": "typst",
+        "body": ["@typst", "$0", "@end"],
+        "description": "typst environment"
+    },
+    "Typst algorithm": {
+        "prefix": "#algo",
+        "body": ["#algo(fill: black, title: \"${1:name}\", parameters: (\"${2:params}\",), indent-guides: 1pt + gray)[", "$0", "]"],
+        "description": "Typst algorithm environment"
     }
 }

@@ -76,11 +76,11 @@ return {
 		event = "VeryLazy",
 		config = true,
 	},
-	{
-		"echasnovski/mini.trailspace",
-		version = false,
-		keys = {
-			{ "<leader>dt", "<cmd>lua require('mini.trailspace').trim()<CR>", desc = "Trim trailspace" },
-		},
-	},
+	-- {
+	-- 	"echasnovski/mini.trailspace",
+	-- 	version = false,
+	-- 	keys = {
+	-- 		{ "<leader>dt", "<cmd>lua require('mini.trailspace').trim()<CR>", desc = "Trim trailspace" },
+	-- 	},
+	-- },
 }

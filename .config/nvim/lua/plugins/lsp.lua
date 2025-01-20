@@ -25,12 +25,17 @@ return {
             -- require("luasnip.loaders.from_vscode").lazy_load()
 
             -- Set up capabilities automatically
-            require("mason-lspconfig").setup_handlers({
-                function(server_name)
-                    require("lspconfig")[server_name].setup({
-                        capabilities = capabilities
-                    })
-                end
+            require("mason-lspconfig").setup({
+                handlers = {
+                    function(server_name)
+                        require("lspconfig")[server_name].setup({
+                            capabilities = capabilities
+                        })
+                    end,
+                    -- clangd = function()
+                    --     stuff
+                    -- end
+                }
             })
 
             vim.api.nvim_create_autocmd("LspAttach", {

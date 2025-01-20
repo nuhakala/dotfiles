@@ -14,10 +14,10 @@ set("n", "n", "nzz")
 set("n", "N", "Nzz")
 
 -- Moving windows
-set("n", "<C-j>", "<C-w><C-j>", { desc = "Move to below split" })
-set("n", "<C-k>", "<C-w><C-k>", { desc = "Move to upper split" })
-set("n", "<C-h>", "<C-w><C-h>", { desc = "Move to right split" })
-set("n", "<C-l>", "<C-w><C-l>", { desc = "Move to left split" })
+-- set("n", "<C-j>", "<C-w><C-j>", { desc = "Move to below split" })
+-- set("n", "<C-k>", "<C-w><C-k>", { desc = "Move to upper split" })
+-- set("n", "<C-h>", "<C-w><C-h>", { desc = "Move to right split" })
+-- set("n", "<C-l>", "<C-w><C-l>", { desc = "Move to left split" })
 set("n", "<M-t>", "<C-w>5<")
 set("n", "<M-n>", "<C-w>5>")
 set("n", "<M-s>", "<C-w>+")
@@ -96,6 +96,10 @@ set("t", "<Esc>", "<C-\\><C-n>")
 
 -- Open internet link
 -- set("n", "<leader>ol", "<Cmd>:execute '!firefox ' . shellescape(expand('<cfile>'), 1)<CR>", { desc = "Open link" })
+
+-- ***** Netrw *****
+-- set("n", "<leader>-", "<CMD>Explore<CR>", { desc = "Open filemanager" })
+-- set("n", "<C-c>", "<CMD>Rex<CR>", { desc = "Close netrw" })
 
 -- Remap esc on the laptop keyboard
 set("i", "§", "<ESC>")

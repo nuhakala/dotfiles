@@ -1,6 +1,13 @@
 return {
 	{ "lambdalisue/suda.vim" },
-	-- { "folke/twilight.nvim" },
+	{
+		"folke/twilight.nvim",
+		opts = {
+			dimming = {
+				alpha = 0,
+			}
+		}
+	},
 	{ "jbyuki/quickmath.nvim" },
 	{
 		"mbbill/undotree",
@@ -18,23 +25,31 @@ return {
 		},
 	},
 	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy", -- Or `LspAttach`
+		priority = 1000, -- needs to be loaded in first
+		config = function()
+			require('tiny-inline-diagnostic').setup()
+		end
+	},
+	{
 		"nuhakala/nvim-simple-tables",
 		event = "VeryLazy",
 		config = true,
 	},
-	{
-		"folke/neodev.nvim",
-		event = "VeryLazy",
-		dependencies = { "neovim/nvim-lspconfig" },
-		opts = {},
-	},
-	{
-		"jbyuki/nabla.nvim",
-		event = "VeryLazy",
-		keys = {
-			{ "<leader>on", "<cmd>lua require('nabla').popup()<CR>", desc = "Open Nabla popup" },
-		},
-	},
+	-- {
+	-- 	"folke/neodev.nvim",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = { "neovim/nvim-lspconfig" },
+	-- 	opts = {},
+	-- },
+	-- {
+	-- 	"jbyuki/nabla.nvim",
+	-- 	event = "VeryLazy",
+	-- 	keys = {
+	-- 		{ "<leader>on", "<cmd>lua require('nabla').popup()<CR>", desc = "Open Nabla popup" },
+	-- 	},
+	-- },
 	{
 		"okuuva/auto-save.nvim",
 		cmd = "ASToggle", -- optional for lazy loading on command
@@ -78,7 +93,7 @@ return {
 				desc = "Open terminal in horizontal split",
 			},
 		},
-        config = true,
+		config = true,
 	},
 	{
 		"otavioschwanck/arrow.nvim",
@@ -87,7 +102,7 @@ return {
 			require("arrow").setup({
 				show_icons = true,
 				leader_key = "<leader>h", -- Recommended to be a single key
-				index_keys = "aoeuzäyi",
+				index_keys = "aouhtns",
 				save_path = function()
 					return os.getenv("HOME") .. "/.vim/arrow/"
 				end,
@@ -123,8 +138,8 @@ return {
 				require("quicker").toggle()
 			end, { desc = "Toggle quickfix" })
 			-- vim.keymap.set("n", "<leader>l", function()
-			-- 	require("quicker").toggle({ loclist = true })
-			-- end, { desc = "Toggle loclist" })
-		end,
-	},
-}
+				-- 	require("quicker").toggle({ loclist = true })
+				-- end, { desc = "Toggle loclist" })
+			end,
+		},
+	}
