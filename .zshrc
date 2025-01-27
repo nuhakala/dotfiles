@@ -1,3 +1,7 @@
+# ZSH configuration by nuhakala
+#
+# Inspired by Manjaro ZSH configuration and supercharge plugin.
+
 # Use this to track startuptime on each session start. Remember to also the
 # counterpart at the last line.
 # zmodload zsh/zprof
@@ -15,8 +19,6 @@ plug "$HOME/.shell/git.sh"
 plug "$HOME/.shell/fzf.sh"
 plug "$HOME/.shell/nnn.sh"
 plug "$HOME/.shell/yazi.sh"
-
-# Settings: based on supercharge and manjaro config
 
 # Completions
 # Load and initialise completion system
@@ -55,7 +57,7 @@ setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
 setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+# setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
 # Colors
 autoload -U colors && colors
@@ -79,8 +81,8 @@ bindkey '^[[3~' delete-char                                     # Delete key
 bindkey '^[[C'  forward-char                                    # Right key
 bindkey '^[[D'  backward-char                                   # Left key
 # Requires substring search plugin
-bindkey '^[[A' history-substring-search-up										  # Page up key
-bindkey '^[[B' history-substring-search-down										# Page down key
+bindkey '^[[A' history-substring-search-up						# Page up key
+bindkey '^[[B' history-substring-search-down					# Page down key
 
 # Navigate words with ctrl+arrow keys
 bindkey '^[Oc' forward-word                                     #
