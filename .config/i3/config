@@ -27,108 +27,109 @@ floating_modifier $mod
 
 # Screenshots
 # https://gist.github.com/dianjuar/ee774561a8bc02b077989bc17424a19f
-bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+# bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id flameshot gui
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 2%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 2%-
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 
 # change focus
+bindsym $mod+k focus up
 bindsym $mod+h focus left
-bindsym $mod+t focus down
-bindsym $mod+n focus up
-bindsym $mod+s focus right
+bindsym $mod+j focus down
+bindsym $mod+l focus right
 
 bindsym $mod+a focus left
 bindsym $mod+o focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
 # move focused window
+bindsym $mod+Shift+K move up
 bindsym $mod+Shift+H move left
-bindsym $mod+Shift+T move down
-bindsym $mod+Shift+N move up
-bindsym $mod+Shift+S move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+J move down
+bindsym $mod+Shift+L move right
 
 # start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+Shift+o kill
 
 # start program launcher
 bindsym $mod+u exec --no-startup-id "rofi -show combi -modes combi -combi-modes 'drun,run'"
-# bindsym $mod+u exec --no-startup-id dmenu_run
-# Start nnn
 
-# bindsym $mod+e exec --no-startup-id export NNN_PLUG="m:nmount;p:preview-tabbed" && export NNN_BMS="u:/media/sdc/" && export NNN_FIFO="/tmp/nnn.fifo nnn" && urxvt -e nnn
-# bindsym $mod+e exec --no-startup-id urxvt -e nnn
-bindsym $mod+e exec --no-startup-id nautilus
-# Start alsamixer
-# bindsym $mod+j exec --no-startup-id alsamixer
+# Start file explorer
+# bindsym $mod+e exec --no-startup-id nautilus
+bindsym $mod+e exec --no-startup-id "wezterm start yazi"
 
 # split in horizontal orientation
-bindsym $mod+k split h
+bindsym $mod+b split h
 
 # split in vertical orientation
-bindsym $mod+g split v
+bindsym $mod+x split v
+
+# Move focus back to parent
+bindsym $mod+d focus parent
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+period layout stacking
-bindsym $mod+q layout tabbed
-bindsym $mod+j layout toggle split
+bindsym $mod+q layout toggle stacking tabbed split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+space focus next
+
+# Lock screen
+bindsym $mod+p exec --no-startup-id /home/jaba/bin/lock
+
+# reload the configuration file
+bindsym $mod+comma reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Toggle tiling / floating
+bindcode $mod+Shift+f floating toggle
 
 
 # ----- Workspaces -----
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:Web"
-set $ws2 "2:Dev"
-set $ws3 "3:Chat"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1:Netti"
+set $ws2 "2:Panot"
+set $ws3 "3:Viestit"
+set $ws4 "4:Posti"
+set $ws5 "5:Viihde"
+set $ws6 "6:Achtung"
+set $ws7 "7:Verdammt"
+set $ws8 "8:Scheiße"
+set $ws9 "9:Arsch"
+set $ws10 "10:loch"
 
-workspace 1 output primary
-workspace 2 output primary
-workspace 3 output DVI-D-0
+workspace 1:Netti output primary
+workspace 2:Panot output primary
+workspace 3:Viestit output DVI-D-0
+workspace 4:Posti output primary
 # workspace 4 output DVI-D-0
 
-# Set workspace 1 active on startup
-exec --no-startup-id i3-msg 'workspace "1:Web"'
-
-assign [class="Slack"] 3:Chat
-assign [class="discord"] 3:Chat
-for_window [class="Slack"] layout tabbed
+# assign [class="librewolf"] 1:Netti
+assign [class="discord"] 3:Viestit
+assign [class="brave"] 3:Viestit
+assign [class="thunderbird"] 4:Posti
 for_window [class="discord"] layout tabbed
-# workspace "3:Chat" layout tabbed
+for_window [class="brave"] layout tabbed
+# for_window [class="thunderbird"] layout tabbed
 
-exec --no-startup-id firefox
-exec --no-startup-id slack
-exec --no-startup-id discord
+# exec --no-startup-id /home/jaba/Applications/LibreWolf*
+# exec --no-startup-id discord
+exec --no-startup-id thunderbird
+exec --no-startup-id brave
+exec --no-startup-id keepassxc
+
+# Set workspace 1 active on startup
+exec --no-startup-id i3-msg 'workspace "1:Netti"'
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -153,11 +154,6 @@ bindsym $mod+Shift+y move container to workspace number $ws8
 bindsym $mod+Shift+i move container to workspace number $ws9
 bindsym $mod+Shift+odiaeresis move container to workspace number $ws10
 
-# reload the configuration file
-bindsym $mod+comma reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+comma restart
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -166,16 +162,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym t resize grow height 10 px or 10 ppt
-        bindsym n resize shrink height 10 px or 10 ppt
-        bindsym s resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 5 ppt
+        bindsym j resize grow height 10 px or 5 ppt
+        bindsym j resize shrink height 10 px or 5 ppt
+        bindsym l resize grow width 10 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        # bindsym Left resize shrink width 10 px or 10 ppt
+        # bindsym Down resize grow height 10 px or 10 ppt
+        # bindsym Up resize shrink height 10 px or 10 ppt
+        # bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -195,6 +191,3 @@ bar {
 }
 
 bindsym $mod+m bar mode toggle
-# Caps lock indicator for i3 blocks
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-

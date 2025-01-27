@@ -69,7 +69,7 @@ interval=30
 #ROFI_CONFIG_FILE=/dev/null
 
 [time]
-command=date '+%d.%m.%Y %H:%M:%S'
+command=date '+%a %d.%m.%Y %H:%M:%S '
 interval=1
 separator=false
 # [calendar]
@@ -81,9 +81,9 @@ separator=false
 # Key indicators
 # Add the following bindings to i3 config file:
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-[keyindicator]
-KEY=CAPS
-markup=pango
-interval=once
-signal=11
+# [keyindicator]
+# KEY=CAPS
+# markup=pango
+# interval=once
+# signal=11
 
