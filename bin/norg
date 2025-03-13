@@ -18,4 +18,8 @@ elif [ "$1" = "sek" ]; then
 elif [ "$1" = "muist" ]; then
     cd ${sekalaiset}
     nvim -c ":Neorg workspace sekalaiset" -c ":edit muistettavaa.norg"
+
+# ***** Typst watch *****
+elif [ "$1" = "typ" ]; then
+	typst watch --open=xdg-open --root ~/muistiinpanot/ ~/muistiinpanot/preview.typ
 fi
