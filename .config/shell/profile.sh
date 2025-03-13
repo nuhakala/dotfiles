@@ -16,10 +16,8 @@ export PATH="$HOME/bin:$PATH"
 
 # Random aliases
 # LKP vm startup
-alias vm="~/filen-drive/lipasto/tietotekniikka_maisteri/linux_kernel_programming/virtual_machine/qemu-run-externKernel.sh"
 alias matlab="~/ohjelmat/matlab/bin/matlab"
 alias vim="nvim"
-alias rwth="ssh -X tu167332@login18-1.hpc.itc.rwth-aachen.de"
 # export TRAINING_FILE="$HOME/filen-drive/dokumentit/treenit.csv"
 sää() {
     curl "v2.wttr.in/$1"
@@ -27,14 +25,8 @@ sää() {
 alias du="du -h" # human readable
 
 #Shorthands
-alias sanasto="nvim ~/filen-drive/dokumentit/saSanasto.txt"
-alias salasanat="libreoffice ~/filen-drive/dokumentit/salasanat.odt"
 alias musat="vim ~/muistiinpanot/sekalaiset/musat.norg"
-alias ostokset="libreoffice ~/filen-drive/dokumentit/ostokset.ods"
 alias gifit="nvim ~/muistiinpanot/sekalaiset/gifit.norg       "
-alias muistettavaa="nvim ~/muistiinpanot/sekalaiset/muistettavaa.norg"
-alias sanat="nvim ~/muistiinpanot/sekalaiset/sanat.norg       "
-alias ms="cd ~/muistiinpanot/                              "
 
 # Mullvad
 alias vpnup="wg-quick up de-dus-wg-003"
@@ -44,3 +36,9 @@ alias vpndown="wg-quick down de-dus-wg-003"
 alias l="eza --header --icons=automatic --sort=type"
 alias ll="eza -l --header --icons=automatic --sort=type"
 alias la="eza -la --header --icons=automatic --sort=type"
+alias ls='ls --color=auto'
+
+# Open
+open () {
+	xdg-open $1 & disown
+}

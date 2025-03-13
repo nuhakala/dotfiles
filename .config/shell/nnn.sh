@@ -8,11 +8,6 @@ NNN_BMS+="o:~/OmatProjektit/;"
 
 # Kurssien kirjanmerkit
 NNN_BMS+="k:~/kurssit/;"
-NNN_BMS+="c:~/kurssit/competitive_programming/;"
-NNN_BMS+="e:~/kurssit/declarative_programming/;"
-NNN_BMS+="p:~/kurssit/PAT/;"
-NNN_BMS+="g:~/kurssit/graph_theroy/;"
-NNN_BMS+="r:~/kurssit/computer_graphics/;"
 export NNN_BMS
 
 export NNN_FIFO="/tmp/nnn.fifo nnn" # Required for preview-tui
