@@ -48,7 +48,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = "+"
 
 -- Set folding to work with treesitter
 -- Need to be set after treesitter is loaded.

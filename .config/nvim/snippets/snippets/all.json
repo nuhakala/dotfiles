@@ -1,0 +1,7 @@
+{
+    "code": {
+        "prefix": "tänään",
+        "body": ["$CURRENT_DATE.$CURRENT_MONTH.$CURRENT_YEAR"],
+        "description": "code block"
+    }
+}

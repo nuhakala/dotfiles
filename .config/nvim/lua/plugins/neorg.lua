@@ -8,6 +8,7 @@ return {
 			{ "numToStr/Comment.nvim" },
 			{ "nvim-neorg/neorg-telescope" },
 			{ "benlubas/neorg-conceal-wrap" },
+			{ "benlubas/neorg-interim-ls" },
 		},
 		config = function()
 			require("neorg").setup({
@@ -15,18 +16,10 @@ return {
 					["external.conceal-wrap"] = {},
 					["core.summary"] = {},
 					["core.export"] = {},
-					["core.esupports.indent"] = {
-						config = {
-							format_on_esc = false,
-						},
-					},
-					["core.integrations.telescope"] = {
-						config = {
-							insert_file_link = {
-								show_title_preview = false,
-							},
-						},
-					},
+					["core.esupports.indent"] = {config = {format_on_esc = false,},},
+					["core.integrations.telescope"] = {config = { insert_file_link = { show_title_preview = false, }, },},
+					["core.completion"] = { config = { engine = { module_name = "external.lsp-completion" } },},
+					["core.keybinds"] = {config = {default_keybinds = true,},},
 					["core.concealer"] = {
 						config = {
 							icon_preset = "diamond",
@@ -78,15 +71,18 @@ return {
 							},
 						},
 					},
-					["core.completion"] = {
+					["external.interim-ls"] = {
 						config = {
-							engine = "nvim-cmp",
-						},
-					},
-					["core.keybinds"] = {
-						config = {
-							default_keybinds = true,
-						},
+							completion_provider = {
+								enable = true,
+								documentation = true,
+								categories = false,
+								people = {
+									enable = false,
+									path = "lahteet.norg",
+								}
+							}
+						}
 					},
 				},
 			})

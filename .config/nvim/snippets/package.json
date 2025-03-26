@@ -6,12 +6,20 @@
     "contributes": {
         "snippets": [
             {
+                "language": ["all"],
+                "path": "./snippets/all.json"
+            },
+            {
                 "language": ["cpp"],
                 "path": "./snippets/cpp.json"
             },
             {
                 "language": ["norg"],
                 "path": "./snippets/norg.json"
+            },
+            {
+                "language": ["typst"],
+                "path": "./snippets/typst.json"
             }
         ]
     }
