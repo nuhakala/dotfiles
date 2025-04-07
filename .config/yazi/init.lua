@@ -1,5 +1,5 @@
 -- Hide preview by default
-require("hide-preview"):entry()
+require("toggle-pane"):entry("min-preview")
 
 -- Load plugins
 require("no-status"):setup()

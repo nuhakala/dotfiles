@@ -111,7 +111,7 @@ zstyle ':vcs_info:git:*' actionformats " %F{219} %b %F{44}➜ %F{197}%a"
 PROMPT=" %F{172}%2c\$vcs_info_msg_0_ %F{93}❯%{$reset_color%} "
 
 # Add some system stats in the beginning
-echo -e "\033[0m\033[48;2;59;66;82;38;2;216;222;233m $(uptime -p | cut -c 4-) \033[0m\033[48;2;76;86;106;38;2;216;222;233m $(uname -r) \033[0m\n"
+# echo -e "\033[0m\033[48;2;59;66;82;38;2;216;222;233m $(uptime -p | cut -c 4-) \033[0m\033[48;2;76;86;106;38;2;216;222;233m $(uname -r) \033[0m\n"
 
 # add empty line before new line, wrap two times to prevent new line on startup
 precmd() { precmd() { echo } }
