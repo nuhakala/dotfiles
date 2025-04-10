@@ -5,13 +5,6 @@ date=$(date +"%d.%m.%Y--%H:%M:%S")
 
 todos=~/muistiinpanot/gtd/
 
-content="# [ ] 
-
-## Tasks
-
-Created: ${date}
-"
-
 # ***** TODO *****
 if [ $# -eq 0 ]; then
     cd ${todos}

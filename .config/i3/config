@@ -5,13 +5,30 @@
 set $mod Mod1
 
 # ----- Aesthetics -----
+# Hide edges from the sides of the monitor
 hide_edge_borders both
+# default border pixel eliminates title bar
+default_border pixel 1
+# Smart gaps: no gaps with only one container
 smart_gaps on
-smart_borders on
-gaps inner 3
-gaps outer -3
-# Remove borders and title from windows.
-new_window none
+# Gaps: Add gaps between containers but remove the outer gaps
+# gaps inner 1
+# gaps outer -1
+
+#Set border colors
+# border = title bar border
+# background = title bar background
+# text = title bar text
+# indicator = color of the edge to which new window is spawned,
+# not enabled when new window is spawned, only when explicitly set
+# child_border = focused window border color
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #cba6f7 #000000 #285577   #74c7ec
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #000000
+client.unfocused        #333333 #222222 #888888 #292d2e   #000000
+client.urgent           #2f343a #903050 #ffffff #903050   #903050
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.

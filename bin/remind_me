@@ -1,0 +1,34 @@
+#!/bin/bash
+
+message=""
+hours=0
+minutes=0
+seconds=0
+
+while getopts "h:m:v:s:" optname; do
+	case $optname in
+		m)
+			minutes=${OPTARG}
+			;;
+		h)
+			hours=${OPTARG}
+			;;
+		s)
+			seconds=${OPTARG}
+			;;
+		v)
+			message="${OPTARG}"
+			;;
+	esac
+done
+
+# Count the date when the reminder goes off
+total_seconds=$(($seconds + 60 * $minutes + 60*60*$hours))
+epo=$(date +%s)
+new_epo=$((epo + $total_seconds))
+echo "Muistutus asetettu aikaan:"
+date --date="@${new_epo}"
+
+(sleep ${hours}h ${minutes}m ${seconds}s && notify-send -u critical -c reminder -w "$message") &
+
+echo "Muistutuksen pid on $! jos se täytyy TAPPAA!"

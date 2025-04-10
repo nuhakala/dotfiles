@@ -24,8 +24,13 @@ plug "$HOME/.config/shell/yazi.sh"
 # Load and initialise completion system
 autoload -U compinit
 compinit -d
+# Colors
+autoload -U colors && colors
+
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' # Case insensitive tab completion
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\33         # Colored completion (different colors for dirs/files/etc)
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}           # Colored completion (different colors for dirs/files/etc)
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")';
+zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' rehash true                              # automatically find new executables in path 
 zstyle ':completion:*' menu select                              # Highlight menu selection
 # Speed up completions
@@ -57,9 +62,6 @@ setopt hist_find_no_dups         # Do not display a line previously found.
 setopt hist_ignore_space         # Don't record an entry starting with a space.
 setopt hist_save_no_dups         # Don't write duplicate entries in the history file.
 setopt hist_reduce_blanks        # Remove superfluous blanks before recording entry.
-
-# Colors
-autoload -U colors && colors
 
 # bindings
 bindkey -e

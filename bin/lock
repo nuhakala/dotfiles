@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Script for enabling power saving mode stuff only when i3lock is enabled
+
+revert() {
+    xset dpms 0 0 0
+}
+trap revert HUP INT TERM
+xset dpms dpms 5 5 5
+i3lock -n -e -c 000000
+revert

@@ -2,7 +2,6 @@
 
 muistiinpanot=~/muistiinpanot/zettelkasten/
 sekalaiset=~/muistiinpanot/sekalaiset/
-todos=~/gtd/
 
 # ***** Muistiinpanot *****
 if [ $# -eq 0 ]; then
