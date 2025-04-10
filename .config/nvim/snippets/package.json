@@ -10,7 +10,7 @@
                 "path": "./snippets/all.json"
             },
             {
-                "language": ["cpp"],
+                "language": ["cpp", "c"],
                 "path": "./snippets/cpp.json"
             },
             {
