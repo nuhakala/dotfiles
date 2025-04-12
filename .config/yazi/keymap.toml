@@ -1,38 +1,12 @@
-# School bookmarks
 [[manager.prepend_keymap]]
 on   = [ "g", "k" ]
 run  = "cd ~/kurssit/"
 desc = "Kurssit"
 
 [[manager.prepend_keymap]]
-on   = [ "g", "c" ]
-run  = "cd ~/kurssit/competitive_programming/"
-desc = "Competitive programming"
-
-[[manager.prepend_keymap]]
-on   = [ "g", "e" ]
-run  = "cd ~/kurssit/declarative_programming/"
-desc = "Declarative programming"
-
-[[manager.prepend_keymap]]
-on   = [ "g", "p" ]
-run  = "cd ~/kurssit/PAT/"
-desc = "PAT"
-
-[[manager.prepend_keymap]]
-on   = [ "g", "a" ]
-run  = "cd ~/kurssit/graph_theory/"
-desc = "Graph theory"
-
-[[manager.prepend_keymap]]
 on   = [ "g", "r" ]
-run  = "cd ~/kurssit/computer_graphics/"
-desc = "Computer graphics"
-
-[[manager.prepend_keymap]]
-on   = [ "g", "s" ]
-run  = "cd ~/kurssit/distributed_algorithms/"
-desc = "Distributed Algorithms"
+run  = "cd ~/repo/"
+desc = "Repo"
 
 # Other bookmarks
 [[manager.prepend_keymap]]
@@ -64,5 +38,5 @@ desc = "Open file in place"
 # Toggle preview with the plugin
 [[manager.prepend_keymap]]
 on   = "T"
-run  = "plugin --sync hide-preview"
+run  = "plugin toggle-pane min-preview"
 desc = "Hide or show preview"

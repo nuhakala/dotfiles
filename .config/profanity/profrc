@@ -1,0 +1,24 @@
+[plugins]
+load=notifycmd.py;
+
+[notifications]
+message=true
+message.current=false
+message.text=true
+remind=300
+tray=true
+
+[ui]
+history=true
+theme=jubalian
+color.nick=true
+console.chat=first
+statusbar.self=user
+statusbar.show.name=true
+time.chat=%d.%m. %H:%M
+
+[logging]
+chlog=true
+
+[omemo]
+policy=automatic

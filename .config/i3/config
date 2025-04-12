@@ -106,6 +106,7 @@ bindsym $mod+p exec --no-startup-id /home/jaba/bin/lock
 bindsym $mod+comma reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+bindsym $mod+shift+q exit
 
 # Toggle tiling / floating
 bindcode $mod+Shift+f floating toggle
@@ -131,18 +132,15 @@ workspace 3:Viestit output DVI-D-0
 workspace 4:Posti output primary
 # workspace 4 output DVI-D-0
 
-# assign [class="librewolf"] 1:Netti
-assign [class="discord"] 3:Viestit
-assign [class="brave"] 3:Viestit
-assign [class="thunderbird"] 4:Posti
-for_window [class="discord"] layout tabbed
-for_window [class="brave"] layout tabbed
-# for_window [class="thunderbird"] layout tabbed
+assign [class="LibreWolf"] 1:Netti
+assign [class="Firefox"] 3:Viestit
+assign [class="KeePassXC"] 3:Viestit
+assign [class="Thunderbird"] 4:Posti
+for_window [class="Firefox"] layout tabbed
 
-# exec --no-startup-id /home/jaba/Applications/LibreWolf*
-# exec --no-startup-id discord
+exec --no-startup-id flatpak run io.gitlab.librewolf-community
 exec --no-startup-id thunderbird
-exec --no-startup-id brave
+exec --no-startup-id firefox
 exec --no-startup-id keepassxc
 
 # Set workspace 1 active on startup
