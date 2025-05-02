@@ -1,5 +1,6 @@
 return {
 	{ "lambdalisue/suda.vim" },
+	{ "jbyuki/quickmath.nvim" },
 	{
 		"ptdewey/pendulum-nvim",
 		config = function()
@@ -18,7 +19,6 @@ return {
 			}
 		}
 	},
-	{ "jbyuki/quickmath.nvim" },
 	{
 		"mbbill/undotree",
 		keys = {
@@ -47,32 +47,16 @@ return {
 		event = "VeryLazy",
 		config = true,
 	},
-	-- {
-	-- 	"folke/neodev.nvim",
-	-- 	event = "VeryLazy",
-	-- 	dependencies = { "neovim/nvim-lspconfig" },
-	-- 	opts = {},
-	-- },
-	-- {
-	-- 	"jbyuki/nabla.nvim",
-	-- 	event = "VeryLazy",
-	-- 	keys = {
-	-- 		{ "<leader>on", "<cmd>lua require('nabla').popup()<CR>", desc = "Open Nabla popup" },
-	-- 	},
-	-- },
 	{
 		"okuuva/auto-save.nvim",
 		cmd = "ASToggle", -- optional for lazy loading on command
 		event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
 		opts = {
-			execution_message = {
-				enabled = false,
-			},
 			condition = function(buf)
 				local fn = vim.fn
 				local utils = require("auto-save.utils.data")
 
-				-- don't save for `norg` file types
+				-- don't save for `oil` file types
 				if utils.not_in(fn.getbufvar(buf, "&filetype"), { "oil" }) then
 					return true
 				end

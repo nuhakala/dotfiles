@@ -59,7 +59,13 @@ return {
 
 			-- Keymaps to save and read the session
 			vim.keymap.set("n", "<leader>.w", function()
-				ms.select("write")
+				vim.ui.input({ prompt = "Enter session name: " }, function(user_input)
+					-- Cancelled input
+					if not user_input or user_input == "" then
+						return
+					end
+					ms.write(user_input)
+				end)
 			end, { desc = "Save session" })
 			vim.keymap.set("n", "<leader>.r", function()
 				ms.select("read")
@@ -76,11 +82,4 @@ return {
 		event = "VeryLazy",
 		config = true,
 	},
-	-- {
-	-- 	"echasnovski/mini.trailspace",
-	-- 	version = false,
-	-- 	keys = {
-	-- 		{ "<leader>dt", "<cmd>lua require('mini.trailspace').trim()<CR>", desc = "Trim trailspace" },
-	-- 	},
-	-- },
 }

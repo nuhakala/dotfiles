@@ -113,6 +113,5 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function (args)
 		vim.opt.textwidth = 85
 		vim.opt.colorcolumn = "85"
-		vim.opt.expandtab = true
 	end,
 })
