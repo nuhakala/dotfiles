@@ -18,10 +18,10 @@ return {
 
 			local luasnip = require("luasnip")
 			-- vim.keymap.set({"i"}, "<C-Space>", function() luasnip.expand() end, {silent = true})
-			vim.keymap.set({ "i", "s" }, "<C-L>", function()
+			vim.keymap.set({ "i", "s" }, "<C-n>", function()
 				luasnip.jump(1)
 			end, { silent = true })
-			vim.keymap.set({ "i", "s" }, "<C-K>", function()
+			vim.keymap.set({ "i", "s" }, "<C-p>", function()
 				luasnip.jump(-1)
 			end, { silent = true })
 			vim.keymap.set({ "i", "s" }, "<C-c>", function()

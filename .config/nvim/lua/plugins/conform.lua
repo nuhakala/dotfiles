@@ -9,8 +9,8 @@ return {
 					-- Conform will run multiple formatters sequentially
 					python = { "black" },
 					-- Use a sub-list to run only the first available formatter
-					javascript = { { "prettierd", "prettier" } },
-					typescript = { { "prettierd", "prettier" } },
+					javascript = { "prettierd", "prettier" },
+					typescript = { "prettierd", "prettier" },
 					c = { "clang_format" },
 					cpp = { "clang_format" },
 					-- ["*"] = { "codespell" },
@@ -24,7 +24,7 @@ return {
 			})
 
 			vim.keymap.set({ "n", "v", "x" }, "<leader>z", function()
-				require("conform").format({ lsp_fallback = true })
+				require("conform").format({ lsp_format = "fallback", stop_after_first = true })
 				print("File formatted")
 			end, { desc = "Format" })
 		end,
