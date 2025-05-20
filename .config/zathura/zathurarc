@@ -1,6 +1,0 @@
-set guioptions "shv"
-set scroll-step 50
-set selection-clipboard "clipboard"
-set statusbar-home-tilde true
-set selection-notification false
-set database "sqlite"

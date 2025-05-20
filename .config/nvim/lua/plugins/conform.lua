@@ -2,6 +2,7 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {},
+        branch = "nvim-0.9",
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
@@ -13,7 +14,7 @@ return {
 					typescript = { "prettierd", "prettier" },
 					c = { "clang_format" },
 					cpp = { "clang_format" },
-					go = { "gofmt" },
+					sh = { "shfmt" },
 					-- ["*"] = { "codespell" },
 				},
 				formatters = {
