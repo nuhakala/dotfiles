@@ -6,6 +6,7 @@ return {
 		-- "nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	build = ":TSUpdate",
+	tag = "v3.6.0",
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			-- LSP requires these two for some reason.
@@ -19,6 +20,10 @@ return {
 				"vimdoc",
 				"query",
 				"markdown",
+				"markdown_inline",
+				"go",
+				"gomod",
+				"gosum",
 			},
 			sync_install = false,
 
