@@ -5,7 +5,7 @@ return {
 		opts = {
 			mappings = {
 				apply = "<leader>ga",
-				reset = "<leader>gH",
+				reset = "<leader>gr",
 				textobject = "gh",
 				goto_first = "<leader>gf",
 				goto_prev = "<leader>gp",

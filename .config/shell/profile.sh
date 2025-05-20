@@ -36,7 +36,8 @@ alias vpndown="wg-quick down de-dus-wg-003"
 alias l="eza --header --icons=automatic --sort=type"
 alias ll="eza -l --header --icons=automatic --sort=type"
 alias la="eza -la --header --icons=automatic --sort=type"
-alias ls='ls --color=auto'
+alias ls="ls --color=auto"
+alias ip="ip --color=auto"
 
 # Open
 open () {
