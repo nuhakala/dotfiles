@@ -1,5 +1,5 @@
 # Default keybinds
-source <(fzf --zsh)
+source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 # Find directory and cd to it
 fd() {

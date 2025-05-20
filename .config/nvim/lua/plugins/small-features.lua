@@ -1,5 +1,6 @@
 return {
 	{ "lambdalisue/suda.vim" },
+	{ "HiPhish/jinja.vim" },
 	{
 		"mbbill/undotree",
 		keys = {
@@ -19,6 +20,7 @@ return {
 			condition = function(buf)
 				local fn = vim.fn
 				local utils = require("auto-save.utils.data")
+
 				-- don't save for `oil` file types
 				if utils.not_in(fn.getbufvar(buf, "&filetype"), { "oil" }) then
 					return true
@@ -30,24 +32,5 @@ return {
 		keys = {
 			{ "<leader>+", ":ASToggle<CR>", desc = "Toggle auto-save" },
 		},
-	},
-	{
-		"stevearc/aerial.nvim",
-		event = "VeryLazy",
-		opts = {},
-		-- Optional dependencies
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("aerial").setup({})
-			vim.keymap.set("n", "<leader>oa", "<cmd>AerialToggle!<CR>")
-		end,
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function
 	},
 }

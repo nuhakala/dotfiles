@@ -2,6 +2,7 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {},
+        branch = "nvim-0.9",
 		config = function()
 			local conform = require("conform")
 			conform.setup({
@@ -18,6 +19,7 @@ return {
 					go = { "gofmt" },
 					-- Global config in ~/.config/yamlfmt/.yamlfmt
 					yaml = { "yamlfmt" },
+					sh = { "shfmt" },
 					-- ["*"] = { "codespell" },
 				},
 				formatters = {
