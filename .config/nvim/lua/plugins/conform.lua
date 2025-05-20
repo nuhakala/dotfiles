@@ -2,6 +2,7 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {},
+        branch = "nvim-0.9",
 		config = function()
 			local conform = require("conform")
 			conform.setup({
@@ -14,7 +15,7 @@ return {
 					typescript = { "prettierd", "prettier" },
 					c = { "clang_format" },
 					cpp = { "clang_format" },
-					go = { "gofmt" },
+					sh = { "shfmt" },
 					-- ["*"] = { "codespell" },
 				},
 				formatters = {

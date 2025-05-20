@@ -110,7 +110,7 @@ zstyle ':vcs_info:git:*' actionformats " %F{219} %b %F{44}➜ %F{197}%a"
 # directorys: %c = current directory, %~ = pwd, %/ = from root
 # %u = user, %m = machine
 # Colors: https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
-PROMPT=" %F{172}%2c\$vcs_info_msg_0_ %F{93}❯%{$reset_color%} "
+PROMPT=" %F{081}ssh@%m %F{172}%2c\$vcs_info_msg_0_ %F{93}❯%{$reset_color%} "
 
 # Add some system stats in the beginning
 # echo -e "\033[0m\033[48;2;59;66;82;38;2;216;222;233m $(uptime -p | cut -c 4-) \033[0m\033[48;2;76;86;106;38;2;216;222;233m $(uname -r) \033[0m\n"

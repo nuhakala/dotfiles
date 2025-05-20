@@ -14,6 +14,12 @@ return {
 			"%.git/", -- git folder
 			"%.o", -- c object files
 		}
+
+		-- local actions = require("telescope.actions")
+		-- local open_with_trouble = require("trouble.sources.telescope").open
+		-- local add_to_trouble = require("trouble.sources.telescope").add
+		-- local telescope = require("telescope")
+
 		require("telescope").setup({
 			defaults = {
 				file_ignore_patterns = file_ignore_patterns,
@@ -28,9 +34,10 @@ return {
 						-- Make traversing more intuitive with default layout
 						["<C-n>"] = require("telescope.actions").move_selection_previous,
 						["<C-p>"] = require("telescope.actions").move_selection_next,
+						-- ["<c-t>"] = open_with_trouble,
+						-- ["<c-T>"] = add_to_trouble,
 					},
-					-- i = { ["<c-t>"] = trouble.open_with_trouble },
-					-- n = { ["<c-t>"] = trouble.open_with_trouble },
+					-- n = { ["<c-t>"] = open_with_trouble },
 				},
 			},
 		})
