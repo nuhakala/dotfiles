@@ -1,24 +1,5 @@
 return {
 	{ "lambdalisue/suda.vim" },
-	{ "jbyuki/quickmath.nvim" },
-	{
-		"ptdewey/pendulum-nvim",
-		config = function()
-			require("pendulum").setup({
-				-- disable report generations (avoids Go dependency)
-				gen_reports = false,
-				log_file = vim.fn.expand("$HOME/.vim/pendulum_stats.csv"),
-			})
-		end,
-	},
-	{
-		"folke/twilight.nvim",
-		opts = {
-			dimming = {
-				alpha = 0,
-			}
-		}
-	},
 	{
 		"mbbill/undotree",
 		keys = {
