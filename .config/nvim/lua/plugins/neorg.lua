@@ -30,7 +30,10 @@ return {
 								},
 								todo = {
 									on_hold = {
-										icon = "",
+										icon = "",
+									},
+									pending = {
+										icon = "",
 									},
 								},
 							},
