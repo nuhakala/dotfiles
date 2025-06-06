@@ -33,6 +33,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.dir = os.getenv("HOME") .. "/.vim/swap/"
+vim.opt.mouse = ""
 
 -- Required for many plugins! Enables some color support related to terminal.
 vim.opt.termguicolors = true
