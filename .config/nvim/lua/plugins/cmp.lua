@@ -37,7 +37,7 @@ return {
 				},
 
 				mapping = {
-					["<C-s>"] = cmp.mapping.confirm({ select = false }),
+					["<C-y>"] = cmp.mapping.confirm({ select = false }),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
 					["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),

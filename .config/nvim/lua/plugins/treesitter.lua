@@ -1,34 +1,39 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	dependencies = {
-		-- here to ensure ts-context-commentstring works fine.
-		-- "JoosepAlviste/nvim-ts-context-commentstring",
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+        -- here to ensure ts-context-commentstring works fine.
+        -- "JoosepAlviste/nvim-ts-context-commentstring",
         -- "nvim-treesitter/nvim-treesitter-textobjects",
-	},
-	build = ":TSUpdate",
-	config = function()
-		require("nvim-treesitter.configs").setup({
+    },
+    build = ":TSUpdate",
+    tag = "v3.6.0",
+    config = function()
+        require("nvim-treesitter.configs").setup({
             -- LSP requires these two for some reason.
             modules = {},
             ignore_install = {},
 
-			ensure_installed = {
-				"c",
-				"lua",
-				"vim",
-				"vimdoc",
-				"query",
-				"markdown",
-			},
-			sync_install = false,
+            ensure_installed = {
+                "c",
+                "lua",
+                "vim",
+                "vimdoc",
+                "query",
+                "markdown",
+                "markdown_inline",
+                "go",
+                "gomod",
+                "gosum",
+            },
+            sync_install = false,
 
-			-- Automatically install missing parsers when entering buffer
-			-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-			auto_install = true,
+            -- Automatically install missing parsers when entering buffer
+            -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+            auto_install = true,
 
-			highlight = {
-				enable = true,
-			},
+            highlight = {
+                enable = true,
+            },
 
             textobjects = {
                 select = {
@@ -50,6 +55,6 @@ return {
                     include_surrounding_whitespace = true,
                 },
             },
-		})
-	end,
+        })
+    end,
 }

@@ -41,3 +41,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.colorcolumn = "85"
 	end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "lua",
+	callback = function (args)
+        vim.bo.expandtab = true
+	end,
+})

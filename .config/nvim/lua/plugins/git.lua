@@ -9,7 +9,7 @@ return {
 	{
 		"NeogitOrg/neogit",
 		event = "VeryLazy",
-		version = "v0.0.1",
+		tag = "v0.0.1",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
 			"nvim-telescope/telescope.nvim", -- optional
@@ -36,7 +36,7 @@ return {
 		opts = {
 			mappings = {
 				apply = "<leader>ga",
-				reset = "<leader>gH",
+				reset = "<leader>gr",
 				textobject = "gh",
 				goto_first = "<leader>gf",
 				goto_prev = "<leader>gp",

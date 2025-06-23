@@ -1,5 +1,6 @@
 return {
 	{ "lambdalisue/suda.vim" },
+	{ "HiPhish/jinja.vim" },
 	{
 		"mbbill/undotree",
 		keys = {
