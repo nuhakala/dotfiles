@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+    echo "Usage: llog [directory] [file name prefix (optional)]"
+    exit 1
+fi
+
+dir=$(basename "$1")
+newestfile=$(ls "${dir}/$2"* | sort -n -t _ -k 2 | tail -1)
+# echo $newestfile
+less "$newestfile"
