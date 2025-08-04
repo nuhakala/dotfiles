@@ -20,6 +20,10 @@
             {
                 "language": ["typst"],
                 "path": "./snippets/typst.json"
+            },
+            {
+                "language": ["shellscript", "shell", "sh", "zsh"],
+                "path": "./snippets/shell.json"
             }
         ]
     }
