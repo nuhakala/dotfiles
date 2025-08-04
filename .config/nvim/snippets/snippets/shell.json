@@ -1,0 +1,25 @@
+{
+    "shebang": {
+        "prefix": "shebang",
+        "body": [
+            "#!/usr/bin/env ${1:sh}",
+            "#",
+            "# ${2:Description of the script.}$0"
+        ],
+        "description": "Shebang"
+    },
+    "case": {
+        "prefix": "case",
+        "body": [
+            "case ${1:switch_on} {",
+                "\t$2)",
+                "\t\t$3",
+                "\t\t;;",
+                "\t*):",
+                "\t\t${4:# Default action}",
+                "\t\t;;",
+                "}$0"
+        ],
+        "description": "Switch case statement"
+    }
+}

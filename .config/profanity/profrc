@@ -3,7 +3,7 @@ load=notifycmd.py;
 
 [notifications]
 message=true
-message.current=false
+message.current=true
 message.text=true
 remind=300
 tray=true
@@ -16,6 +16,8 @@ console.chat=first
 statusbar.self=user
 statusbar.show.name=true
 time.chat=%d.%m. %H:%M
+resource.title=false
+resource.message=false
 
 [logging]
 chlog=true

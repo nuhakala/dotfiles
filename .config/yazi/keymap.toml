@@ -1,42 +1,36 @@
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "k" ]
 run  = "cd ~/kurssit/"
 desc = "Kurssit"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "r" ]
 run  = "cd ~/repo/"
 desc = "Repo"
 
-# Other bookmarks
-[[manager.prepend_keymap]]
-on   = [ "g", "n" ]
-run  = "cd /media/usb/"
-desc = "USB stick"
-
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "," ]
 run  = "cd ~/hdd/"
 desc = "HDD"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "g", "m" ]
 run  = "cd ~/muistiinpanot/"
 desc = "Muistiinpanot"
 
 # Overwrite enter to go to directory instead of opening
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "e"
 run = """ shell --confirm 'wezterm start $EDITOR "$@"' """
 desc = "Edit file in new window"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "o"
 run = "open"
 desc = "Open file in place"
 
 # Toggle preview with the plugin
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = "T"
 run  = "plugin toggle-pane min-preview"
 desc = "Hide or show preview"

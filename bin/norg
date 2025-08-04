@@ -19,6 +19,8 @@ elif [ "$1" = "muist" ]; then
     nvim -c ":Neorg workspace sekalaiset" -c ":edit muistettavaa.norg"
 
 # ***** Typst watch *****
+elif [ "$1" = "type" ]; then
+	typst watch --open=xdg-open --root ~/muistiinpanot/preview/ ~/muistiinpanot/preview/preview.typ
 elif [ "$1" = "typ" ]; then
 	typst watch --open=xdg-open --root ~/muistiinpanot/ ~/muistiinpanot/preview.typ
 fi
