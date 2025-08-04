@@ -5,7 +5,6 @@ return {
 		-- version = "*", -- Pin Neorg to the latest stable release
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "numToStr/Comment.nvim" },
 			{ "nvim-neorg/neorg-telescope" },
 			{ "benlubas/neorg-conceal-wrap" },
 			{ "benlubas/neorg-interim-ls" },
@@ -89,10 +88,6 @@ return {
 					},
 				},
 			})
-
-			-- Set filetype comment
-			local ft = require("Comment.ft")
-			ft.norg = { "%|%s|%", "%|%s|%" }
 		end,
 	},
 }

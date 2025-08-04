@@ -1,46 +1,10 @@
 return {
 	{ "lambdalisue/suda.vim" },
-	{ "jbyuki/quickmath.nvim" },
-	{
-		"ptdewey/pendulum-nvim",
-		config = function()
-			require("pendulum").setup({
-				-- disable report generations (avoids Go dependency)
-				gen_reports = false,
-				log_file = vim.fn.expand("$HOME/.vim/pendulum_stats.csv"),
-			})
-		end,
-	},
-	{
-		"folke/twilight.nvim",
-		opts = {
-			dimming = {
-				alpha = 0,
-			}
-		}
-	},
 	{
 		"mbbill/undotree",
 		keys = {
 			{ "<leader>ou", vim.cmd.UndotreeToggle, desc = "Open undotree" },
 		},
-	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = {
-			exclude = {
-				filetypes = { "norg" },
-			},
-		},
-	},
-	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "VeryLazy", -- Or `LspAttach`
-		priority = 1000, -- needs to be loaded in first
-		config = function()
-			require('tiny-inline-diagnostic').setup()
-		end
 	},
 	{
 		"nuhakala/nvim-simple-tables",
@@ -55,7 +19,6 @@ return {
 			condition = function(buf)
 				local fn = vim.fn
 				local utils = require("auto-save.utils.data")
-
 				-- don't save for `oil` file types
 				if utils.not_in(fn.getbufvar(buf, "&filetype"), { "oil" }) then
 					return true
@@ -69,71 +32,22 @@ return {
 		},
 	},
 	{
-		"akinsho/toggleterm.nvim",
+		"stevearc/aerial.nvim",
 		event = "VeryLazy",
-		version = "*",
-		opts = {
-			autochdir = true,
-			direction = "tab",
-			float_opts = {
-				border = "double",
-			},
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
 		},
-		keys = {
-			{ "<leader>ot", "<CMD>ToggleTerm direction=tab<CR>", desc = "Open terminal" },
-			{
-				"<leader>ov",
-				"<CMD>ToggleTerm size=10 dir=./ direction=horizontal<CR>",
-				desc = "Open terminal in horizontal split",
-			},
-		},
-		config = true,
-	},
-	{
-		"otavioschwanck/arrow.nvim",
-		event = "VeryLazy",
 		config = function()
-			require("arrow").setup({
-				show_icons = true,
-				leader_key = "<leader>h", -- Recommended to be a single key
-				index_keys = "aouhtns",
-				save_path = function()
-					return os.getenv("HOME") .. "/.vim/arrow/"
-				end,
-			})
+			require("aerial").setup({})
+			vim.keymap.set("n", "<leader>oa", "<cmd>AerialToggle!<CR>")
 		end,
 	},
 	{
-		"stevearc/quicker.nvim",
-		event = "FileType qf",
-		---@module "quicker"
-		---@type quicker.SetupOptions
-		opts = {},
-		config = function()
-			require("quicker").setup({
-				keys = {
-					{
-						">",
-						function()
-							require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
-						end,
-						desc = "Expand quickfix context",
-					},
-					{
-						"<",
-						function()
-							require("quicker").collapse()
-						end,
-						desc = "Collapse quickfix context",
-					},
-				},
-			})
-			vim.keymap.set("n", "<leader>q", function()
-				require("quicker").toggle()
-			end, { desc = "Toggle quickfix" })
-			-- vim.keymap.set("n", "<leader>l", function()
-				-- 	require("quicker").toggle({ loclist = true })
-				-- end, { desc = "Toggle loclist" })
-			end,
-		},
-	}
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {}, -- this is equalent to setup({}) function
+	},
+}
