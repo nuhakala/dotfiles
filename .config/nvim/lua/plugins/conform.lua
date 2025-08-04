@@ -13,6 +13,7 @@ return {
 					typescript = { "prettierd", "prettier" },
 					c = { "clang_format" },
 					cpp = { "clang_format" },
+					go = { "gofmt" },
 					-- ["*"] = { "codespell" },
 				},
 				formatters = {

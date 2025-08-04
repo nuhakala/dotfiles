@@ -2,6 +2,11 @@ return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
 	opts = {
+		triggers = {
+			{ "<leader>", mode = { "n", "v" } },
+			{ "z", mode = { "n", "v" } },
+			{ "g", mode = { "n", "v" } },
+		},
 		delay = 1000,
 		icons = {
 			mappings = false,
@@ -11,7 +16,6 @@ return {
 			{ "<leader>d", group = "Delete" },
 			{ "<leader>e", group = "Tablemode" },
 			{ "<leader>g", group = "Git" },
-			{ "<leader>h", group = "Open Arrow" },
 			{ "<leader>o", group = "Open" },
 			{ "<leader>p", group = "Paste" },
 			{ "<leader>r", group = "Find and replace" },

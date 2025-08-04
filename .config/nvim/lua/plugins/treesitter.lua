@@ -3,14 +3,14 @@ return {
 	dependencies = {
 		-- here to ensure ts-context-commentstring works fine.
 		-- "JoosepAlviste/nvim-ts-context-commentstring",
-        -- "nvim-treesitter/nvim-treesitter-textobjects",
+		-- "nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter.configs").setup({
-            -- LSP requires these two for some reason.
-            modules = {},
-            ignore_install = {},
+			-- LSP requires these two for some reason.
+			modules = {},
+			ignore_install = {},
 
 			ensure_installed = {
 				"c",
@@ -30,26 +30,26 @@ return {
 				enable = true,
 			},
 
-            textobjects = {
-                select = {
-                    enable = true,
-                    lookahead = true,
-                    -- These are binded to a motion -> no need for leader
-                    keymaps = {
-                        ["af"] = "@function.outer",
-                        ["if"] = "@function.inner",
-                        ["ac"] = "@class.outer",
-                        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-                        ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-                    },
-                    selection_modes = {
-                        ['@parameter.outer'] = 'v', -- charwise
-                        ['@function.outer'] = 'v',
-                        ['@class.outer'] = '<c-v>', -- blockwise
-                    },
-                    include_surrounding_whitespace = true,
-                },
-            },
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					-- These are binded to a motion -> no need for leader
+					keymaps = {
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+						["ac"] = "@class.outer",
+						["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+						["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+					},
+					selection_modes = {
+						["@parameter.outer"] = "v", -- charwise
+						["@function.outer"] = "v",
+						["@class.outer"] = "<c-v>", -- blockwise
+					},
+					include_surrounding_whitespace = true,
+				},
+			},
 		})
 	end,
 }
