@@ -37,10 +37,10 @@ return {
 	s("sgame", { t("(N, (S_i)_{i \\in N} (u_i)_{i \\in N})") }),
 
     -- Workspace link
-    s("linkfile", { t("{:./"), i(1, "Link"), t(":}["), i(2, "Description"), t("]"), i(0) }),
+    -- s("linkfile", { t("{:./"), i(1, "Link"), t(":}["), i(2, "Description"), t("]"), i(0) }),
 
     -- References
-    s("quellen", { t({ "*Quellen:*", "- " }), i(1) }),
-    s("sources", { t({ "*Sources:*", "- " }), i(1) }),
-    s("lähteet", { t({ "*Lähteet:*", "- " }), i(1) }),
+    -- s("quellen", { t({ "*Quellen:*", "- " }), i(1) }),
+    -- s("sources", { t({ "*Sources:*", "- " }), i(1) }),
+    -- s("lähteet", { t({ "*Lähteet:*", "- " }), i(1) }),
 }

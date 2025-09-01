@@ -38,5 +38,30 @@
         "prefix": "#algo",
         "body": ["#algo(fill: black, title: \"${1:name}\", parameters: (\"${2:params}\",), indent-guides: 1pt + gray)[", "$0", "]"],
         "description": "Typst algorithm environment"
+    },
+    "slink": {
+        "prefix": "slink",
+        "body": ["{${1:object}}[${2:description}]${0} (accessed $CURRENT_DATE.$CURRENT_MONTH.$CURRENT_YEAR)" ],
+        "description": "Source link with accessed data"
+    },
+    "linkfile": {
+        "prefix": "linkfile",
+        "body": ["{:./${1:Link}:}[${2:Description]"],
+        "description": "Workspace link"
+    },
+    "quellen": {
+        "prefix": "quellen",
+        "body": ["*Quellen:*", "- $0"],
+        "description": "Quellen"
+    },
+    "sources": {
+        "prefix": "sources",
+        "body": ["*Sources:*", "- $0"],
+        "description": "Sources"
+    },
+    "lähteet": {
+        "prefix": "lähteet",
+        "body": ["*Lähteet:*", "- $0"],
+        "description": "Lähteet"
     }
 }
