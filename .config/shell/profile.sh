@@ -1,4 +1,4 @@
-export EDITOR=/usr/local/bin/nvim
+export EDITOR="/usr/bin/env nvim"
 
 export PATH="$HOME/bin:/usr/local/go/bin:$PATH"
 
