@@ -3,5 +3,10 @@
         "prefix": "tänään",
         "body": ["$CURRENT_DATE.$CURRENT_MONTH.$CURRENT_YEAR"],
         "description": "code block"
+    },
+    "commentheader": {
+        "prefix": "header",
+        "body": ["***** $0 *****"],
+        "description": "Add some decorations to show a header"
     }
 }

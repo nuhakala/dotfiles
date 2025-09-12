@@ -2,32 +2,44 @@ return {
 	{
 		"williamboman/mason.nvim",
 		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
 			"saghen/blink.cmp",
 		},
 		config = function()
 			require("mason").setup({})
-			require("mason-lspconfig").setup({})
-			local blink_capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-			local capabilities =
-				vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), blink_capabilities)
-			-- disable LSP snippets
-			capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-			-- Set up capabilities automatically
-			require("mason-lspconfig").setup({
-				handlers = {
-					function(server_name)
-						require("lspconfig")[server_name].setup({
-							capabilities = capabilities,
-						})
-					end,
-					-- clangd = function()
-					--     stuff
-					-- end
-				},
+			-- ***** Setup blink capabilities *****
+			local override_capabilities = {
+				textDocument = {
+					completion = {
+						completionItem = {
+							snippetSupport = false
+						}
+					}
+				}
+			}
+			local blink_capabilities = require("blink.cmp").get_lsp_capabilities(override_capabilities)
+
+			-- ***** Setup servers *****
+			-- Apply these defaults to all configurations
+			vim.lsp.config("*", {
+				capabilities = blink_capabilities
 			})
+
+			-- gopls configuration
+			vim.lsp.config("gopls", {
+				settings = {
+					gopls = {
+						buildFlags = {"-tags=e2e"}
+					}
+				}
+			})
+
+			-- enable configurations
+			vim.lsp.enable("gopls")
+			vim.lsp.enable("bashls")
+			vim.lsp.enable("pyright")
+			vim.lsp.enable("clangd")
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
