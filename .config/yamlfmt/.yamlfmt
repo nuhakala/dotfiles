@@ -1,3 +1,7 @@
+# Config options in https://github.com/google/yamlfmt/blob/main/docs/config-file.md
 formatter:
   type: basic
   retain_line_breaks_single: true
+  trim_trailing_whitespace: true
+  # For kubernetes style arrays:
+  # indentless_arrays: true
