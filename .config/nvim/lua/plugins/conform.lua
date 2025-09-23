@@ -12,9 +12,12 @@ return {
 					-- Use a sub-list to run only the first available formatter
 					javascript = { "prettierd", "prettier" },
 					typescript = { "prettierd", "prettier" },
+					-- Clang style file configured below
 					c = { "clang_format" },
 					cpp = { "clang_format" },
 					go = { "gofmt" },
+					-- Global config in ~/.config/yamlfmt/.yamlfmt
+					yaml = { "yamlfmt" },
 					-- ["*"] = { "codespell" },
 				},
 				formatters = {
