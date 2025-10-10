@@ -11,14 +11,16 @@
 
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
+ZSH_HIGHLIGHT_STYLES[comment]="fg=#555555" # Fix comment higlight
 plug "zsh-users/zsh-history-substring-search"
 
 # Source shell-independent stuff
 plug "$HOME/.config/shell/profile.sh"
 plug "$HOME/.config/shell/git.sh"
 plug "$HOME/.config/shell/fzf.sh"
-plug "$HOME/.config/shell/nnn.sh"
+# plug "$HOME/.config/shell/nnn.sh"
 plug "$HOME/.config/shell/yazi.sh"
+plug "$HOME/.config/shell/latex.sh"
 
 # Completions
 # Load and initialise completion system
