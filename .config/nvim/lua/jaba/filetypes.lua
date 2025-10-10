@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.textwidth = 85
 		vim.opt.autochdir = true
 		vim.opt.colorcolumn = "85"
-		vim.opt.foldlevelstart = 1
+		vim.opt.foldlevelstart = 2
 		vim.bo.expandtab = true
 		-- vim.bo.commentstring = "%|%s|%"
 
@@ -96,7 +96,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "tex",
+	pattern = "plaintex",
 	callback = function (args)
 		vim.opt.textwidth = 80
 		vim.opt.colorcolumn = "80"

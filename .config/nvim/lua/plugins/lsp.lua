@@ -13,26 +13,44 @@ return {
 				textDocument = {
 					completion = {
 						completionItem = {
-							snippetSupport = false
-						}
-					}
-				}
+							snippetSupport = false,
+						},
+					},
+				},
 			}
 			local blink_capabilities = require("blink.cmp").get_lsp_capabilities(override_capabilities)
 
 			-- ***** Setup servers *****
 			-- Apply these defaults to all configurations
 			vim.lsp.config("*", {
-				capabilities = blink_capabilities
+				capabilities = blink_capabilities,
 			})
 
 			-- gopls configuration
 			vim.lsp.config("gopls", {
 				settings = {
 					gopls = {
-						buildFlags = {"-tags=e2e"}
-					}
-				}
+						buildFlags = { "-tags=e2e" },
+					},
+				},
+			})
+
+			-- rust for wasm
+			vim.lsp.config("rust_analyzer", {
+				settings = {
+					["rust-analyzer"] = {
+						check = {
+							overrideCommand = {
+								"cargo",
+								"component",
+								"check",
+								"--workspace",
+								"--all-targets",
+								"--message-format=json",
+							},
+						},
+					},
+				},
 			})
 
 			-- enable configurations
@@ -40,6 +58,8 @@ return {
 			vim.lsp.enable("bashls")
 			vim.lsp.enable("pyright")
 			vim.lsp.enable("clangd")
+			vim.lsp.enable("texlab")
+			vim.lsp.enable("rust_analyzer")
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",

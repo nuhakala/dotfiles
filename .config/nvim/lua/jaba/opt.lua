@@ -53,9 +53,9 @@ vim.g.maplocalleader = "+"
 
 -- Set folding to work with treesitter
 -- Need to be set after treesitter is loaded.
-vim.opt.foldmethod = "expr"
--- vim.opt.foldmethod = "indent"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+vim.opt.foldmethod = "indent"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- For neorg, comment foldlevelstart out if you want fold stuff by default.
 vim.opt.foldlevelstart = 999
 
@@ -73,3 +73,19 @@ vim.g.skip_ts_context_commentstring_module = true
 -- local ghregex="\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
 -- vim.g.netrw_list_hide=ghregex
 -- vim.g.netrw_sort_options = "i"
+
+-- Statusline
+local statusline = {
+	" %f", -- filepath
+	" %h%m%r%q%w", -- help, modified, readonly, quickfix, preview flags
+
+	"%=", -- separator
+
+	"%y", -- filetype
+	" [%{&fenc==''?&enc:&fenc}]", -- file encoding
+	-- " %B", -- value of the character under curser, hexadecimal
+	" %3l:%-2v", -- line number: column
+	-- " %v",
+	" %2p%%/%-3L",
+}
+vim.o.statusline = table.concat(statusline, '')
