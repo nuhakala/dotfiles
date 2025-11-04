@@ -24,6 +24,10 @@
             {
                 "language": ["shellscript", "shell", "sh", "zsh"],
                 "path": "./snippets/shell.json"
+            },
+            {
+                "language": ["plaintex", "tex", "latex"],
+                "path": "./snippets/tex.json"
             }
         ]
     }

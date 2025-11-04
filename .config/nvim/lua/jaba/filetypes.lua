@@ -96,10 +96,10 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "plaintex",
+	pattern = "tex",
 	callback = function (args)
-		vim.opt.textwidth = 80
-		vim.opt.colorcolumn = "80"
+		vim.opt.textwidth = 85
+		vim.opt.colorcolumn = "85"
 		local tabs = 2
 		vim.bo.tabstop = tabs
 		vim.bo.softtabstop = tabs
@@ -113,5 +113,12 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function (args)
 		vim.opt.textwidth = 85
 		vim.opt.colorcolumn = "85"
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "make",
+	callback = function (args)
+		vim.bo.expandtab = false
 	end,
 })

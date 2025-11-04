@@ -1,0 +1,26 @@
+{
+    "figure": {
+        "prefix": "figure",
+        "body": [
+            "\\begin{figure}[h]",
+            "\t\\begin{center}",
+            "\t\t\\includegraphics[width=0.95\\textwidth]{$1}",
+            "\t\\end{center}",
+            "\t\\caption{$3}",
+            "\t\\label{fig:$4}",
+            "\\end{figure}",
+            "$0"
+        ],
+        "description": "Figure template"
+    },
+    "Itemize": {
+        "prefix": "list",
+        "body": ["\\begin{itemize}", "\t\\item $0", "\\end{itemize}"],
+        "description": "Itemize"
+    },
+    "Enumerate": {
+        "prefix": "numberedlist",
+        "body": ["\\begin{enumerate}", "\t\\item $0", "\\end{enumerate}"],
+        "description": "Itemize"
+    }
+}
