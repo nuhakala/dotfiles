@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Copied from chatgpt
+# Calculates sha256sum of two files and compares them.
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+sum1=$(sha256sum $1 | cut -d ' ' -f1)
+sum2=$(sha256sum $2 | cut -d ' ' -f1)
+
+if [[ "$sum1" == "$sum2" ]]; then
+    echo -e "${GREEN}SHA256 matches${NC}"
+else
+    echo -e "${RED}SHA256 does not match${NC}"
+fi
