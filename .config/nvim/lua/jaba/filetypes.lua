@@ -15,11 +15,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		-- Telescope
 		vim.keymap.set("n", "<localleader>fl", "<Plug>(neorg.telescope.find_linkable)", { buffer = true })
-		vim.keymap.set("n", "<localleader>ff", "<Plug>(neorg.telescope.find_norg_files)", { buffer = true })
 		vim.keymap.set("n", "<localleader>il", "<Plug>(neorg.telescope.insert_link)", { desc = "Neorg insert link", buffer = true })
 		vim.keymap.set("n", "<localleader>if", "<Plug>(neorg.telescope.insert_file_link)", { desc = "Neorg insert file link", buffer = true })
 		-- vim.keymap.set("i", "<C-,>", "<Plug>(neorg.telescope.insert_link)", { desc = "Neorg insert link", buffer = true })
 		-- vim.keymap.set("i", "<C-f>", "<Plug>(neorg.telescope.insert_file_link)", { desc = "Neorg insert link", buffer = true })
+		vim.keymap.set("n", "<localleader>ff", ":Telescope live_grep<cr>title: ", { buffer = true })
 
 		vim.keymap.set("n", "<localleader>nn", function()
 			local dirman = require("neorg").modules.get_module("core.dirman")
@@ -31,10 +31,10 @@ vim.api.nvim_create_autocmd("FileType", {
 				end
 
 				local file_name = user_input:gsub(" ", "_")
-				local date = os.date("%Y-%m-%d--")
+				local date = os.date("%Y-%m-%d--%H-%M")
 				local ws = dirman.get_current_workspace()[1]
 
-				dirman.create_file(date .. file_name, ws, {
+				dirman.create_file(date, ws, {
 					no_open = false, -- open file after creation?
 					force = false, -- overwrite file if exists
 					metadata = {
@@ -119,6 +119,15 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "make",
 	callback = function (args)
+		vim.bo.expandtab = false
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "rust",
+	callback = function (args)
+		-- Idiotic configuration precedence issue: apparently some built-in
+		-- config is applied after my own config.
 		vim.bo.expandtab = false
 	end,
 })

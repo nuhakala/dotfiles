@@ -16,9 +16,8 @@ return {
 					c = { "clang_format" },
 					cpp = { "clang_format" },
 					go = { "gofmt" },
-					-- Global config in ~/.config/yamlfmt/.yamlfmt
-					yaml = { "yamlfmt" },
-					-- ["*"] = { "codespell" },
+					yaml = { "yamlfmt" }, -- Global config in ~/.config/yamlfmt/.yamlfmt
+					markdown = { "prettier" },
 				},
 				formatters = {
 					clang_format = {

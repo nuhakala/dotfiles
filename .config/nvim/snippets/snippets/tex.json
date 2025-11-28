@@ -1,4 +1,23 @@
 {
+    "table": {
+        "prefix": "table",
+        "body": [
+            "\\begin{table}[h]",
+            "\t\\centering",
+            "\t\\begin{tabular}{$1}",
+            "\t\t% Header row",
+            "\t\t${4:header row} \\\\\\",
+            "\t\t\\hline",
+            "\t\t% Content",
+            "\t\t${5:content}",
+            "\t\\end{tabular}",
+            "\t\\caption{$2}",
+            "\t\\label{table:$3}",
+            "\\end{table}",
+            "$0"
+        ],
+        "description": "Figure template"
+    },
     "figure": {
         "prefix": "figure",
         "body": [
