@@ -16,7 +16,7 @@ return {
 					["core.summary"] = {},
 					["core.export"] = {},
 					["core.esupports.indent"] = {config = {format_on_esc = false,},},
-					["core.integrations.telescope"] = {config = { insert_file_link = { show_title_preview = false, }, },},
+					["core.integrations.telescope"] = {config = { insert_file_link = { show_title_preview = true, }, },},
 					["core.completion"] = { config = { engine = { module_name = "external.lsp-completion" } },},
 					["core.keybinds"] = {config = {default_keybinds = true,},},
 					["core.concealer"] = {

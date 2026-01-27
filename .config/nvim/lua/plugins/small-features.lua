@@ -1,6 +1,12 @@
 return {
 	{ "lambdalisue/suda.vim" },
 	{
+		"saghen/blink.indent",
+		--- @module 'blink.indent'
+		--- @type blink.indent.Config
+		opts = {},
+	},
+	{
 		"mbbill/undotree",
 		keys = {
 			{ "<leader>ou", vim.cmd.UndotreeToggle, desc = "Open undotree" },

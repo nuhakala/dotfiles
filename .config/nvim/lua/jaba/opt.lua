@@ -14,7 +14,7 @@ vim.opt.conceallevel = 2
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.showbreak = "+++ "
-vim.opt.listchars = "tab:▎-,lead:.,multispace:▎..." -- space:·,
+-- vim.opt.listchars = "tab:▎-,lead:.,multispace:▎..." -- space:·,
 vim.opt.list = true
 
 -- When typing a search command, show where the pattern matches

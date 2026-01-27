@@ -39,6 +39,14 @@ return {
 
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>tf", builtin.find_files, { desc = "Find files in working dir" })
+		vim.keymap.set("n", "<leader>tF", function()
+			local path = vim.fn.expand("%:p:h:h")
+			local start = "oil://"
+			if path:sub(1, #start) == start then
+				path = path:sub(#start, #path)
+			end
+			builtin.find_files({cwd = path})
+		end, { desc = "Find files in parent dir of cur file" })
 		vim.keymap.set("n", "<leader>tg", builtin.git_files, { desc = "Find in git files" })
 		vim.keymap.set("n", "<leader>tw", builtin.live_grep, { desc = "Live grep working dir" })
 		-- vim.keymap.set("n", "<leader>tW", builtin.grep_string, { desc = "Search for word under cursor in working dir" })
