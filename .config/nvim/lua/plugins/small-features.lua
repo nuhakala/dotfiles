@@ -56,4 +56,23 @@ return {
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
 	},
+	{
+		"echasnovski/mini.align",
+		version = false,
+		event = "VeryLazy",
+		config = function()
+			require("mini.align").setup({
+				mappings = {
+					start = "<leader>aa",
+					start_with_preview = "<leader>ap",
+				},
+			})
+		end,
+	},
+	{
+		"echasnovski/mini.splitjoin",
+		version = false,
+		event = "VeryLazy",
+		config = true,
+	},
 }

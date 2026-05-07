@@ -8,15 +8,24 @@ return {
 			},
 		},
 	},
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	config = function()
+	-- 		require("notify").setup({
+	-- 			background_colour = "#000000",
+	-- 			timeout = 3000,
+	-- 			render = "wrapped-compact",
+	-- 		})
+	-- 		vim.notify = require("notify")
+	-- 	end,
+	-- },
 	{
-		"rcarriga/nvim-notify",
-		config = function()
-			require("notify").setup({
-				background_colour = "#000000",
-				timeout = 3000,
-				render = "wrapped-compact",
-			})
-			vim.notify = require("notify")
-		end,
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+			notification = {
+				override_vim_notify = true,
+			},
+		},
 	},
 }

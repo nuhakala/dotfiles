@@ -1,91 +1,55 @@
--- EDITING
-vim.opt.nu = true
-vim.opt.relativenumber = true
-
-local tabs = 4
-vim.opt.tabstop = tabs
-vim.opt.softtabstop = tabs
-vim.opt.shiftwidth = tabs
-vim.opt.expandtab = false
-
-vim.opt.smartindent = true
-vim.opt.conceallevel = 2
-
-vim.opt.wrap = false
-vim.opt.linebreak = true
-vim.opt.showbreak = "+++ "
+local opt = vim.opt
+-- Stuff
+opt.nu = true
+opt.relativenumber = true
+opt.wrap = false
+opt.scrolloff = 8
+-- vim.opt.showbreak = "+++ "
 -- vim.opt.listchars = "tab:▎-,lead:.,multispace:▎..." -- space:·,
-vim.opt.list = true
+-- vim.opt.list = true
 
--- When typing a search command, show where the pattern matches
-vim.opt.incsearch = true
-vim.opt.ignorecase = true
+-- Indentation
+local tabs = 4
+opt.tabstop = tabs
+opt.softtabstop = tabs
+opt.shiftwidth = tabs
+opt.expandtab = false
+opt.smartindent = true
 
--- When in blockmode, enable virtualedit
--- virtualedit = treat each cell as character
-vim.opt.virtualedit = "block"
--- When searching, show the matches on bottom
-vim.opt.inccommand = "split"
+-- Search settings
+opt.incsearch = true -- Show matches as you type
+opt.ignorecase = true -- Case insensitive search
+opt.smartcase = true -- Case sensitive if uppercase in search
 
--- FUNCTIONALITY
-vim.opt.swapfile = true
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-vim.opt.dir = os.getenv("HOME") .. "/.vim/swap/"
-vim.opt.mouse = "nv"
+-- Visual settings
+opt.termguicolors = true
+opt.conceallevel = 0
+opt.virtualedit = "block"
+opt.inccommand = "split"
+opt.signcolumn = "yes"
+opt.colorcolumn = "80"
+opt.cursorline = true
+opt.synmaxcol = 300 -- Syntax highlighting limit, improves minified files
 
--- Required for many plugins! Enables some color support related to terminal.
-vim.opt.termguicolors = true
+-- File handling
+opt.swapfile = true
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
+opt.dir = os.getenv("HOME") .. "/.vim/swap/"
+opt.autoread = true -- Auto reload files changed outside vim
 
--- Be default horizontalspilt to below and vertical to right
-vim.opt.splitbelow = true
-vim.opt.splitright = true
+-- Behavior settings
+opt.mouse = "nv"
 
-vim.opt.scrolloff = 8
--- vim.opt.sidescrolloff = 10
-vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "80"
-vim.opt.cursorline = true
+-- Split settings
+opt.splitbelow = true
+opt.splitright = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "+"
 
--- Set folding to work with treesitter
--- Need to be set after treesitter is loaded.
--- vim.opt.foldmethod = "expr"
-vim.opt.foldmethod = "indent"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- For neorg, comment foldlevelstart out if you want fold stuff by default.
-vim.opt.foldlevelstart = 999
-
--- Required for ts-context-comment-string, without it, shows a warning when opening.
-vim.g.skip_ts_context_commentstring_module = true
-
--- Spelling
--- vim.opt.spell = true
--- vim.opt.spelllang = "en"
-
--- Netrw
--- vim.g.netrw_banner = 0
-
--- -- Hide dot files by default
--- local ghregex="\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
--- vim.g.netrw_list_hide=ghregex
--- vim.g.netrw_sort_options = "i"
-
--- Statusline
-local statusline = {
-	" %f", -- filepath
-	" %h%m%r%q%w", -- help, modified, readonly, quickfix, preview flags
-
-	"%=", -- separator
-
-	"%y", -- filetype
-	" [%{&fenc==''?&enc:&fenc}]", -- file encoding
-	-- " %B", -- value of the character under curser, hexadecimal
-	" %3l:%-2v", -- line number: column
-	-- " %v",
-	" %2p%%/%-3L",
-}
-vim.o.statusline = table.concat(statusline, '')
+-- Folding
+opt.foldmethod = "indent"
+opt.foldlevelstart = 999
+opt.smoothscroll = true

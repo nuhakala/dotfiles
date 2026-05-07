@@ -12,7 +12,6 @@ return {
 			mappings = false,
 		},
 		spec = {
-			{ "<leader>.", group = "Session" },
 			{ "<leader>d", group = "Delete" },
 			{ "<leader>e", group = "Tablemode" },
 			{ "<leader>g", group = "Git" },

@@ -28,6 +28,7 @@ return {
 						-- Make traversing more intuitive with default layout
 						["<C-n>"] = require("telescope.actions").move_selection_previous,
 						["<C-p>"] = require("telescope.actions").move_selection_next,
+						["<C-j>"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
 					},
 					-- i = { ["<c-t>"] = trouble.open_with_trouble },
 					-- n = { ["<c-t>"] = trouble.open_with_trouble },
@@ -45,7 +46,7 @@ return {
 			if path:sub(1, #start) == start then
 				path = path:sub(#start, #path)
 			end
-			builtin.find_files({cwd = path})
+			builtin.find_files({ cwd = path })
 		end, { desc = "Find files in parent dir of cur file" })
 		vim.keymap.set("n", "<leader>tg", builtin.git_files, { desc = "Find in git files" })
 		vim.keymap.set("n", "<leader>tw", builtin.live_grep, { desc = "Live grep working dir" })
@@ -55,6 +56,7 @@ return {
 		vim.keymap.set("n", "<leader>tr", builtin.lsp_references, { desc = "LSP references" })
 		vim.keymap.set("n", "<leader>td", builtin.lsp_definitions, { desc = "LSP definitions" })
 		vim.keymap.set("n", "<leader>tD", builtin.diagnostics, { desc = "Diagnostics" })
+		vim.keymap.set("n", "<leader>ts", builtin.lsp_document_symbols, { desc = "LSP document symbols" })
 		vim.keymap.set("n", "<leader>ts", builtin.lsp_document_symbols, { desc = "LSP document symbols" })
 	end,
 }

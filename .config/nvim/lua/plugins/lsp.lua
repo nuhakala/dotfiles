@@ -30,25 +30,8 @@ return {
 			vim.lsp.config("gopls", {
 				settings = {
 					gopls = {
+						-- buildFlags = { "-tags=vbmctl" },
 						buildFlags = { "-tags=e2e" },
-					},
-				},
-			})
-
-			-- rust for wasm
-			vim.lsp.config("rust_analyzer", {
-				settings = {
-					["rust-analyzer"] = {
-						check = {
-							overrideCommand = {
-								"cargo",
-								"component",
-								"check",
-								"--workspace",
-								"--all-targets",
-								"--message-format=json",
-							},
-						},
 					},
 				},
 			})
@@ -93,6 +76,8 @@ return {
 					set("n", "gr", vim.lsp.buf.references, { desc = "References", buffer = event.buf })
 
 					set("n", "gl", vim.diagnostic.open_float, { desc = "Open diagnostics float", buffer = event.buf })
+					set("n", "gt", vim.diagnostic.setloclist, { desc = "Open buffer diagnostics in loclist", buffer = event.buf })
+					set("n", "gn", vim.diagnostic.setqflist, { desc = "Open all diagnostics in quicklist", buffer = event.buf })
 					set("n", "[d", vim.diagnostic.goto_prev, { desc = "Diagnostics goto previous", buffer = event.buf })
 					set("n", "]d", vim.diagnostic.goto_next, { desc = "Diagnostics goto next", buffer = event.buf })
 				end,
