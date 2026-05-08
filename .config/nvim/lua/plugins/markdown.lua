@@ -22,46 +22,42 @@ return {
 	-- 		},
 	-- 	},
 
-	-- {
-	-- 	"obsidian-nvim/obsidian.nvim",
-	-- 	version = "*", -- recommended, use latest release instead of latest commit
-	-- 	ft = "markdown",
-	-- 	-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-	-- 	-- event = {
-	-- 	--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-	-- 	--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-	-- 	--   -- refer to `:h file-pattern` for more examples
-	-- 	--   "BufReadPre path/to/my-vault/*.md",
-	-- 	--   "BufNewFile path/to/my-vault/*.md",
-	-- 	-- },
-	-- 	---@module 'obsidian'
-	-- 	---@type obsidian.config
-	-- 	opts = {
-	-- 		legacy_commands = false, -- this will be removed in the next major release
-	-- 		workspaces = {
-	-- 			{
-	-- 				name = "personal",
-	-- 				path = "~/muistiinpanot/testi",
-	-- 			},
-	-- 		},
-	-- 	},
-	--
-	-- 	config = function(_, opts)
-	-- 		require("obsidian").setup(opts)
-	--
-	-- 		-- Autocommand to auto-update updated field
-	-- 		vim.api.nvim_create_autocmd("User", {
-	-- 			pattern = "ObsidianNoteWritePost",
-	-- 			callback = function(ev)
-	-- 				local note = require("obsidian.note").from_buffer(ev.buf)
-	-- 				if note then
-	-- 					local date = os.date("%Y-%m-%dT%H:%M:%S%z")
-	-- 					vim.print(date)
-	-- 					note:add_field("updated", date)
-	-- 					note:save_to_buffer()
-	-- 				end
-	-- 			end,
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"obsidian-nvim/obsidian.nvim",
+		version = "*", -- recommended, use latest release instead of latest commit
+		lazy = true,
+		ft = "markdown",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		---@module 'obsidian'
+		---@type obsidian.config
+		opts = {
+			legacy_commands = false, -- this will be removed in the next major release
+			workspaces = {
+				{
+					name = "personal",
+					path = "~/muistiinpanot/testi2",
+				},
+			},
+		},
+
+		config = function(_, opts)
+			require("obsidian").setup(opts)
+
+			-- Autocommand to auto-update updated field
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "ObsidianNoteWritePost",
+				callback = function(ev)
+					local note = require("obsidian.note").from_buffer(ev.buf)
+					if note then
+						local date = os.date("%Y-%m-%dT%H:%M:%S%z")
+						vim.print(date)
+						note:add_field("updated", date)
+						note:save_to_buffer()
+					end
+				end,
+			})
+		end,
+	},
 }

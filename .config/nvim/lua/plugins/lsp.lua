@@ -47,18 +47,6 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function(event)
-					-- Neorg interim.ls stuff
-					local bufnr = event.buf
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if not client then
-						return
-					end
-
-					if client.server_capabilities.completionProvider then
-						vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-					end
-					-- Neorg interim.ls stuff
-
 					local set = vim.keymap.set
 					set("n", "K", vim.lsp.buf.hover, { desc = "Hover", buffer = event.buf })
 					set("n", "gD", vim.lsp.buf.declaration, { desc = "Declaration", buffer = event.buf })
@@ -75,9 +63,24 @@ return {
 					set("n", "go", vim.lsp.buf.type_definition, { desc = "Type Definition", buffer = event.buf })
 					set("n", "gr", vim.lsp.buf.references, { desc = "References", buffer = event.buf })
 
-					set("n", "gl", vim.diagnostic.open_float, { desc = "Open diagnostics float", buffer = event.buf })
-					set("n", "gt", vim.diagnostic.setloclist, { desc = "Open buffer diagnostics in loclist", buffer = event.buf })
-					set("n", "gn", vim.diagnostic.setqflist, { desc = "Open all diagnostics in quicklist", buffer = event.buf })
+					set(
+						"n",
+						"<leader>od",
+						vim.diagnostic.open_float,
+						{ desc = "Open diagnostics float", buffer = event.buf }
+					)
+					set(
+						"n",
+						"<leader>ol",
+						vim.diagnostic.setloclist,
+						{ desc = "Open buffer diagnostics in loclist", buffer = event.buf }
+					)
+					set(
+						"n",
+						"<leader>oq",
+						vim.diagnostic.setqflist,
+						{ desc = "Open all diagnostics in quicklist", buffer = event.buf }
+					)
 					set("n", "[d", vim.diagnostic.goto_prev, { desc = "Diagnostics goto previous", buffer = event.buf })
 					set("n", "]d", vim.diagnostic.goto_next, { desc = "Diagnostics goto next", buffer = event.buf })
 				end,
