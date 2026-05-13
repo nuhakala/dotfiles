@@ -6,7 +6,7 @@ return {
 	config = function()
 		require("nvim-treesitter").install({ "markdown", "python", "go", "bash", "lua" })
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "markdown", "python", "go", "shell", "sh", "lua", "yaml" },
+			pattern = { "markdown", "python", "go", "shell", "sh", "lua", "yaml", "tex" },
 			callback = function()
 				vim.treesitter.start() -- highlighting
 				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- indentation
