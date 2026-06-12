@@ -1,4 +1,4 @@
-export EDITOR="/usr/bin/env nvim"
+export EDITOR="nvim"
 
 export PATH="$HOME/bin:/usr/local/go/bin:$PATH"
 
@@ -11,8 +11,8 @@ sää() {
 alias du="du -h" # human readable
 
 #Shorthands
-alias musat="vim ~/muistiinpanot/sekalaiset/musat.norg"
-alias gifit="nvim ~/muistiinpanot/sekalaiset/gifit.norg"
+alias musat="vim ~/muistiinpanot/sekalaiset/musat.md"
+alias gifit="nvim ~/muistiinpanot/sekalaiset/gifit.md"
 
 # Mullvad
 alias vpnup="wg-quick up de-dus-wg-003"

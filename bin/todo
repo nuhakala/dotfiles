@@ -8,11 +8,14 @@ todos=~/muistiinpanot/gtd/
 # ***** TODO *****
 if [ $# -eq 0 ]; then
     cd ${todos}
-    nvim ./next-action.norg
+    nvim ./next-action.md
 elif [ "$1" = "some" ]; then 
     cd ${todos}
-    nvim ./someday.norg
+    nvim ./someday.md
+elif [ "$1" = "er" ]; then 
+    cd ${todos}
+    nvim ./ericsson.md
 elif [ "$1" = "next" ]; then 
     cd ${todos}
-    nvim ./next-action.norg
+    nvim ./next-action.md
 fi

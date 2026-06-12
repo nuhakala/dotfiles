@@ -1,0 +1,27 @@
+{
+    "slink": {
+        "prefix": "slink",
+        "body": ["[${1:description}](${2:link})${0} (accessed $CURRENT_DATE.$CURRENT_MONTH.$CURRENT_YEAR)" ],
+        "description": "Source link with accessed data"
+    },
+    "sources": {
+        "prefix": "sources",
+        "body": ["*Sources:*", "- $0"],
+        "description": "Sources"
+    },
+    "lähteet": {
+        "prefix": "lähteet",
+        "body": ["*Lähteet:*", "- $0"],
+        "description": "Lähteet"
+    },
+    "task": {
+        "prefix": "task",
+        "body": ["- [ ] $0"],
+        "description": "task"
+    },
+	"code": {
+		"prefix": "code",
+		"body": ["``` ${1:language}", "$0", "```"],
+		"description": "Code block"
+	}
+}

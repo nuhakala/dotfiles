@@ -4,6 +4,11 @@
         "body": ["$CURRENT_DATE.$CURRENT_MONTH.$CURRENT_YEAR"],
         "description": "code block"
     },
+    "nyt": {
+        "prefix": "nyt",
+        "body": ["$CURRENT_DATE.$CURRENT_MONTH.$CURRENT_YEAR--$CURRENT_HOUR:$CURRENT_MINUTE"],
+        "description": "code block"
+    },
     "commentheader": {
         "prefix": "header",
         "body": ["***** $0 *****"],
