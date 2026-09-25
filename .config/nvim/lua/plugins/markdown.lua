@@ -80,9 +80,24 @@ return {
 			},
 			{
 				"<localleader>os",
-				":Telescope live_grep<cr>title: ",
-				desc = "Search for files"
+				":Obsidian search<cr>",
+				desc = "Search for notes",
 			},
+			{
+				"<localleader><Tab>",
+				function() require("obsidian.actions").nav_link("next") end,
+				desc = "Go to next link",
+			},
+			{
+				"<localleader><S-Tab>",
+				function() require("obsidian.actions").nav_link("prev") end,
+				desc = "Go to previous link",
+			},
+			-- {
+			-- 	"<localleader>os",
+			-- 	":Telescope live_grep<cr>title: ",
+			-- 	desc = "Search for files"
+			-- },
 		},
 	},
 }
