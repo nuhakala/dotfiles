@@ -38,6 +38,7 @@ opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
 opt.dir = os.getenv("HOME") .. "/.vim/swap/"
 opt.autoread = true -- Auto reload files changed outside vim
+opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
 
 -- Behavior settings
 opt.mouse = "nv"

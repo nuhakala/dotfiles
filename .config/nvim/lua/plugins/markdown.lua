@@ -93,6 +93,11 @@ return {
 				function() require("obsidian.actions").nav_link("prev") end,
 				desc = "Go to previous link",
 			},
+			{
+				"<localleader>ot",
+				":Obsidian tags<cr>",
+				desc = "Obsidian tags",
+			},
 			-- {
 			-- 	"<localleader>os",
 			-- 	":Telescope live_grep<cr>title: ",
