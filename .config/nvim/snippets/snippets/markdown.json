@@ -23,5 +23,10 @@
 		"prefix": "code",
 		"body": ["``` ${1:language}", "$0", "```"],
 		"description": "Code block"
+	},
+	"note": {
+		"prefix": "note",
+		"body": ["> [!${1:callout}]", "> $0", "```"],
+		"description": "Highlighted callout block"
 	}
 }
