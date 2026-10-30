@@ -23,7 +23,7 @@
         "description": "Switch case statement"
     },
 	"Bash Script with getopt": {
-		"prefix": "script",
+		"prefix": "scripttemplate",
 			"body": [
 			  "#!/usr/bin/env bash",
 			  "",
@@ -45,6 +45,7 @@
 			  "    -o 'h' \\\\",
 			  "    --long 'help' \\\\",
 			  "    -n \"\\$(basename \"\\$0\")\" -- \"\\$@\") || usage",
+			  "if [[ \\$# -eq 0 ]]; then usage; fi",
 			  "eval set -- \"\\$OPTS\"",
 			  "while true; do",
 			  "    case \"\\$1\" in",
