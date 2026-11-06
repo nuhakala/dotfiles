@@ -253,3 +253,10 @@ namespacing
 goto
 Netlink
 #esti
+MBR
+GPT
+PXE
+TFTP
+FW
+HW
+splitted
