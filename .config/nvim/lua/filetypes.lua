@@ -59,3 +59,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.bo.expandtab = false
 	end,
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	callback = function (args)
+		vim.opt_local.relativenumber = true
+	end,
+})

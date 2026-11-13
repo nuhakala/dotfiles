@@ -3,6 +3,7 @@ require("remap")
 require("filetypes")
 require("bufonly")
 require("statusline")
+require("tabline")
 
 -- Install Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
